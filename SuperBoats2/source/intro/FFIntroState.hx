@@ -13,7 +13,8 @@ import states.*;
 class FFIntroState extends FlxState
 {
 	private var _ffLogo:FFLogo;
-	private var _frames:Int = 0;
+	private var _t:Float = 0;
+	private var anim1:Bool = false;
 	override public function create():Void
 	{
 		#if !FLX_NO_MOUSE
@@ -30,9 +31,10 @@ class FFIntroState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
-		_frames++;
-		if (_frames == FlxG.updateFramerate * 1)
+		_t += elapsed;
+		if (_t > (60 / FlxG.updateFramerate) && !anim1)
 		{
+			anim1 = true;
 			FlxTween.tween(_ffLogo, { alpha: 0, scaleFactor: 3 }, 1, {ease: FlxEase.cubeOut, onComplete: switchToGameIcon, type: FlxTween.ONESHOT});
 		}
 		super.update(elapsed);
@@ -40,6 +42,6 @@ class FFIntroState extends FlxState
 	
 	private function switchToGameIcon(tween:FlxTween):Void
 	{
-		FlxG.switchState(new MenuState());
+		// FlxG.switchState(new MenuState());
 	}
 }
