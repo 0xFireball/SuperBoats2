@@ -25,7 +25,6 @@
 			"taskName": "flash debug",
 			"suppressTaskName": true,
 			"args": ["test", "flash", "-debug", "-Dfdb"],
-			"isBuildCommand": true,
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -116,6 +115,7 @@
 		{
 			"taskName": "neko debug",
 			"suppressTaskName": true,
+			"isBuildCommand": true,
 			"args": ["test", "neko", "-debug"],
 			"problemMatcher": {
 				"owner": "haxe",
