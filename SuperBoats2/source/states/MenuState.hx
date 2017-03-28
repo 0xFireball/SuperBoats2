@@ -1,8 +1,8 @@
-package;
+package states;
 
 import flixel.FlxState;
 
-class PlayState extends FlxState
+class MenuState extends FlxState
 {
 	override public function create():Void
 	{

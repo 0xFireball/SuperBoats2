@@ -43,7 +43,6 @@
 			"taskName": "flash debug (build only)",
 			"suppressTaskName": true,
 			"args": ["build", "flash", "-debug", "-Dfdb"],
-			"isBuildCommand": true,
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
