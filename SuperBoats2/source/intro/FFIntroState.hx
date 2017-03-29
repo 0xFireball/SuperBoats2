@@ -42,6 +42,6 @@ class FFIntroState extends FlxState
 	
 	private function switchToGameIcon(tween:FlxTween):Void
 	{
-		// FlxG.switchState(new MenuState());
+		FlxG.switchState(new MenuState());
 	}
 }
