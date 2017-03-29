@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="SuperBoats 2" file="SuperBoats 2" main="Main" version="0.0.1" company="HaxeFlixel" />
+	<app title="SuperBoats 2" file="SuperBoats 2" main="Main" version="0.0.1" company="PetaPhaser" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -29,7 +29,8 @@
 
 	<set name="BUILD_DIR" value="export" />
 	<classpath name="source" />
-	<assets path="assets" />
+	<assets path="assets" embed="true" />
+	<assets path="assets/images" rename="images" embed="true" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
@@ -79,4 +80,5 @@
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
+	<icon path="img/icon.png" />
 </project>
