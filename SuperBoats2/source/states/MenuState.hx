@@ -18,9 +18,8 @@ class MenuState extends FlxState
 		titleTx.color = FlxColor.WHITE;
 		titleTx.screenCenter(FlxAxes.X);
 		titleTx.y = -titleTx.height;
-		var titleFinalY = 200;
+		var titleFinalY = 180;
 		FlxTween.tween(titleTx, { y: titleFinalY }, 0.7, { ease: FlxEase.cubeOut });
-		
 
 		emitter = new FlxEmitter(FlxG.width / 2, titleFinalY + titleTx.height * 1.2);
 		emitter.lifespan.set(0.4);
@@ -32,6 +31,10 @@ class MenuState extends FlxState
 		emitter.color.set(FlxColor.fromRGBFloat(0.0, 0.4, 0.6), FlxColor.fromRGBFloat(0.4, 0.8, 1.0));
 		add(emitter);
 		add(titleTx); // add title after emitter
+
+		var credits = new NFText(40, 0, "PetaPhaser", 60);
+		credits.y = FlxG.height - credits.height * 1.2;
+		add(credits);
 
 		super.create();
 	}
