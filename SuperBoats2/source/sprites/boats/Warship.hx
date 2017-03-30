@@ -40,8 +40,8 @@ class Warship extends Boat {
 		mass = 184000;
 		sprayAmount = 20;
 		spraySpread = 80;
-		angularThrust = 0.027 * Math.PI;
-		maxAngular = Math.PI / 5;
+		angularThrust = FlxAngle.asDegrees(0.027 * Math.PI);
+		maxAngular = FlxAngle.asDegrees(Math.PI / 5);
 		maxVelocity.set(60, 60);
 	}
 

@@ -1,6 +1,8 @@
 
 package sprites.boats;
 
+import flixel.math.*;
+
 import states.game.data.*;
 
 class RedBoat extends Warship {
@@ -12,8 +14,8 @@ class RedBoat extends Warship {
 		mass = 79000;
 		sprayAmount = 20;
 		spraySpread = 80;
-		angularThrust = 0.034 * Math.PI;
-		maxAngular = Math.PI / 4;
+		angularThrust = FlxAngle.asDegrees(0.034 * Math.PI);
+		maxAngular = FlxAngle.asDegrees(Math.PI / 4);
 		maxVelocity.set(135, 135);
 		// renderGraphic(20, 43, function (gpx) {
 		// 	var ctx = gpx.g2;

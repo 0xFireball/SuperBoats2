@@ -43,7 +43,7 @@ class GreenBoat extends Boat {
 		hullShieldMax = hullShieldIntegrity = 57000;
 		hullShieldRegen = 100;
 		attackTime = 0.7;
-		angularThrust = 0.05 * Math.PI;
+		angularThrust = FlxAngle.asDegrees(0.05 * Math.PI);
 		thrust = 3.5;
 		wrapBounds = false;
 		mass = 26000;

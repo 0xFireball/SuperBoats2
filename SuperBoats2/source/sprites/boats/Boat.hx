@@ -29,8 +29,8 @@ class Boat extends NFSprite {
 		
 		maxHealth = health = 100000;
 		maxVelocity.set(200, 200);
-		maxAngular = Math.PI;
-		angularDrag = Math.PI;
+		maxAngular = FlxAngle.asDegrees(Math.PI);
+		angularDrag = FlxAngle.asDegrees(Math.PI);
 		drag.set(24, 24);
 		elasticity = 0.3;
 		mass = 16000;
@@ -51,9 +51,9 @@ class Boat extends NFSprite {
 		if (Thrust && Brake) Thrust = Brake = false;
 
 		if (Left) {
-			angularVelocity -= angularThrust;
+			angularVelocity -= FlxAngle.asDegrees(angularThrust);
 		} else if (Right) {
-			angularVelocity += angularThrust;
+			angularVelocity += FlxAngle.asDegrees(angularThrust);
 		}
 		var thrustVector = FlxVector.get(0, 0);
 		drag.set(15, 15);
@@ -64,7 +64,7 @@ class Boat extends NFSprite {
 			// brakes
 			drag.scale(6);
 		}
-		thrustVector.rotate(FlxPoint.get(0, 0), FlxAngle.asDegrees(angle));
+		thrustVector.rotate(FlxPoint.get(0, 0), angle);
 		velocity.addPoint(thrustVector);
 	}
 

@@ -41,7 +41,7 @@ class PlayState extends FlxState
 		allies.add(player);
 
 		warships = new FlxTypedGroup<Warship>();
-		stateData.projectiles = projectiles;
+		stateData.warships = warships;
 		// create mothership
 		mothership = new Mothership(Math.random() * FlxG.width, Math.random() * FlxG.height, stateData);
 		stateData.mothership = mothership;
