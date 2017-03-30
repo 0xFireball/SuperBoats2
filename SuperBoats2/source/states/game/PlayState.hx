@@ -30,10 +30,31 @@ class PlayState extends FlxState
 
 		var stateData = new GameStateData();
 
+		allies = new FlxTypedGroup<GreenBoat>();
+		stateData.allies = allies;
+		add(allies);
+
 		// create player
-		player = new PlayerBoat(FlxG.width / 2, FlxG.height / 2, stateData);
+		player = new PlayerBoat(Math.random() * FlxG.width, Math.random() * FlxG.height, stateData);
+		player.angle = Math.random() * Math.PI * 2;
 		stateData.player = player;
-		add(player);
+		allies.add(player);
+
+		warships = new FlxTypedGroup<Warship>();
+		stateData.projectiles = projectiles;
+		// create mothership
+		mothership = new Mothership(Math.random() * FlxG.width, Math.random() * FlxG.height, stateData);
+		stateData.mothership = mothership;
+		mothership.angle = Math.random() * Math.PI * 2;
+		add(warships);
+
+		projectiles = new FlxTypedGroup<Projectile>();
+		stateData.projectiles = projectiles;
+		add(projectiles);
+
+		emitter = new FlxEmitter();
+		stateData.emitter = emitter;
+		add(emitter);
 
 		super.create();
 	}
