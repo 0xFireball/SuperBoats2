@@ -4,11 +4,13 @@ import flixel.*;
 import flixel.math.*;
 import nf4.*;
 
+using nf4.math.NFMathExt;
+
 class BoatAiController<T1:NFSprite, T2:NFSprite> {
 	public var triggerRadius:Float;
 	public var style:Style = Passive;
-	public var me:FlxSprite;
-	public var target:FlxSprite;
+	public var me:NFSprite;
+	public var target:NFSprite;
 
 	public var state(default, null):BoatAiState<T1, T2>;
 
