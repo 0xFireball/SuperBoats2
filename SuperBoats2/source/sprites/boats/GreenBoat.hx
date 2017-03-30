@@ -107,7 +107,7 @@ class GreenBoat extends Boat {
 		var target = acquireTarget();
 		if (target == null) return;
 		var velOpp = velocity.toVector().normalize().rotate(FlxPoint.get(0, 0), 180).scale(20);
-		var fTalon = new Talon(x + velOpp.x, y + velOpp.y, target, false);
+		var fTalon = new Talon(x + velOpp.x, y + velOpp.y, target, false, stateData.emitter);
 		// target talon
 		var tVec = fTalon.center.toVector()
 			.subtractPoint(target.center)

@@ -1,8 +1,9 @@
 package sprites.projectiles;
 
+import flixel.*;
 import flixel.util.*;
 import flixel.math.*;
-import flixel.*;
+import flixel.effects.particles.*;
 
 import states.game.data.*;
 
@@ -25,12 +26,12 @@ class Projectile extends NFSprite {
 	 */
 	private var damageScale:Float = (1 / 24);
 
-	public var stateData:GameStateData;
+	public var emitter:FlxEmitter;
 
-	public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
+	public function new(?X:Float = 0, ?Y:Float = 0, Emitter:FlxEmitter) {
 		super(X, Y);
 
-		stateData = StateData;
+		emitter = Emitter;
 		mass = 500;
 	}
 

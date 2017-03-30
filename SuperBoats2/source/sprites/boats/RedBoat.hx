@@ -3,7 +3,7 @@ package sprites.boats;
 
 import states.game.data.*;
 
-class Minion extends Warship {
+class RedBoat extends Warship {
 	public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
 		super(X, Y, StateData);
 		maxHealth = health = 540000;

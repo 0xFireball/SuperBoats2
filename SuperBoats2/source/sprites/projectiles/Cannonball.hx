@@ -3,14 +3,15 @@ package sprites.projectiles;
 import flixel.*;
 import flixel.util.*;
 import flixel.math.*;
+import flixel.effects.particles.*;
 
 import nf4.NFSprite;
 
 using nf4.math.NFMathExt;
 
 class Cannonball extends Projectile {
-	public function new(?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
-		super(X, Y);
+	public function new(?X:Float = 0, ?Y:Float = 0, Target:NFSprite, Emitter:FlxEmitter) {
+		super(X, Y, Emitter);
 		damageFactor = 1.5;
 		mass = 2200;
 		target = Target;
