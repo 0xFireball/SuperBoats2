@@ -14,6 +14,8 @@ class MenuState extends FlxState
 
 	override public function create():Void
 	{
+		bgColor = FlxColor.fromInt(0x0B2B36);
+
 		titleTx = new NFText(0, 0, "SuperBoats 2", 84);
 		titleTx.color = FlxColor.WHITE;
 		titleTx.screenCenter(FlxAxes.X);
@@ -32,9 +34,13 @@ class MenuState extends FlxState
 		add(emitter);
 		add(titleTx); // add title after emitter
 
-		var credits = new NFText(40, 0, "PetaPhaser", 60);
-		credits.y = FlxG.height - credits.height * 1.2;
+		var credits = new NFText(32, 0, "PetaPhaser", 48);
+		credits.y = FlxG.height - (credits.height + 32);
 		add(credits);
+
+		FlxTween.color(credits, 0.9, FlxColor.fromRGBFloat(0.8, 0.1, 0.1), FlxColor.fromRGBFloat(0.98, 0.98, 0.98), { startDelay: 0.6, ease: FlxEase.cubeInOut });
+
+		FlxG.camera.shake(0.05, 0.5);
 
 		super.create();
 	}
