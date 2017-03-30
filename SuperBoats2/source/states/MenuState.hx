@@ -1,6 +1,7 @@
 package states;
 
 import flixel.*;
+import flixel.ui.*;
 import flixel.util.*;
 import flixel.tweens.*;
 import flixel.effects.particles.*;
@@ -14,6 +15,11 @@ class MenuState extends FlxState
 
 	override public function create():Void
 	{
+		#if !FLX_NO_MOUSE
+		FlxG.mouse.visible = true;
+		FlxG.mouse.load("images/mouse.png");
+		#end
+
 		bgColor = FlxColor.fromInt(0x0B2B36);
 
 		titleTx = new NFText(0, 0, "SuperBoats 2", 84);
@@ -38,9 +44,13 @@ class MenuState extends FlxState
 		credits.y = FlxG.height - (credits.height + 32);
 		add(credits);
 
+		var playBtn = new FlxButton(0, 350, "Play", onClickPlay);
+		playBtn.screenCenter(FlxAxes.X);
+		add(playBtn);
+
 		FlxTween.color(credits, 0.9, FlxColor.fromRGBFloat(0.8, 0.1, 0.1), FlxColor.fromRGBFloat(0.98, 0.98, 0.98), { startDelay: 0.6, ease: FlxEase.cubeInOut });
 
-		FlxG.camera.shake(0.05, 0.5);
+		FlxG.camera.shake(0.01, 0.5);
 
 		super.create();
 	}
@@ -48,5 +58,9 @@ class MenuState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+	}
+
+	private function onClickPlay() {
+		// TODO
 	}
 }
