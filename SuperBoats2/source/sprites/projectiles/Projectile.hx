@@ -2,13 +2,13 @@ package sprites.projectiles;
 
 import kha.Color;
 
-import n4.entities.NSprite;
-import n4.effects.particles.NParticleEmitter;
-import n4.util.NColorUtil;
-import n4.math.NPoint;
-import n4.math.NVector;
-import n4.math.NAngle;
-import n4.NGame;
+import flixel.entities.NSprite;
+import flixel.effects.particles.NParticleEmitter;
+import flixel.util.NColorUtil;
+import flixel.math.NPoint;
+import flixel.math.NVector;
+import flixel.math.NAngle;
+import flixel.FlxG;
 
 class Projectile extends NSprite {
 	public var movementSpeed:Float = 100;
@@ -63,7 +63,7 @@ class Projectile extends NSprite {
 	}
 
 	private function checkBounds() {
-		if (x < width * 2 || y < height * 2 || x > NGame.width + width * 2 || y > NGame.height + height * 2) {
+		if (x < width * 2 || y < height * 2 || x > FlxG.width + width * 2 || y > FlxG.height + height * 2) {
 			destroy();
 		}
 	}

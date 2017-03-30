@@ -2,13 +2,13 @@ package sprites.projectiles;
 
 import kha.Color;
 
-import n4.entities.NSprite;
-import n4.effects.particles.NParticleEmitter;
-import n4.util.NColorUtil;
-import n4.math.NPoint;
-import n4.math.NVector;
-import n4.math.NAngle;
-import n4.NGame;
+import flixel.entities.NSprite;
+import flixel.effects.particles.NParticleEmitter;
+import flixel.util.NColorUtil;
+import flixel.math.NPoint;
+import flixel.math.NVector;
+import flixel.math.NAngle;
+import flixel.FlxG;
 
 class Talon extends Projectile {
 	public var thrust(default, null):Float = 1;
@@ -29,7 +29,7 @@ class Talon extends Projectile {
 
 	override public function update(dt:Float) {
 		var particleTrailVector = velocity.toVector(); // duplicate velocity vector
-		particleTrailVector.rotate(new NPoint(0, 0), 180);
+		particleTrailVector.rotate(FlxPoint.get(0, 0), 180);
 		particleTrailVector.scale(0.7);
 		// emit trail particles
 		for (i in 0...2) {
@@ -37,13 +37,13 @@ class Talon extends Projectile {
 				NParticleEmitter.velocitySpread(40, particleTrailVector.x, particleTrailVector.y),
 			NColorUtil.randCol(0.1, 0.9, 0.9, 0.1), 0.7);
 		}
-		var distToTarget = new NVector(x, y).distanceTo(new NPoint(target.x, target.y));
+		var distToTarget = FlxVector.get(x, y).distanceTo(FlxPoint.get(target.x, target.y));
 		if (distToTarget < 400 && hydraAvailable) {
 			hydraAvailable = false;
 			var hydraCount = 5;
 			for (i in 0...(hydraCount - 1)) {
 				var hyd = new Torpedo(x, y, target, false);
-				var spray = new NPoint(Math.random() * 40 - 20, Math.random() * 40 - 20);
+				var spray = FlxPoint.get(Math.random() * 40 - 20, Math.random() * 40 - 20);
 				hyd.velocity.set(velocity.x / hydraCount + spray.x, velocity.y / hydraCount + spray.y);
 				Registry.PS.projectiles.add(hyd);
 			}
@@ -69,8 +69,8 @@ class Talon extends Projectile {
 				angularVelocity += angularThrust;
 			}
 		}
-		var thrustVector = new NPoint(thrust, 0);
-		thrustVector.rotate(new NPoint(0, 0), mA);
+		var thrustVector = FlxPoint.get(thrust, 0);
+		thrustVector.rotate(FlxPoint.get(0, 0), mA);
 		velocity.addPoint(thrustVector);
 
 		super.update(dt);

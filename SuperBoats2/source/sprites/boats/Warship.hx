@@ -1,8 +1,14 @@
 
 package sprites.boats;
 
+import flixel.*;
+
+import sprites.projectiles.*;
+
 import ai.BoatAiState;
 import ai.BoatAiController;
+
+using nf4.math.NFMathExt;
 
 class Warship extends Boat {
 	private static var attackTime:Float = 0.2;
@@ -21,7 +27,7 @@ class Warship extends Boat {
 		aiController.me = this;
 		aiState = new BoatAiState<Warship, GreenBoat>();
 		aiController.loadState(aiState);
-		aiController.triggerRadius = NGame.hypot / 4;
+		aiController.triggerRadius = FlxG.hypot / 4;
 		maxHealth = health = 4750000;
 		thrust = 0.6;
 		wrapBounds = false;
@@ -47,7 +53,7 @@ class Warship extends Boat {
 
 	private function acquireTarget():GreenBoat {
 		var target:GreenBoat = null;
-		var minDistance = NGame.hypot * 2;
+		var minDistance = FlxG.hypot * 2;
 		Registry.PS.allies.forEachActive(function (boat) {
 			var dist = boat.center.distanceTo(center);
 			if (dist < minDistance) {
@@ -100,10 +106,10 @@ class Warship extends Boat {
 		Registry.PS.projectiles.add(pj);
 		var recoil = pj.momentum.scale(1 / mass).negate();
 		velocity.addPoint(recoil);
-		if (x > NGame.width) x = x % NGame.width;
-		if (y > NGame.height) y = y % NGame.height;
-		if (x < 0) x += NGame.width;
-		if (y < 0) y += NGame.height;
+		if (x > FlxG.width) x = x % FlxG.width;
+		if (y > FlxG.height) y = y % FlxG.height;
+		if (x < 0) x += FlxG.width;
+		if (y < 0) y += FlxG.height;
 		// smoke
 		for (i in 0...14) {
 			Registry.PS.smokeEffectEmitter.emitSquare(x, y, 6,

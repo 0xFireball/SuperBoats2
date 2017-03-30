@@ -1,8 +1,15 @@
 
 package sprites.boats;
 
-import ai.*;
 import flixel.*;
+import flixel.group.FlxGroup;
+
+import sprites.grpProjectiles.*;
+
+import ai.BoatAiState;
+import ai.BoatAiController;
+
+using nf4.math.NFMathExt;
 
 class GreenBoat extends Boat {
     private var attackTime:Float = 1.0;
@@ -14,14 +21,19 @@ class GreenBoat extends Boat {
 	public var lastStep:ActionState;
 	public var attacking:Bool = false;
 
-    public function new(?X:Float = 0, ?Y:Float = 0) {
+	private var grpWarships:FlxTypedGroup<Warship>;
+	private var grpProjectiles:FlxTypedGroup<Projectile>;
+
+    public function new(?X:Float = 0, ?Y:Float = 0, WarshipsGroup:FlxTypedGroup<Warship>, grpProjectiles:FlxTypedGroup<Projectile>) {
 		super(X, Y);
 
 		aiController = new BoatAiController<GreenBoat, Warship>();
 		aiController.me = this;
+		grpProjectiles = grpProjectiles;
+		grpWarships = WarshipsGroup;
 		aiState = new BoatAiState<GreenBoat, Warship>();
 		aiController.loadState(aiState);
-		aiController.triggerRadius = NGame.hypot / 4;
+		aiController.triggerRadius = FlxG.hypot / 4;
 		maxHealth = health = 170000;
 		hullShieldMax = hullShieldIntegrity = 57000;
 		hullShieldRegen = 100;
@@ -58,8 +70,8 @@ class GreenBoat extends Boat {
 
 	private function acquireTarget():Warship {
 		var target:Warship = null;
-		var minDistance = NGame.hypot * 2;
-		Registry.PS.warships.forEachActive(function (boat) {
+		var minDistance = FlxG.hypot * 2;
+		grpWarships.forEachActive(function (boat) {
 			var dist = boat.center.distanceTo(center);
 			if (dist < minDistance) {
 				minDistance = dist;
@@ -90,17 +102,17 @@ class GreenBoat extends Boat {
 	public function autoFire() {
 		var target = acquireTarget();
 		if (target == null) return;
-		var velOpp = velocity.toVector().normalize().rotate(new NPoint(0, 0), 180).scale(20);
+		var velOpp = velocity.toVector().normalize().rotate(FlxPoint.get(0, 0), 180).scale(20);
 		var fTalon = new Talon(x + velOpp.x, y + velOpp.y, target, false);
 		// target talon
 		var tVec = fTalon.center.toVector()
 			.subtractPoint(target.center)
-			.rotate(new NPoint(0, 0), 180)
+			.rotate(FlxPoint.get(0, 0), 180)
 			.toVector().normalize().scale(fTalon.movementSpeed);
 		fTalon.velocity.set(tVec.x, tVec.y);
 		// apply recoil
 		velocity.addPoint(fTalon.momentum.scale(1 / mass).negate());
-		Registry.PS.playerProjectiles.add(fTalon);
+		grpProjectiles.add(fTalon);
 	}
 
 	override public function destroy() {
