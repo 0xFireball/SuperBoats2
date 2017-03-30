@@ -6,7 +6,7 @@ import flixel.util.*;
 import flixel.tweens.*;
 import flixel.effects.particles.*;
 import flixel.addons.effects.chainable.*;
-import ui.*;
+import nf4.ui.*;
 
 class MenuState extends FlxState
 {

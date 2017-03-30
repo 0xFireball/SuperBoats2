@@ -1,4 +1,4 @@
-package ui;
+package nf4.ui;
 
 import flixel.text.FlxText;
 
