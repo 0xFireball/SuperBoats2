@@ -4,8 +4,9 @@ import flixel.util.*;
 import flixel.math.*;
 import flixel.*;
 
-import nf4.*;
+import states.game.data.*;
 
+import nf4.*;
 using nf4.math.NFMathExt;
 
 class Projectile extends NFSprite {
@@ -24,8 +25,12 @@ class Projectile extends NFSprite {
 	 */
 	private var damageScale:Float = (1 / 24);
 
-	public function new(?X:Float = 0, ?Y:Float = 0) {
+	public var stateData:GameStateData;
+
+	public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
 		super(X, Y);
+
+		stateData = StateData;
 		mass = 500;
 	}
 

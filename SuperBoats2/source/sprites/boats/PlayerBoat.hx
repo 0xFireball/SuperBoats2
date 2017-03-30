@@ -3,6 +3,8 @@ package sprites.boats;
 
 import flixel.*;
 
+import states.game.data.*;
+
 class PlayerBoat extends GreenBoat {
     public var allyCount:Int = 0;
 	public var maxAllyCount:Int = 6;

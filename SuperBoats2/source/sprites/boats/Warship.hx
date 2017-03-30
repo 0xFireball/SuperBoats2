@@ -9,6 +9,8 @@ import sprites.projectiles.*;
 import ai.BoatAiState;
 import ai.BoatAiController;
 
+import states.game.data.*;
+
 import nf4.math.NFMath;
 
 using nf4.math.NFMathExt;
@@ -23,8 +25,8 @@ class Warship extends Boat {
 	public var aiState:BoatAiState<Warship, GreenBoat>;
 	public var lastStep:ActionState;
 
-	public function new(?X:Float = 0, ?Y:Float = 0) {
-		super(X, Y);
+	public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
+		super(X, Y, StateData);
 
 		aiController = new BoatAiController<Warship, GreenBoat>();
 		aiController.me = this;
@@ -108,7 +110,7 @@ class Warship extends Boat {
 
 	private function shootProjectile(pj:Projectile, vx:Float, vy:Float) {
 		pj.velocity.set(vx, vy);
-		Registry.PS.projectiles.add(pj);
+		stateData.projectiles.add(pj);
 		var recoil = pj.momentum.scale(1 / mass).negate();
 		velocity.addPoint(recoil);
 		if (x > FlxG.width) x = x % FlxG.width;
@@ -117,7 +119,7 @@ class Warship extends Boat {
 		if (y < 0) y += FlxG.height;
 		// smoke
 		for (i in 0...14) {
-			Registry.PS.smokeEffectEmitter.emitSquare(x, y, 6,
+			stateData.smokeEffectEmitter.emitSquare(x, y, 6,
 				NParticleEmitter.velocitySpread(45, vx / 4, vy / 4),
 				NColorUtil.randCol(0.5, 0.5, 0.5), 0.8);
 		}
@@ -125,8 +127,8 @@ class Warship extends Boat {
 
 	private function movement() {
 		var target = acquireTarget();
-		aiState.friends = Registry.PS.warships;
-		aiState.enemies = Registry.PS.allies;
+		aiState.friends = stateData.warships;
+		aiState.enemies = stateData.allies;
 		aiController.target = target;
 
 		var step = aiController.step();

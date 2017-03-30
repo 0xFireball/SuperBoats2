@@ -12,6 +12,9 @@ import ai.BoatAiState;
 import ai.BoatAiController;
 
 import nf4.math.*;
+
+import states.game.data.*;
+
 using nf4.math.NFMathExt;
 
 class GreenBoat extends Boat {
@@ -29,11 +32,10 @@ class GreenBoat extends Boat {
 
 		aiController = new BoatAiController<GreenBoat, Warship>();
 		aiController.me = this;
-		grpProjectiles = ProjectilesGroup;
-		grpWarships = WarshipsGroup;
-		mEmitter = emitter;
 		aiState = new BoatAiState<GreenBoat, Warship>();
 		aiController.loadState(aiState);
+		aiState.friends = stateData.stateData.allies;
+		aiState.enemies = stateData.stateData.warships;
 		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
 		aiController.triggerRadius = hypot / 4;
 		maxHealth = health = 170000;
@@ -74,7 +76,7 @@ class GreenBoat extends Boat {
 		var target:Warship = null;
 		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
 		var minDistance = hypot * 2;
-		grpWarships.forEachAlive(function (boat) {
+		stateData.warships.forEachAlive(function (boat) {
 			var dist = boat.center.distanceTo(center);
 			if (dist < minDistance) {
 				minDistance = dist;
@@ -88,8 +90,6 @@ class GreenBoat extends Boat {
 		// minion should attack
 
 		var target = acquireTarget();
-		aiState.friends = Registry.PS.allies;
-		aiState.enemies = Registry.PS.warships;
 		aiController.target = target;
 
 		var step = aiController.step();
@@ -115,12 +115,12 @@ class GreenBoat extends Boat {
 		fTalon.velocity.set(tVec.x, tVec.y);
 		// apply recoil
 		velocity.addPoint(fTalon.momentum.scale(1 / mass).negate());
-		grpProjectiles.add(fTalon);
+		stateData.projectiles.add(fTalon);
 	}
 
 	override public function destroy() {
-		if (this != Registry.PS.player) {
-			Registry.PS.player.allyCount--;
+		if (this != stateData.player) {
+			stateData.player.allyCount--;
 		}
 		super.destroy();
 	}

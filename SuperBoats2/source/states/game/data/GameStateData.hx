@@ -2,11 +2,12 @@
 package states.game.data;
 
 import sprites.boats.*;
+import sprites.projectiles.*;
 
 import flixel.group.FlxGroup;
 import flixel.effects.particles.*;
 
-class PlayStateData {
+class GameStateData {
     public var player:PlayerBoat;
     public var mothership:Mothership;
     public var allies:FlxTypedGroup<GreenBoat>;

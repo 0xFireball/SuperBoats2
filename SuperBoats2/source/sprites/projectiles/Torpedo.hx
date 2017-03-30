@@ -43,7 +43,7 @@ class Torpedo extends Projectile {
 				var hyd = new Torpedo(x, y, target, false);
 				var spray = FlxPoint.get(Math.random() * 40 - 20, Math.random() * 40 - 20);
 				hyd.velocity.set(velocity.x / hydraCount + spray.x, velocity.y / hydraCount + spray.y);
-				Registry.PS.projectiles.add(hyd);
+				stateData.projectiles.add(hyd);
 			}
 		}
 		// retarget to player
@@ -76,7 +76,7 @@ class Torpedo extends Projectile {
 
 	override public function explode() {
 		for (i in 0...14) {
-			Registry.PS.explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 10 + 5),
+			stateData.explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 10 + 5),
 				NParticleEmitter.velocitySpread(90),
 			NColorUtil.randCol(0.8, 0.5, 0.2, 0.2), 1.8);
 		}
