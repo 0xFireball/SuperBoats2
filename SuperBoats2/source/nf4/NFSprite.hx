@@ -2,11 +2,16 @@
 package nf4;
 
 import flixel.FlxSprite;
-import flixel.math.FlxPoint;
+import flixel.math.*;
+
+using nf4.math.NFMathExt;
 
 class NFSprite extends FlxSprite {
     public var damage(get, set):Float;
+
 	public var center(get, null):FlxPoint;
+
+	public var momentum(get, null):FlxVector;
 
     /**
 	 * Utility for storing maximum health
@@ -30,5 +35,9 @@ class NFSprite extends FlxSprite {
 
 	private function get_center():FlxPoint {
 		return FlxPoint.get(x + width / 2, y + height / 2);
+	}
+
+	private function get_momentum():FlxVector {
+		return velocity.toVector().scale(mass);
 	}
 }

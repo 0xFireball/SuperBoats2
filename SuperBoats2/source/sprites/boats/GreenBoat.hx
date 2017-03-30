@@ -2,13 +2,16 @@
 package sprites.boats;
 
 import flixel.*;
+import flixel.math.*;
 import flixel.group.FlxGroup;
+import flixel.effects.particles.*;
 
-import sprites.grpProjectiles.*;
+import sprites.projectiles.*;
 
 import ai.BoatAiState;
 import ai.BoatAiController;
 
+import nf4.math.*;
 using nf4.math.NFMathExt;
 
 class GreenBoat extends Boat {
@@ -21,19 +24,18 @@ class GreenBoat extends Boat {
 	public var lastStep:ActionState;
 	public var attacking:Bool = false;
 
-	private var grpWarships:FlxTypedGroup<Warship>;
-	private var grpProjectiles:FlxTypedGroup<Projectile>;
-
-    public function new(?X:Float = 0, ?Y:Float = 0, WarshipsGroup:FlxTypedGroup<Warship>, grpProjectiles:FlxTypedGroup<Projectile>) {
-		super(X, Y);
+    public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
+		super(X, Y, StateData);
 
 		aiController = new BoatAiController<GreenBoat, Warship>();
 		aiController.me = this;
-		grpProjectiles = grpProjectiles;
+		grpProjectiles = ProjectilesGroup;
 		grpWarships = WarshipsGroup;
+		mEmitter = emitter;
 		aiState = new BoatAiState<GreenBoat, Warship>();
 		aiController.loadState(aiState);
-		aiController.triggerRadius = FlxG.hypot / 4;
+		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
+		aiController.triggerRadius = hypot / 4;
 		maxHealth = health = 170000;
 		hullShieldMax = hullShieldIntegrity = 57000;
 		hullShieldRegen = 100;
@@ -47,9 +49,9 @@ class GreenBoat extends Boat {
 		// renderGraphic(14, 32, function (gpx) {
 		// 	var ctx = gpx.g2;
 		// 	ctx.begin();
-		// 	ctx.color = Color.fromFloats(0.1, 0.9, 0.3);
+		// 	ctx.color = FlxColor.fromRGBFloat(0.1, 0.9, 0.3);
 		// 	ctx.fillRect(0, 0, width, height);
-		// 	ctx.color = Color.fromFloats(0.1, 0.9, 0.5);
+		// 	ctx.color = FlxColor.fromRGBFloat(0.1, 0.9, 0.5);
 		// 	ctx.fillRect(width / 3, height * (3 / 4), width / 3, height / 4);
 		// 	ctx.end();
 		// }, "greenboat");
@@ -70,8 +72,9 @@ class GreenBoat extends Boat {
 
 	private function acquireTarget():Warship {
 		var target:Warship = null;
-		var minDistance = FlxG.hypot * 2;
-		grpWarships.forEachActive(function (boat) {
+		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
+		var minDistance = hypot * 2;
+		grpWarships.forEachAlive(function (boat) {
 			var dist = boat.center.distanceTo(center);
 			if (dist < minDistance) {
 				minDistance = dist;

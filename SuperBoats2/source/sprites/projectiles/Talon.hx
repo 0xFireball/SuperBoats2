@@ -1,14 +1,12 @@
 package sprites.projectiles;
 
-import kha.Color;
+import flixel.util.*;
+import flixel.math.*;
+import flixel.*;
 
-import flixel.entities.NSprite;
-import flixel.effects.particles.NParticleEmitter;
-import flixel.util.NColorUtil;
-import flixel.math.NPoint;
-import flixel.math.NVector;
-import flixel.math.NAngle;
-import flixel.FlxG;
+import nf4.NFSprite;
+
+using nf4.math.NFMathExt;
 
 class Talon extends Projectile {
 	public var thrust(default, null):Float = 1;
@@ -16,7 +14,7 @@ class Talon extends Projectile {
 	public var isHydra:Bool = false;
 	public var hydraAvailable:Bool = false;
 
-	public function new(?X:Float = 0, ?Y:Float = 0, Target:NSprite, ?Hydra:Bool = false) {
+	public function new(?X:Float = 0, ?Y:Float = 0, Target:NFSprite, ?Hydra:Bool = false) {
 		super(X, Y);
 		damageFactor = 0.4;
 		mass = 1100;
@@ -24,7 +22,7 @@ class Talon extends Projectile {
 		isHydra = hydraAvailable = Hydra;
 		movementSpeed = 320;
 		maxVelocity.set(600, 600);
-		makeGraphic(6, 2, Color.fromFloats(0.1, 0.9, 0.9));
+		makeGraphic(6, 2, FlxColor.fromRGBFloat(0.1, 0.9, 0.9));
 	}
 
 	override public function update(dt:Float) {
@@ -32,21 +30,21 @@ class Talon extends Projectile {
 		particleTrailVector.rotate(FlxPoint.get(0, 0), 180);
 		particleTrailVector.scale(0.7);
 		// emit trail particles
-		for (i in 0...2) {
-			Registry.currentEmitterState.emitter.emitSquare(center.x, center.y, Std.int(Math.random() * 6) + 1,
-				NParticleEmitter.velocitySpread(40, particleTrailVector.x, particleTrailVector.y),
-			NColorUtil.randCol(0.1, 0.9, 0.9, 0.1), 0.7);
-		}
+		// for (i in 0...2) {
+		// 	Registry.currentEmitterState.emitter.emitSquare(center.x, center.y, Std.int(Math.random() * 6) + 1,
+		// 		NParticleEmitter.velocitySpread(40, particleTrailVector.x, particleTrailVector.y),
+		// 	NColorUtil.randCol(0.1, 0.9, 0.9, 0.1), 0.7);
+		// }
 		var distToTarget = FlxVector.get(x, y).distanceTo(FlxPoint.get(target.x, target.y));
 		if (distToTarget < 400 && hydraAvailable) {
 			hydraAvailable = false;
 			var hydraCount = 5;
-			for (i in 0...(hydraCount - 1)) {
-				var hyd = new Torpedo(x, y, target, false);
-				var spray = FlxPoint.get(Math.random() * 40 - 20, Math.random() * 40 - 20);
-				hyd.velocity.set(velocity.x / hydraCount + spray.x, velocity.y / hydraCount + spray.y);
-				Registry.PS.projectiles.add(hyd);
-			}
+			// for (i in 0...(hydraCount - 1)) {
+			// 	var hyd = new Torpedo(x, y, target, false);
+			// 	var spray = FlxPoint.get(Math.random() * 40 - 20, Math.random() * 40 - 20);
+			// 	hyd.velocity.set(velocity.x / hydraCount + spray.x, velocity.y / hydraCount + spray.y);
+			// 	Registry.PS.projectiles.add(hyd);
+			// }
 		}
 		// retarget to target
 		var mA = 0;

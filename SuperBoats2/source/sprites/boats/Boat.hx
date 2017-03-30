@@ -6,6 +6,8 @@ import flixel.util.*;
 import flixel.math.*;
 import nf4.*;
 
+import states.game.data;
+
 class Boat extends NFSprite {
     public var angularThrust(default, null):Float = 0.05 * Math.PI;
 	public var thrust(default, null):Float = 3.5;
@@ -18,8 +20,12 @@ class Boat extends NFSprite {
 	public var hullShieldIntegrity:Float = 0;
 	public var hullShieldRegen:Float = 100;
 
-	public function new(?X:Float = 0, ?Y:Float = 0) {
+	public var StateData:GameStateData;
+
+	public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
 		super(X, Y);
+
+		stateData = StateData;
 		
 		maxHealth = health = 100000;
 		maxVelocity.set(200, 200);

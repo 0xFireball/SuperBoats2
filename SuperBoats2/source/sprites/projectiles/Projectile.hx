@@ -1,18 +1,16 @@
 package sprites.projectiles;
 
-import kha.Color;
+import flixel.util.*;
+import flixel.math.*;
+import flixel.*;
 
-import flixel.entities.NSprite;
-import flixel.effects.particles.NParticleEmitter;
-import flixel.util.NColorUtil;
-import flixel.math.NPoint;
-import flixel.math.NVector;
-import flixel.math.NAngle;
-import flixel.FlxG;
+import nf4.*;
 
-class Projectile extends NSprite {
+using nf4.math.NFMathExt;
+
+class Projectile extends NFSprite {
 	public var movementSpeed:Float = 100;
-	public var target:NSprite;
+	public var target:NFSprite;
 
 	/**
 	 * The deadliness of the weapon
@@ -48,7 +46,7 @@ class Projectile extends NSprite {
 		hitSprite(target);
 	}
 
-	public function hitSprite(sprite:NSprite) {
+	public function hitSprite(sprite:NFSprite) {
 		// deal damage
 		var damageDealt = calculateDamage();
 		sprite.hurt(damageDealt);

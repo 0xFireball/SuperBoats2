@@ -1,14 +1,12 @@
 package sprites.projectiles;
 
-import kha.Color;
+import flixel.util.*;
+import flixel.math.*;
+import flixel.*;
 
-import flixel.entities.NSprite;
-import flixel.effects.particles.NParticleEmitter;
-import flixel.util.NColorUtil;
-import flixel.math.NPoint;
-import flixel.math.NVector;
-import flixel.math.NAngle;
-import flixel.FlxG;
+import nf4.NFSprite;
+
+using nf4.math.NFMathExt;
 
 class Torpedo extends Projectile {
 	public var thrust(default, null):Float = 6;
@@ -16,7 +14,7 @@ class Torpedo extends Projectile {
 	public var isHydra:Bool = false;
 	public var hydraAvailable:Bool = false;
 
-	public function new(?X:Float = 0, ?Y:Float = 0, Target:NSprite, ?Hydra:Bool = false) {
+	public function new(?X:Float = 0, ?Y:Float = 0, Target:NFSprite, ?Hydra:Bool = false) {
 		super(X, Y);
 		damageFactor = 0.4;
 		mass = 4400;
@@ -24,7 +22,7 @@ class Torpedo extends Projectile {
 		isHydra = hydraAvailable = Hydra;
 		movementSpeed = 90;
 		maxVelocity.set(600, 600);
-		makeGraphic(3, 7, Color.fromFloats(0.6, 0.9, 0.6));
+		makeGraphic(3, 7, FlxColor.fromRGBFloat(0.6, 0.9, 0.6));
 	}
 
 	override public function update(dt:Float) {

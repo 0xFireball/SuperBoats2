@@ -2,11 +2,14 @@
 package sprites.boats;
 
 import flixel.*;
+import flixel.math.*;
 
 import sprites.projectiles.*;
 
 import ai.BoatAiState;
 import ai.BoatAiController;
+
+import nf4.math.NFMath;
 
 using nf4.math.NFMathExt;
 
@@ -27,7 +30,8 @@ class Warship extends Boat {
 		aiController.me = this;
 		aiState = new BoatAiState<Warship, GreenBoat>();
 		aiController.loadState(aiState);
-		aiController.triggerRadius = FlxG.hypot / 4;
+		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
+		aiController.triggerRadius = hypot / 4;
 		maxHealth = health = 4750000;
 		thrust = 0.6;
 		wrapBounds = false;
@@ -53,8 +57,9 @@ class Warship extends Boat {
 
 	private function acquireTarget():GreenBoat {
 		var target:GreenBoat = null;
-		var minDistance = FlxG.hypot * 2;
-		Registry.PS.allies.forEachActive(function (boat) {
+		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
+		var minDistance = hypot * 2;
+		stateData.allies.forEachActive(function (boat) {
 			var dist = boat.center.distanceTo(center);
 			if (dist < minDistance) {
 				minDistance = dist;

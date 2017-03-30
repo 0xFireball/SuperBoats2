@@ -9,8 +9,9 @@ class PlayerBoat extends GreenBoat {
 
 	private var allySpawnFrequency:Int = 400;
 
-    public function new(?X:Float = 0, ?Y:Float = 0) {
-		super(X, Y);
+    public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
+		
+		super(X, Y, StateData);
 
 		maxHealth = health = 220000;
 		hullShieldMax = hullShieldIntegrity = 72000;
@@ -25,9 +26,9 @@ class PlayerBoat extends GreenBoat {
 		// renderGraphic(16, 36, function (gpx) {
 		// 	var ctx = gpx.g2;
 		// 	ctx.begin();
-		// 	ctx.color = Color.fromFloats(0.1, 0.3, 0.9);
+		// 	ctx.color = FlxColor.fromRGBFloat(0.1, 0.3, 0.9);
 		// 	ctx.fillRect(0, 0, width, height);
-		// 	ctx.color = Color.fromFloats(0.1, 0.5, 0.9);
+		// 	ctx.color = FlxColor.fromRGBFloat(0.1, 0.5, 0.9);
 		// 	ctx.fillRect(width / 3, height * (3 / 4), width / 3, height / 4);
 		// 	ctx.end();
 		// }, "playerboat");

@@ -4,14 +4,18 @@ import flixel.*;
 import flixel.util.*;
 import flixel.math.*;
 
+import nf4.NFSprite;
+
+using nf4.math.NFMathExt;
+
 class Cannonball extends Projectile {
-	public function new(?X:Float = 0, ?Y:Float = 0, Target:NSprite) {
+	public function new(?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
 		super(X, Y);
 		damageFactor = 1.5;
 		mass = 2200;
 		target = Target;
 		movementSpeed = 180;
-		makeGraphic(8, 8, Color.fromFloats(0.6, 0.6, 0.6));
+		makeGraphic(8, 8, FlxColor.fromRGBFloat(0.6, 0.6, 0.6));
 	}
 
 	override public function update(dt:Float) {
