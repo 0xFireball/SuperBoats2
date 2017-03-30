@@ -20,7 +20,7 @@ class Boat extends NFSprite {
 	public var hullShieldIntegrity:Float = 0;
 	public var hullShieldRegen:Float = 100;
 
-	public var StateData:GameStateData;
+	public var stateData:GameStateData;
 
 	public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
 		super(X, Y);

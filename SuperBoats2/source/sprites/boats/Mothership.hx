@@ -3,6 +3,10 @@ package sprites.boats;
 import flixel.*;
 import flixel.util.*;
 
+import states.game.data.*;
+
+import nf4.math.*;
+
 class Mothership extends Warship {
 
 	private var minionSpawnChance = 720;
@@ -49,8 +53,9 @@ class Mothership extends Warship {
 	override public function update(dt:Float) {
 		if (damage > minionDelay && minionCount < maxMinionCount && Std.int(Math.random() * minionSpawnChance) == 4) {
 			minionCount++;
-			var minionDist = NGame.hypot / 4;
-			var minion = new Minion(center.x + Math.random() * minionDist, center.y + Math.random() * minionDist);
+			var hypot = NFMath.hypot(FlxG.width, FlxG.height);
+			var minionDist = hypot / 4;
+			var minion = new RedBoat(center.x + Math.random() * minionDist, center.y + Math.random() * minionDist, stateData);
 			minion.velocity.set(Math.random() * 100, Math.random() * 100);
 			stateData.warships.add(minion);
 		}

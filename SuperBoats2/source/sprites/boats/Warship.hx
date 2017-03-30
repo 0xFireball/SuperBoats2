@@ -61,7 +61,7 @@ class Warship extends Boat {
 		var target:GreenBoat = null;
 		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
 		var minDistance = hypot * 2;
-		stateData.allies.forEachActive(function (boat) {
+		stateData.allies.forEachAlive(function (boat) {
 			var dist = boat.center.distanceTo(center);
 			if (dist < minDistance) {
 				minDistance = dist;
@@ -118,11 +118,11 @@ class Warship extends Boat {
 		if (x < 0) x += FlxG.width;
 		if (y < 0) y += FlxG.height;
 		// smoke
-		for (i in 0...14) {
-			stateData.smokeEffectEmitter.emitSquare(x, y, 6,
-				NParticleEmitter.velocitySpread(45, vx / 4, vy / 4),
-				NColorUtil.randCol(0.5, 0.5, 0.5), 0.8);
-		}
+		// for (i in 0...14) {
+		// 	stateData.smokeEffectEmitter.emitSquare(x, y, 6,
+		// 		NParticleEmitter.velocitySpread(45, vx / 4, vy / 4),
+		// 		NColorUtil.randCol(0.5, 0.5, 0.5), 0.8);
+		// }
 	}
 
 	private function movement() {

@@ -15,9 +15,9 @@ class GameStateData {
     public var projectiles:FlxTypedGroup<Projectile>;
     public var emitter:FlxEmitter;
 
-    public function new(Player:PlayerBoat, Mothership:Mothership,
-        WarshipsGroup:FlxTypedGroup<Warship>, AlliesGroup:FlxTypedGroup<GreenBoat>, ProjectilesGroup:FlxTypedGroup<Projectile>,
-        Emitter:FlxEmitter) {
+    public function new(?Player:PlayerBoat, ?Mothership:Mothership,
+        ?WarshipsGroup:FlxTypedGroup<Warship>, ?AlliesGroup:FlxTypedGroup<GreenBoat>, ?ProjectilesGroup:FlxTypedGroup<Projectile>,
+        ?Emitter:FlxEmitter) {
         
         player = Player;
         mothership = Mothership;

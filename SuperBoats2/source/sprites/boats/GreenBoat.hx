@@ -34,8 +34,9 @@ class GreenBoat extends Boat {
 		aiController.me = this;
 		aiState = new BoatAiState<GreenBoat, Warship>();
 		aiController.loadState(aiState);
-		aiState.friends = stateData.stateData.allies;
-		aiState.enemies = stateData.stateData.warships;
+		aiState.friends = stateData.allies;
+		aiState.enemies = stateData.warships;
+
 		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
 		aiController.triggerRadius = hypot / 4;
 		maxHealth = health = 170000;
