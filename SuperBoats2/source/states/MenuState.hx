@@ -5,6 +5,7 @@ import flixel.ui.*;
 import flixel.util.*;
 import flixel.tweens.*;
 import flixel.effects.particles.*;
+import flixel.addons.effects.chainable.*;
 import ui.*;
 
 class MenuState extends FlxState
@@ -62,5 +63,18 @@ class MenuState extends FlxState
 
 	private function onClickPlay() {
 		// TODO
+		var waveFct = new FlxWaveEffect();
+		var distortedTitle = new FlxEffectSprite(titleTx, [ waveFct ]);
+		distortedTitle.setPosition(titleTx.x, titleTx.y);
+		add(distortedTitle);
+		FlxTween.tween(titleTx, { alpha: 0 }, 0.4, { onComplete: function (t) {
+			remove(titleTx);
+		}});
+		FlxTween.tween(distortedTitle, { alpha: 1 }, 0.4, { onComplete: function (t) {
+			// switch
+			FlxG.camera.fade(FlxColor.BLACK, 0.4, function () {
+				FlxG.switchState(new PlayState());
+			});
+		}});
 	}
 }
