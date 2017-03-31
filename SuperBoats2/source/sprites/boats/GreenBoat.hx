@@ -106,8 +106,7 @@ class GreenBoat extends Boat {
 	public function autoFire() {
 		var target = acquireTarget();
 		if (target == null) return;
-		var velOpp = velocity.toVector().normalize().rotate(FlxPoint.weak(0, 0), 180).scale(20);
-		var fTalon = new Talon(x + velOpp.x, y + velOpp.y, target, stateData.emitter);
+		var fTalon = new Talon(center.x, center.y, target, stateData.emitter);
 		// target talon
 		var tVec = fTalon.center.toVector()
 			.subtractPoint(target.center)
