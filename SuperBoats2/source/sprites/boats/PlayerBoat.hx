@@ -45,12 +45,12 @@ class PlayerBoat extends GreenBoat {
 	}
 
 	private function spawnAllies() {
-		if (allyCount < maxAllyCount && Std.int(Math.random() * allySpawnFrequency) == 4) {
-			// spawn ally
-			++allyCount;
-			var ally = new GreenBoat(0, Math.random() * FlxG.height, stateData);
-			stateData.allies.add(ally);
-		}
+		// if (allyCount < maxAllyCount && Std.int(Math.random() * allySpawnFrequency) == 4) {
+		// 	// spawn ally
+		// 	++allyCount;
+		// 	var ally = new GreenBoat(0, Math.random() * FlxG.height, stateData);
+		// 	stateData.allies.add(ally);
+		// }
 	}
 
 	override private function movement() {
