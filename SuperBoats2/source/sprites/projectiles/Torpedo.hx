@@ -13,7 +13,7 @@ class Torpedo extends Projectile {
 	public var thrust(default, null):Float = 6;
 	public var angularThrust(default, null):Float = Math.PI * 0.08;
 
-	public function new(?X:Float = 0, ?Y:Float = 0, Target:NFSprite, ?Hydra:Bool = false, Emitter:FlxEmitter) {
+	public function new(?X:Float = 0, ?Y:Float = 0, Target:NFSprite, Emitter:FlxEmitter) {
 		super(X, Y, Emitter);
 		damageFactor = 0.4;
 		mass = 4400;
@@ -33,31 +33,33 @@ class Torpedo extends Projectile {
 		// 		NParticleEmitter.velocitySpread(40, particleTrailVector.x, particleTrailVector.y),
 		// 	NColorUtil.randCol(0.4, 0.4, 0.9, 0.1), 0.7);
 		// }
-		var distToTarget = FlxVector.get(x, y).distanceTo(target.center);
-		// retarget to player
-		var mA = 0;
-		if (x < target.x) {
-			mA = 0;
-			if (y < target.y) {
-				mA += 45;
-				angularVelocity += angularThrust;
-			} else if (y > target.y) {
-				mA -= 45;
-				angularVelocity -= angularThrust;
+		if (target != null) {
+			var distToTarget:Float = FlxVector.get(x, y).distanceTo(target.center);
+			// retarget to player
+			var mA = 0;
+			if (x < target.x) {
+				mA = 0;
+				if (y < target.y) {
+					mA += 45;
+					angularVelocity += angularThrust;
+				} else if (y > target.y) {
+					mA -= 45;
+					angularVelocity -= angularThrust;
+				}
+			} else if (x > target.x) {
+				mA = 180;
+				if (y < target.y) {
+					mA -= 45;
+					angularVelocity -= angularThrust;
+				} else if (y > target.y) {
+					mA += 45;
+					angularVelocity += angularThrust;
+				}
 			}
-		} else if (x > target.x) {
-			mA = 180;
-			if (y < target.y) {
-				mA -= 45;
-				angularVelocity -= angularThrust;
-			} else if (y > target.y) {
-				mA += 45;
-				angularVelocity += angularThrust;
-			}
+			var thrustVector = FlxPoint.get(thrust, 0);
+			thrustVector.rotate(FlxPoint.get(0, 0), mA);
+			velocity.addPoint(thrustVector);
 		}
-		var thrustVector = FlxPoint.get(thrust, 0);
-		thrustVector.rotate(FlxPoint.get(0, 0), mA);
-		velocity.addPoint(thrustVector);
 
 		super.update(dt);
 	}

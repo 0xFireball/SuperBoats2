@@ -30,6 +30,8 @@ class Projectile extends NFSprite {
 
 	public function new(?X:Float = 0, ?Y:Float = 0, Emitter:FlxEmitter) {
 		super(X, Y);
+		
+		last.set(x, y);
 
 		emitter = Emitter;
 		mass = 500;
@@ -63,6 +65,7 @@ class Projectile extends NFSprite {
 
 	override public function update(dt:Float) {
 		checkBounds();
+		trace(last);
 		super.update(dt);
 	}
 

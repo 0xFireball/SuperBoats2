@@ -23,6 +23,10 @@ class NFSprite extends FlxSprite {
         damage = 0;
     }
 
+	public function apply_impulse(Direction:FlxPoint, Magnitude:Float) {
+		velocity.addPoint(Direction.scale(Magnitude / mass));
+	}
+
     private function get_damage():Float {
 		var mHealth = health < 0 ? 0 : health;
 		return 1 - (mHealth / maxHealth);
