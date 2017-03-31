@@ -10,15 +10,15 @@ import nf4.NFSprite;
 using nf4.math.NFMathExt;
 
 class Talon extends TargetingProjectile {
-	public var thrust(default, null):Float = 1;
-	public var angularThrust(default, null):Float = Math.PI * 0.04;
 
 	public function new(?X:Float = 0, ?Y:Float = 0, Target:NFSprite, Emitter:FlxEmitter) {
 		super(X, Y, Target, Emitter);
 		damageFactor = 0.4;
 		mass = 1100;
+		thrust = 1;
 		target = Target;
 		movementSpeed = 320;
+		angularThrust = FlxAngle.asDegrees(Math.PI * 0.04);
 		maxVelocity.set(600, 600);
 		makeGraphic(6, 2, FlxColor.fromRGBFloat(0.1, 0.9, 0.9));
 	}

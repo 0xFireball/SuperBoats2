@@ -10,15 +10,14 @@ import nf4.NFSprite;
 using nf4.math.NFMathExt;
 
 class Torpedo extends TargetingProjectile {
-	public var thrust(default, null):Float = 6;
-	public var angularThrust(default, null):Float = Math.PI * 0.08;
-
 	public function new(?X:Float = 0, ?Y:Float = 0, Target:NFSprite, Emitter:FlxEmitter) {
 		super(X, Y, Target, Emitter);
 		damageFactor = 0.4;
 		mass = 4400;
+		thrust = 6;
 		target = Target;
 		movementSpeed = 90;
+		angularThrust = FlxAngle.asDegrees(Math.PI * 0.08);
 		maxVelocity.set(600, 600);
 		makeGraphic(3, 7, FlxColor.fromRGBFloat(0.6, 0.9, 0.6));
 	}
