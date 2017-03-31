@@ -1,7 +1,12 @@
 package sprites.projectiles;
 
+import flixel.math.*;
+import flixel.effects.particles.*;
+
+import nf4.NFSprite;
+
 class TargetingProjectile extends Projectile {
-    
+
     public function new(?X:Float = 0, ?Y:Float = 0, Target:NFSprite, Emitter:FlxEmitter) {
 		super(X, Y, Emitter);
     }

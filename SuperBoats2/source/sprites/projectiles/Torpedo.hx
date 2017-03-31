@@ -14,7 +14,7 @@ class Torpedo extends TargetingProjectile {
 	public var angularThrust(default, null):Float = Math.PI * 0.08;
 
 	public function new(?X:Float = 0, ?Y:Float = 0, Target:NFSprite, Emitter:FlxEmitter) {
-		super(X, Y, Emitter);
+		super(X, Y, Target, Emitter);
 		damageFactor = 0.4;
 		mass = 4400;
 		target = Target;
