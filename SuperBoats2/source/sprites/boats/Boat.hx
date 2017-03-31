@@ -114,7 +114,7 @@ class Boat extends NFSprite {
 		if (damage >= 1) {
 			// dead!
 			explode();
-			destroy();
+			kill();
 		}
 	}
 
@@ -152,5 +152,9 @@ class Boat extends NFSprite {
 			if (x > FlxG.width - width) x = FlxG.width - width;
 			if (y > FlxG.height - height) y = FlxG.height - height;
 		}
+	}
+
+	public function dismantle() {
+		this.kill();
 	}
 }

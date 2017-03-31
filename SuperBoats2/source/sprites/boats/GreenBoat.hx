@@ -120,10 +120,10 @@ class GreenBoat extends Boat {
 		stateData.projectiles.add(fTalon);
 	}
 
-	override public function destroy() {
+	override public function dismantle() {
 		if (this != stateData.player) {
 			stateData.player.allyCount--;
 		}
-		super.destroy();
+		super.dismantle();
 	}
 }

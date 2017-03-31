@@ -34,9 +34,9 @@ class RedBoat extends Warship {
 		super.update(dt);
 	}
 
-	override public function destroy() {
+	override public function dismantle() {
 		// when destroyed, update minion count
 		stateData.mothership.minionCount--;
-		super.destroy();
+		super.dismantle();
 	}
 }

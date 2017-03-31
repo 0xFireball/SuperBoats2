@@ -78,8 +78,8 @@ class BoatAiController<T1:NFSprite, T2:NFSprite> {
 					up = true;
 				}
 			}
+			targetSetpoint.put();
 		}
-		targetSetpoint.put();
 		result.movement.thrust = up;
 		result.movement.brake = down;
 		result.movement.left = left;

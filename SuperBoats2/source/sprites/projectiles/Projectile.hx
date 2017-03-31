@@ -31,8 +31,6 @@ class Projectile extends NFSprite {
 	public function new(?X:Float = 0, ?Y:Float = 0, Emitter:FlxEmitter) {
 		super(X, Y);
 		
-		last.set(x, y);
-
 		emitter = Emitter;
 		mass = 500;
 	}
@@ -42,7 +40,7 @@ class Projectile extends NFSprite {
 		var transferredMomentum = this.velocity.toVector().scale(this.mass / target.mass);
 		target.velocity.addPoint(transferredMomentum);
 
-		this.destroy();
+		dismantle();
 	}
 
 	public function calculateDamage():Float {
@@ -66,7 +64,6 @@ class Projectile extends NFSprite {
 	override public function update(dt:Float) {
 		drawSpray();
 		checkBounds();
-		trace(last);
 		super.update(dt);
 	}
 
@@ -76,7 +73,11 @@ class Projectile extends NFSprite {
 
 	private function checkBounds() {
 		if (x < width * 2 || y < height * 2 || x > FlxG.width + width * 2 || y > FlxG.height + height * 2) {
-			destroy();
+			dismantle();
 		}
+	}
+
+	public function dismantle() {
+		this.kill();
 	}
 }
