@@ -42,11 +42,12 @@ class PlayState extends FlxState
 
 		warships = new FlxTypedGroup<Warship>();
 		stateData.warships = warships;
+		add(warships);
 		// create mothership
 		mothership = new Mothership(Math.random() * FlxG.width, Math.random() * FlxG.height, stateData);
 		stateData.mothership = mothership;
 		mothership.angle = Math.random() * Math.PI * 2;
-		add(warships);
+		warships.add(mothership);
 
 		projectiles = new FlxTypedGroup<Projectile>();
 		stateData.projectiles = projectiles;

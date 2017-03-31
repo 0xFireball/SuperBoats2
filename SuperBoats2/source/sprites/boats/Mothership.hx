@@ -1,6 +1,7 @@
 package sprites.boats;
 
 import flixel.*;
+import flixel.math.*;
 import flixel.util.*;
 
 import states.game.data.*;
@@ -37,6 +38,8 @@ class Mothership extends Warship {
 			hullShieldMax = hullShieldIntegrity = 180000 * Math.pow(1.2, lvl);
 			hullShieldRegen = 2 + (lvl - 1) * 2;
 		}
+
+		loadGraphic(AssetPaths.mothership_boat__png);
 		
 		// renderGraphic(30, 65, function (gpx) {
 		// 	var ctx = gpx.g2;

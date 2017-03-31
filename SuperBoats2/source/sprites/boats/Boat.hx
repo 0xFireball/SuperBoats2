@@ -51,9 +51,9 @@ class Boat extends NFSprite {
 		if (Thrust && Brake) Thrust = Brake = false;
 
 		if (Left) {
-			angularVelocity -= FlxAngle.asDegrees(angularThrust);
+			angularVelocity -= angularThrust;
 		} else if (Right) {
-			angularVelocity += FlxAngle.asDegrees(angularThrust);
+			angularVelocity += angularThrust;
 		}
 		var thrustVector = FlxVector.get(0, 0);
 		drag.set(15, 15);
