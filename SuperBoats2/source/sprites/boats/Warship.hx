@@ -86,7 +86,7 @@ class Warship extends Boat {
 			var vy = dy * bulletSp / m;
 			var pVelVec = FlxPoint.get(vx, vy);
 			// accuracy isn't perfect
-			pVelVec.rotate(FlxPoint.get(0, 0), Math.random() * FlxAngle.asDegrees(Math.random() * cannonMissRange * 2 - cannonMissRange));
+			pVelVec.rotate(FlxPoint.weak(0, 0), Math.random() * FlxAngle.asDegrees(Math.random() * cannonMissRange * 2 - cannonMissRange));
 			vx = pVelVec.x;
 			vy = pVelVec.y;
 			shootProjectile(projectile, vx, vy);
@@ -101,7 +101,8 @@ class Warship extends Boat {
 			var vy = dy * bulletSp / m;
 			var pVelVec = FlxPoint.get(vx, vy);
 			// accuracy isn't perfect
-			pVelVec.rotate(FlxPoint.get(0, 0), Math.random() * FlxAngle.asDegrees(Math.random() * torpedoMissRange * 2 - torpedoMissRange));
+			pVelVec.rotate(FlxPoint.weak(0, 0), Math.random() * FlxAngle.asDegrees(Math.random() * torpedoMissRange * 2 - torpedoMissRange));
+			pVelVec.put();
 			vx = pVelVec.x;
 			vy = pVelVec.y;
 			shootProjectile(projectile, vx, vy);

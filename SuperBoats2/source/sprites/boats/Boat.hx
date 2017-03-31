@@ -64,8 +64,9 @@ class Boat extends NFSprite {
 			// brakes
 			drag.scale(6);
 		}
-		thrustVector.rotate(FlxPoint.get(0, 0), angle);
+		thrustVector.rotate(FlxPoint.weak(0, 0), angle);
 		velocity.addPoint(thrustVector);
+		thrustVector.put();
 	}
 
 	private function powerShield() {
@@ -128,6 +129,7 @@ class Boat extends NFSprite {
 		// 		NParticleEmitter.velocitySpread(spraySpread, particleTrailVector.x, particleTrailVector.y),
 		// 	NColorUtil.randCol(0.2, 0.6, 0.8, 0.2), Math.random() * 1.0);
 		// }
+		particleTrailVector.put();
 	}
 
 	public function explode() {

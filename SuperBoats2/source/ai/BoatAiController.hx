@@ -52,10 +52,12 @@ class BoatAiController<T1:NFSprite, T2:NFSprite> {
 			targetSetpoint = FlxVector.get(FlxG.width / 2, FlxG.height / 2);
 		}
 
+		selfPosition.put();
+
 		if (targetSetpoint != null) {
-			var distToTarget = FlxVector.get(me.x, me.y).subtractNew(targetSetpoint);
+			var distToTarget = new FlxVector(me.x, me.y).subtractNew(targetSetpoint);
 			// create an angle from the current position to the center
-			var angleToSetpoint = FlxAngle.asRadians(FlxVector.get(me.x, me.y).angleBetween(targetSetpoint));
+			var angleToSetpoint = FlxAngle.asRadians(new FlxVector(me.x, me.y).angleBetween(targetSetpoint));
 			if (style == Defensive) {
 				// if defensive, go the opposite way
 				angleToSetpoint += Math.PI;	
@@ -77,6 +79,7 @@ class BoatAiController<T1:NFSprite, T2:NFSprite> {
 				}
 			}
 		}
+		targetSetpoint.put();
 		result.movement.thrust = up;
 		result.movement.brake = down;
 		result.movement.left = left;
