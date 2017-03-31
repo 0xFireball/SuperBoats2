@@ -29,7 +29,7 @@ class BoatAiController<T1:NFSprite, T2:NFSprite> {
 		var right = false;
 		var down = false;
 		// forward is in the direction the boat is pointing
-		var facingAngle = me.angle; // facing upward
+		var facingAngle = FlxAngle.asRadians(me.angle); // facing upward
 		var selfPosition = FlxVector.get(me.x, me.y);
 
 		// process AI logic
