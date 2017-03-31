@@ -9,7 +9,7 @@ import nf4.NFSprite;
 
 using nf4.math.NFMathExt;
 
-class Torpedo extends Projectile {
+class Torpedo extends TargetingProjectile {
 	public var thrust(default, null):Float = 6;
 	public var angularThrust(default, null):Float = Math.PI * 0.08;
 
@@ -24,44 +24,16 @@ class Torpedo extends Projectile {
 	}
 
 	override public function update(dt:Float) {
-		var particleTrailVector = velocity.toVector(); // duplicate velocity vector
-		particleTrailVector.rotate(FlxPoint.get(0, 0), 180);
-		particleTrailVector.scale(0.7);
-		// emit trail particles
-		// for (i in 0...2) {
-		// 	Registry.currentEmitterState.emitter.emitSquare(center.x, center.y, Std.int(Math.random() * 6) + 1,
-		// 		NParticleEmitter.velocitySpread(40, particleTrailVector.x, particleTrailVector.y),
-		// 	NColorUtil.randCol(0.4, 0.4, 0.9, 0.1), 0.7);
-		// }
-		if (target != null) {
-			var distToTarget:Float = FlxVector.get(x, y).distanceTo(target.center);
-			// retarget to player
-			var mA = 0;
-			if (x < target.x) {
-				mA = 0;
-				if (y < target.y) {
-					mA += 45;
-					angularVelocity += angularThrust;
-				} else if (y > target.y) {
-					mA -= 45;
-					angularVelocity -= angularThrust;
-				}
-			} else if (x > target.x) {
-				mA = 180;
-				if (y < target.y) {
-					mA -= 45;
-					angularVelocity -= angularThrust;
-				} else if (y > target.y) {
-					mA += 45;
-					angularVelocity += angularThrust;
-				}
-			}
-			var thrustVector = FlxPoint.get(thrust, 0);
-			thrustVector.rotate(FlxPoint.get(0, 0), mA);
-			velocity.addPoint(thrustVector);
-		}
 
 		super.update(dt);
+	}
+
+	override private function drawSpray() {
+		var particleTrailVector = velocity.toVector(); // duplicate velocity vector
+		particleTrailVector.rotate(FlxPoint.weak(0, 0), 180);
+		particleTrailVector.scale(0.7);
+		// TODO
+		particleTrailVector.put();
 	}
 
 	override public function explode() {

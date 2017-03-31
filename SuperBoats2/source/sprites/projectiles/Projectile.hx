@@ -64,9 +64,14 @@ class Projectile extends NFSprite {
 	}
 
 	override public function update(dt:Float) {
+		drawSpray();
 		checkBounds();
 		trace(last);
 		super.update(dt);
+	}
+
+	private function drawSpray() {
+		// To be overriden
 	}
 
 	private function checkBounds() {
