@@ -27,15 +27,8 @@ class PlayerBoat extends GreenBoat {
 		mass = 28000;
 		sprayAmount = 8;
         loadGraphic(AssetPaths.player_boat__png);
-		// renderGraphic(16, 36, function (gpx) {
-		// 	var ctx = gpx.g2;
-		// 	ctx.begin();
-		// 	ctx.color = FlxColor.fromRGBFloat(0.1, 0.3, 0.9);
-		// 	ctx.fillRect(0, 0, width, height);
-		// 	ctx.color = FlxColor.fromRGBFloat(0.1, 0.5, 0.9);
-		// 	ctx.fillRect(width / 3, height * (3 / 4), width / 3, height / 4);
-		// 	ctx.end();
-		// }, "playerboat");
+		offset.set(13, 3);
+		setSize(16, 36);
 	}
 
 	override public function update(dt:Float) {
