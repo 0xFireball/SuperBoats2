@@ -63,8 +63,13 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		// collision
-		FlxG.collide(projectiles);
+		FlxG.collide(allies, projectiles, shipHitProjectile);
+		FlxG.collide(warships, projectiles, shipHitProjectile);
 
 		super.update(elapsed);
+	}
+
+	private function shipHitProjectile(s:Boat, j:Projectile) {
+		j.hitSprite(s);
 	}
 }
