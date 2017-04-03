@@ -27,10 +27,13 @@ class Projectile extends NFSprite {
 	private var damageScale:Float = (1 / 24);
 
 	public var emitter:FlxEmitter;
+	
+	public var owner:NFSprite;
 
-	public function new(?X:Float = 0, ?Y:Float = 0, Emitter:FlxEmitter) {
+	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Emitter:FlxEmitter) {
 		super(X, Y);
 		
+		owner = Owner;
 		emitter = Emitter;
 		mass = 500;
 	}
@@ -53,6 +56,7 @@ class Projectile extends NFSprite {
 	}
 
 	public function hitSprite(sprite:NFSprite) {
+		if (sprite == owner) return;
 		// deal damage
 		var damageDealt = calculateDamage();
 		sprite.hurt(damageDealt);

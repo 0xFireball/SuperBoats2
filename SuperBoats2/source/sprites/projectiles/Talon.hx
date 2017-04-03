@@ -11,8 +11,8 @@ using nf4.math.NFMathExt;
 
 class Talon extends TargetingProjectile {
 
-	public function new(?X:Float = 0, ?Y:Float = 0, Target:NFSprite, Emitter:FlxEmitter) {
-		super(X, Y, Target, Emitter);
+	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite, Emitter:FlxEmitter) {
+		super(Owner, X, Y, Target, Emitter);
 		damageFactor = 0.4;
 		mass = 1100;
 		thrust = 1;
