@@ -75,7 +75,7 @@ class MenuState extends FlxState
 		}});
 		FlxTween.tween(distortedTitle, { alpha: 1 }, 0.4, { onComplete: function (t) {
 			// switch
-			FlxG.camera.fade(FlxColor.BLACK, 0.4, function () {
+			FlxG.camera.fade(FlxColor.BLACK, 0.4, true, function () {
 				FlxG.switchState(new PlayState());
 			});
 		}});
