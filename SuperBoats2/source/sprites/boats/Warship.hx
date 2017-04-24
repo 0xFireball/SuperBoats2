@@ -26,26 +26,25 @@ class Warship extends Boat {
 	public var lastStep:ActionState;
 
 	public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
-		super(X, Y, StateData);
-
 		aiController = new BoatAiController<Warship, GreenBoat>();
 		aiController.me = this;
 		aiState = new BoatAiState<Warship, GreenBoat>();
 		aiController.loadState(aiState);
 		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
 		aiController.triggerRadius = hypot / 4;
-		maxHealth = health = 4750000;
-		thrust = 0.6;
+		maxHealth = health = 540000;
+		thrust = 1.9;
 		wrapBounds = false;
-		mass = 184000;
+		mass = 79000;
 		sprayAmount = 20;
 		spraySpread = 80;
-		angularThrust = FlxAngle.asDegrees(0.027 * Math.PI);
-		maxAngular = FlxAngle.asDegrees(Math.PI / 5);
-		maxVelocity.set(60, 60);
+		angularThrust = FlxAngle.asDegrees(0.034 * Math.PI);
+		maxAngular = FlxAngle.asDegrees(Math.PI / 4);
+		maxVelocity.set(135, 135);
 	}
 
 	override public function update(dt:Float) {
+		aiController.style = damage < 0.7 ? Aggressive : Defensive;
 		movement();
 		attackTimer += dt;
 		if (attackTimer > attackTime) {
@@ -138,5 +137,13 @@ class Warship extends Boat {
 			step.movement.left,
 			step.movement.right,
 			step.movement.brake);
+	}
+
+	override public function dismantle() {
+		// when destroyed, update minion count
+		if (this != stateData.mothership) {
+			stateData.mothership.minionCount--;
+		}
+		super.dismantle();
 	}
 }
