@@ -1,9 +1,7 @@
 package states.game;
 
 import flixel.*;
-import flixel.util.*;
 import flixel.effects.particles.*;
-import flixel.addons.effects.chainable.*;
 import flixel.addons.display.*;
 import flixel.group.FlxGroup;
 
