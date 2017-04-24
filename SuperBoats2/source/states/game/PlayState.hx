@@ -30,7 +30,7 @@ class PlayState extends FlxState
 		add(bg);
 
 		// set bounds
-		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
+		FlxG.worldBounds.set(-20, -20, FlxG.width + 20, FlxG.height + 20);
 
 		
 		// create and load boundary map
@@ -53,7 +53,7 @@ class PlayState extends FlxState
 		add(allies);
 
 		// create player
-		player = new PlayerBoat(Math.random() * FlxG.width, Math.random() * FlxG.height, stateData);
+		player = new PlayerBoat(Math.random() * (FlxG.width - 60), Math.random() * (FlxG.height - 60), stateData);
 		player.angle = Math.random() * Math.PI * 2;
 		stateData.player = player;
 		allies.add(player);
@@ -63,7 +63,7 @@ class PlayState extends FlxState
 		add(warships);
 
 		// create mothership
-		mothership = new Mothership(Math.random() * FlxG.width, Math.random() * FlxG.height, stateData);
+		mothership = new Mothership(Math.random() * (FlxG.width - 60), Math.random() * (FlxG.height - 60), stateData);
 		stateData.mothership = mothership;
 		mothership.angle = Math.random() * Math.PI * 2;
 		warships.add(mothership);
