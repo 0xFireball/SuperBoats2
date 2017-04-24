@@ -26,6 +26,8 @@ class Warship extends Boat {
 	public var lastStep:ActionState;
 
 	public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
+		super(X, Y, StateData);
+
 		aiController = new BoatAiController<Warship, GreenBoat>();
 		aiController.me = this;
 		aiState = new BoatAiState<Warship, GreenBoat>();

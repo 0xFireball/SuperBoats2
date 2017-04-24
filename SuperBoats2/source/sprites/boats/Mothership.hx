@@ -58,7 +58,7 @@ class Mothership extends Warship {
 			minionCount++;
 			var hypot = NFMath.hypot(FlxG.width, FlxG.height);
 			var minionDist = hypot / 4;
-			var minion = new RedBoat(center.x + Math.random() * minionDist, center.y + Math.random() * minionDist, stateData);
+			var minion = new Warship(center.x + Math.random() * minionDist, center.y + Math.random() * minionDist, stateData);
 			minion.velocity.set(Math.random() * 100, Math.random() * 100);
 			stateData.warships.add(minion);
 		}
