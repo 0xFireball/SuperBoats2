@@ -138,6 +138,10 @@ class Boat extends NFSprite {
 		// 		NParticleEmitter.velocitySpread(spraySpread, velocity.x / 4, velocity.y / 4),
 		// 	NColorUtil.randCol(0.95, 0.95, 0.1, 0.05), Math.random() * 1.0);
 		// }
+		for (i in 0...50) {
+			// stateData.emitter.emitParticle
+			// NFColorUtil.randCol(0.95, 0.95, 0.1, 0.05)
+		}
 	}
 
 	private function keepInBounds() {
