@@ -84,6 +84,7 @@ class PlayState extends FlxState
 		// sprite collision
 		FlxG.overlap(allies, projectiles, shipHitProjectile);
 		FlxG.overlap(warships, projectiles, shipHitProjectile);
+		FlxG.collide(allies, warships);
 
 		// wall collision
 		FlxG.collide(wallMap, allies);
