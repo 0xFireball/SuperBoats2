@@ -26,6 +26,9 @@ class PlayState extends FlxState
 		bg = new FlxBackdrop(AssetPaths.water__png, 0.5, 0.5);
 		add(bg);
 
+		// set bounds
+		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
+
 		var stateData = new GameStateData();
 
 		allies = new FlxTypedGroup<GreenBoat>();

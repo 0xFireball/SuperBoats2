@@ -37,7 +37,6 @@ class Boat extends NFSprite {
 	}
 
 	override public function update(dt:Float) {
-		keepInBounds();
 		drawSpray();
 		manageHealth();
 		powerShield();
@@ -142,20 +141,7 @@ class Boat extends NFSprite {
 			// stateData.emitter.emitParticle
 			// NFColorUtil.randCol(0.95, 0.95, 0.1, 0.05)
 		}
-	}
-
-	private function keepInBounds() {
-		if (wrapBounds) {
-			if (x < 0) x += FlxG.width;
-			if (y < 0) y += FlxG.height;
-			if (x > FlxG.width) x %= FlxG.width;
-			if (y > FlxG.height) y %= FlxG.height;
-		} else {
-			if (x < width / 2) x = width / 2;
-			if (y < height / 2) y = height / 2;
-			if (x > FlxG.width - width) x = FlxG.width - width;
-			if (y > FlxG.height - height) y = FlxG.height - height;
-		}
+		dismantle();
 	}
 
 	public function dismantle() {
