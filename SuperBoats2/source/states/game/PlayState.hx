@@ -82,8 +82,8 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		// sprite collision
-		FlxG.collide(allies, projectiles, shipHitProjectile);
-		FlxG.collide(warships, projectiles, shipHitProjectile);
+		FlxG.overlap(allies, projectiles, shipHitProjectile);
+		FlxG.overlap(warships, projectiles, shipHitProjectile);
 
 		// wall collision
 		FlxG.collide(wallMap, allies);

@@ -17,8 +17,8 @@ class PlayerBoat extends GreenBoat {
 		
 		super(X, Y, StateData);
 
-		maxHealth = health = 220000;
-		hullShieldMax = hullShieldIntegrity = 72000;
+		maxHealth = health = 420000;
+		hullShieldMax = hullShieldIntegrity = 172000;
 		hullShieldRegen = 100;
 		attackTime = 0.7;
 		angularThrust = FlxAngle.asDegrees(0.05 * Math.PI);
