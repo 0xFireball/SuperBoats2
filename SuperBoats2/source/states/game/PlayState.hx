@@ -1,11 +1,11 @@
 package states.game;
 
-import nf4.NFSprite;
-import flixel.util.FlxSpriteUtil;
+import nf4.util.*;
 import flixel.*;
 import flixel.effects.particles.*;
 import flixel.addons.display.*;
 import flixel.group.FlxGroup;
+import flixel.tile.FlxTilemap;
 
 import sprites.boats.*;
 import sprites.projectiles.*;
@@ -20,6 +20,7 @@ class PlayState extends FlxState
     public var warships:FlxTypedGroup<Warship>;
     public var projectiles:FlxTypedGroup<Projectile>;
     public var emitter:FlxEmitter;
+	public var wallMap:FlxTilemap;
 
 	public var bg:FlxBackdrop;
 
@@ -30,6 +31,20 @@ class PlayState extends FlxState
 
 		// set bounds
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
+
+		
+		// create and load boundary map
+		wallMap = new FlxTilemap();
+		var mapWidth = Std.int(FlxG.width / 16);
+		var mapHeight = Std.int(FlxG.height/ 16);
+		wallMap.loadMapFromArray(
+			WallMapUtil.generateWallMap(mapWidth, mapHeight),
+			mapWidth,
+			mapHeight,
+			AssetPaths.wall_tiles__png,
+			16, 16
+		);
+		add(wallMap);
 
 		var stateData = new GameStateData();
 
@@ -46,6 +61,7 @@ class PlayState extends FlxState
 		warships = new FlxTypedGroup<Warship>();
 		stateData.warships = warships;
 		add(warships);
+
 		// create mothership
 		mothership = new Mothership(Math.random() * FlxG.width, Math.random() * FlxG.height, stateData);
 		stateData.mothership = mothership;
@@ -65,7 +81,11 @@ class PlayState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
-		// collision
+		// wall collision
+		FlxG.collide(wallMap, allies);
+		FlxG.collide(wallMap, warships);
+
+		// sprite collision
 		FlxG.collide(allies, projectiles, shipHitProjectile);
 		FlxG.collide(warships, projectiles, shipHitProjectile);
 
