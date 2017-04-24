@@ -27,12 +27,12 @@ class Projectile extends NFSprite {
 	private var damageScale:Float = (1 / 24);
 
 	public var emitter:FlxEmitter;
-	
+
 	public var owner:NFSprite;
 
 	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Emitter:FlxEmitter) {
 		super(X, Y);
-		
+
 		owner = Owner;
 		emitter = Emitter;
 		mass = 500;
@@ -59,7 +59,8 @@ class Projectile extends NFSprite {
 		if (sprite == owner) return;
 		// deal damage
 		var damageDealt = calculateDamage();
-		sprite.hurt(damageDealt);		
+		sprite.hurt(damageDealt);
+
 		// apply conservation of momentum collision
 		var transferredMomentum = this.velocity.toVector().scale(this.mass / target.mass);
 		sprite.velocity.addPoint(transferredMomentum);
