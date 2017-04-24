@@ -39,9 +39,10 @@ class Projectile extends NFSprite {
 	}
 
 	override public function explode() {
-		// apply conservation of momentum collision
-		var transferredMomentum = this.velocity.toVector().scale(this.mass / target.mass);
-		target.velocity.addPoint(transferredMomentum);
+
+		// draw pretty collision
+		// TODO
+
 		super.explode();
 	}
 
@@ -58,7 +59,11 @@ class Projectile extends NFSprite {
 		if (sprite == owner) return;
 		// deal damage
 		var damageDealt = calculateDamage();
-		sprite.hurt(damageDealt);
+		sprite.hurt(damageDealt);		
+		// apply conservation of momentum collision
+		var transferredMomentum = this.velocity.toVector().scale(this.mass / target.mass);
+		sprite.velocity.addPoint(transferredMomentum);
+
 		// trace('dealt ${damageDealt} damage');
 		// explode
 		explode();
