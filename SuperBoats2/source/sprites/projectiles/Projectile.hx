@@ -38,12 +38,11 @@ class Projectile extends NFSprite {
 		mass = 500;
 	}
 
-	public function explode() {
+	override public function explode() {
 		// apply conservation of momentum collision
 		var transferredMomentum = this.velocity.toVector().scale(this.mass / target.mass);
 		target.velocity.addPoint(transferredMomentum);
-
-		dismantle();
+		super.explode();
 	}
 
 	public function calculateDamage():Float {
@@ -76,12 +75,8 @@ class Projectile extends NFSprite {
 	}
 
 	private function checkBounds() {
-		if (x < width * 2 || y < height * 2 || x > FlxG.width + width * 2 || y > FlxG.height + height * 2) {
-			dismantle();
+		if (x < width || y < height || x > FlxG.width + width || y > FlxG.height + height) {
+			dismantle(); // destroy silently instead of exploding
 		}
-	}
-
-	public function dismantle() {
-		this.kill();
 	}
 }

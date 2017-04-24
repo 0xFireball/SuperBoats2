@@ -1,5 +1,7 @@
 package states.game;
 
+import nf4.NFSprite;
+import flixel.util.FlxSpriteUtil;
 import flixel.*;
 import flixel.effects.particles.*;
 import flixel.addons.display.*;

@@ -131,7 +131,7 @@ class Boat extends NFSprite {
 		particleTrailVector.put();
 	}
 
-	public function explode() {
+	override public function explode() {
 		// for (i in 0...50) {
 		// 	stateData.explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 10) + 1,
 		// 		NParticleEmitter.velocitySpread(spraySpread, velocity.x / 4, velocity.y / 4),
@@ -141,10 +141,6 @@ class Boat extends NFSprite {
 			// stateData.emitter.emitParticle
 			// NFColorUtil.randCol(0.95, 0.95, 0.1, 0.05)
 		}
-		dismantle();
-	}
-
-	public function dismantle() {
-		this.kill();
+		super.explode();
 	}
 }

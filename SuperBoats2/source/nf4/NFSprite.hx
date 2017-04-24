@@ -27,6 +27,14 @@ class NFSprite extends FlxSprite {
 		velocity.addPoint(Direction.scale(Magnitude / mass));
 	}
 
+	public function explode() {
+		dismantle();
+	}
+
+	public function dismantle() {
+		this.kill();
+	}
+
     private function get_damage():Float {
 		var mHealth = health < 0 ? 0 : health;
 		return 1 - (mHealth / maxHealth);
