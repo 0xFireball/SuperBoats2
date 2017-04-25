@@ -72,7 +72,6 @@ class Projectile extends NFSprite {
 
 	override public function update(dt:Float) {
 		drawSpray();
-		checkBounds();
 		super.update(dt);
 	}
 
@@ -80,9 +79,7 @@ class Projectile extends NFSprite {
 		// To be overriden
 	}
 
-	private function checkBounds() {
-		if (x < width || y < height || x > FlxG.width + width || y > FlxG.height + height) {
-			dismantle(); // destroy silently instead of exploding
-		}
+	public function hitBoundary() {
+		dismantle(); // destroy silently instead of exploding
 	}
 }

@@ -1,5 +1,6 @@
 package states.game;
 
+import flixel.math.FlxPoint;
 import nf4.util.*;
 import flixel.*;
 import flixel.effects.particles.*;
@@ -89,6 +90,13 @@ class PlayState extends FlxState
 		// wall collision
 		FlxG.collide(wallMap, allies);
 		FlxG.collide(wallMap, warships);
+		
+		// keep projectiles in bounds
+		projectiles.forEachAlive(function (p) {
+			if (p.x < p.width || p.y < p.height || p.x > FlxG.width + p.width || p.y > FlxG.height + p.height) {
+				p.hitBoundary();
+			}
+		});
 
 		super.update(elapsed);
 	}
