@@ -1,10 +1,11 @@
 package nf4.effects.particles;
 
-import flixel.group.FlxGroup;
 import flixel.util.*;
 import flixel.math.FlxPoint;
 
-class NFParticleEmitter extends FlxGroup {
+import nf4.group.NFGroup;
+
+class NFParticleEmitter extends NFGroup {
 
     public function new(?MaxSize:Int = 0) {
         super(MaxSize);
