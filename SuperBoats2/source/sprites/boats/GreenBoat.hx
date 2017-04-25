@@ -1,6 +1,7 @@
 
 package sprites.boats;
 
+import flixel.util.FlxColor;
 import flixel.*;
 import flixel.math.*;
 import flixel.group.FlxGroup;
@@ -60,6 +61,7 @@ class GreenBoat extends Boat {
 		// 	ctx.fillRect(width / 3, height * (3 / 4), width / 3, height / 4);
 		// 	ctx.end();
 		// }, "greenboat");
+		makeGraphic(14, 32, FlxColor.fromRGBFloat(0.1, 0.9, 0.5));
 	}
 
 	override public function update(dt:Float) {

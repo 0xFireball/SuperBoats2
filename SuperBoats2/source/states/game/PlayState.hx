@@ -33,7 +33,6 @@ class PlayState extends FlxState
 
 		// set bounds
 		FlxG.worldBounds.set(-20, -20, FlxG.width + 20, FlxG.height + 20);
-
 		
 		// create and load boundary map
 		wallMap = new FlxTilemap();
@@ -55,7 +54,7 @@ class PlayState extends FlxState
 		add(allies);
 
 		// create player
-		player = new PlayerBoat(Math.random() * (FlxG.width - 60), Math.random() * (FlxG.height - 60), stateData);
+		player = new PlayerBoat(Math.random() * (FlxG.width - 60) + 30, Math.random() * (FlxG.height - 60) + 30, stateData);
 		player.angle = Math.random() * Math.PI * 2;
 		stateData.player = player;
 		allies.add(player);
@@ -65,7 +64,7 @@ class PlayState extends FlxState
 		add(warships);
 
 		// create mothership
-		mothership = new Mothership(Math.random() * (FlxG.width - 60), Math.random() * (FlxG.height - 60), stateData);
+		mothership = new Mothership(Math.random() * (FlxG.width - 60) + 30, Math.random() * (FlxG.height - 60) + 30, stateData);
 		stateData.mothership = mothership;
 		mothership.angle = Math.random() * Math.PI * 2;
 		warships.add(mothership);
@@ -89,7 +88,7 @@ class PlayState extends FlxState
 		// sprite collision
 		FlxG.overlap(allies, projectiles, shipHitProjectile);
 		FlxG.overlap(warships, projectiles, shipHitProjectile);
-		FlxG.collide(allies, warships);
+		// FlxG.overlap(allies, warships);
 
 		// wall collision
 		FlxG.collide(wallMap, allies);
