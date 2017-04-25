@@ -86,6 +86,9 @@ class Projectile extends NFSprite {
 	}
 
 	private function drawSpray() {
+		emitter.x = x + width / 2;
+		emitter.y = y + height / 2;
+
 		var trailVec = velocity.toVector()
 			.rotate(FlxPoint.weak(0, 0), 180)
 			.scale(0.7);

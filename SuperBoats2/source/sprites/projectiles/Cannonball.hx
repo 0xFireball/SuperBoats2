@@ -20,6 +20,7 @@ class Cannonball extends Projectile {
 
 		emitter.scale.set(4, 4, 12, 12);
 		emitter.lifespan.set(0.7);
+		emitter.color.set(FlxColor.fromRGBFloat(0.4, 0.0, 0.0), FlxColor.fromRGBFloat(0.6, 0.2, 0.2));
 	}
 
 	override public function update(dt:Float) {
