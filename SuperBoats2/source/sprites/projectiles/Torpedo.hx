@@ -10,8 +10,8 @@ import nf4.NFSprite;
 using nf4.math.NFMathExt;
 
 class Torpedo extends TargetingProjectile {
-	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite, Emitter:FlxEmitter) {
-		super(Owner, X, Y, Target, Emitter);
+	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
+		super(Owner, X, Y, Target);
 		damageFactor = 0.4;
 		mass = 4400;
 		thrust = 6;

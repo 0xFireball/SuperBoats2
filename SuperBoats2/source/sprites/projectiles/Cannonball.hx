@@ -10,8 +10,8 @@ import nf4.NFSprite;
 using nf4.math.NFMathExt;
 
 class Cannonball extends Projectile {
-	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite, Emitter:FlxEmitter) {
-		super(Owner, X, Y, Emitter);
+	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
+		super(Owner, X, Y);
 		damageFactor = 1.5;
 		mass = 2200;
 		target = Target;

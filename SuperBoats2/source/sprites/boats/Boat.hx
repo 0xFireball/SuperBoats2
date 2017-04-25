@@ -39,9 +39,9 @@ class Boat extends NFSprite {
 		mass = 16000;
 
 		sprayEmitter = new FlxEmitter(X, Y);
-		sprayEmitter.scale.set(2, 2, 8, 8, 12, 12, 12, 12);
-		sprayEmitter.lifespan.set(0.6, 1.6);
-		sprayEmitter.color.set(FlxColor.fromRGBFloat(0.0, 0.4, 0.6), FlxColor.fromRGBFloat(0.4, 0.8, 1.0));
+		sprayEmitter.scale.set(2, 2, 10, 10);
+		sprayEmitter.lifespan.set(0.1, 0.7);
+		sprayEmitter.color.set(FlxColor.fromRGBFloat(0.0, 0.4, 0.6, 0.4), FlxColor.fromRGBFloat(0.4, 0.8, 1.0, 0.9));
 		sprayEmitter.makeParticles(1, 1, FlxColor.WHITE, 200);
 	}
 
@@ -49,6 +49,8 @@ class Boat extends NFSprite {
 		drawSpray();
 		manageHealth();
 		powerShield();
+
+		sprayEmitter.update(dt);
 
 		super.update(dt);
 	}

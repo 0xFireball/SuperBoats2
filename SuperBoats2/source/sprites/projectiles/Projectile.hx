@@ -30,11 +30,12 @@ class Projectile extends NFSprite {
 
 	public var owner:NFSprite;
 
-	public function new(Owner:NFSprite, X:Float = 0, Y:Float = 0, Emitter:FlxEmitter) {
+	public function new(Owner:NFSprite, X:Float = 0, Y:Float = 0) {
 		super(X, Y);
 
 		owner = Owner;
-		emitter = Emitter;
+		emitter = new FlxEmitter(X, Y);
+		
 		mass = 500;
 	}
 
