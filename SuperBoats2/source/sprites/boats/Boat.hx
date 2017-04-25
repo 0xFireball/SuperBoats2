@@ -38,7 +38,7 @@ class Boat extends NFSprite {
 		elasticity = 0.3;
 		mass = 16000;
 
-		sprayEmitter = new FlxEmitter();
+		sprayEmitter = new FlxEmitter(X, Y);
 		sprayEmitter.scale.set(2, 2, 8, 8, 12, 12, 12, 12);
 		sprayEmitter.lifespan.set(0.6, 1.6);
 		sprayEmitter.color.set(FlxColor.fromRGBFloat(0.0, 0.4, 0.6), FlxColor.fromRGBFloat(0.4, 0.8, 1.0));
