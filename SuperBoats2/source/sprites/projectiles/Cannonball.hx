@@ -28,7 +28,6 @@ class Cannonball extends Projectile {
 	}
 
 	override public function update(dt:Float) {
-
 		super.update(dt);
 	}
 

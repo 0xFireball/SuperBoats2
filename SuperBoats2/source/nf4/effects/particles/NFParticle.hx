@@ -9,7 +9,7 @@ class NFParticle extends NFSprite {
 	public var age:Float = 0;
 	public var particleColor:FlxColor;
 
-	public function new(X:Float = 0, Y:Float = 0, Width:Int = 0, Height:Int = 0, PColor:FlxColor, Life:Float = 0) {
+	public function new(X:Float, Y:Float, Width:Int, Height:Int, PColor:FlxColor, Life:Float) {
 		super(X, Y);
 
 		life = Life;
@@ -24,8 +24,7 @@ class NFParticle extends NFSprite {
 		if (age >= life) {
 			kill();
 		} else {
-			var alpha = 1 - (age / life);
-			color = FlxColor.fromRGBFloat(particleColor.red, particleColor.green, particleColor.blue, alpha);
+			alpha = 1 - (age / life);
 		}
 
 		super.update(dt);

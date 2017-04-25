@@ -8,6 +8,7 @@ import flixel.effects.particles.*;
 import states.game.data.*;
 
 import nf4.*;
+import nf4.util.*;
 import nf4.effects.particles.NFParticleEmitter;
 using nf4.math.NFMathExt;
 
@@ -38,13 +39,17 @@ class Projectile extends NFSprite {
 
 		owner = Owner;
 		emitter = new FlxEmitter(X, Y);
-		explosionEmitter = new NFParticleEmitter(40);
+		explosionEmitter = new NFParticleEmitter(64);
 
 		mass = 500;
 	}
 
 	override public function explode() {
 		// blast explosion
+		alive = false;
+	}
+
+	private function finishExplode() {
 		super.explode();
 	}
 
@@ -78,6 +83,10 @@ class Projectile extends NFSprite {
 
 		emitter.update(dt);
 		explosionEmitter.update(dt);
+
+		if (!alive && explosionEmitter.memberCount == 0) {
+			finishExplode();
+		}
 
 		super.update(dt);
 	}
