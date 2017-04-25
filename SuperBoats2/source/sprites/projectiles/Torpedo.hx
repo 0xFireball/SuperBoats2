@@ -21,6 +21,7 @@ class Torpedo extends TargetingProjectile {
 		maxVelocity.set(600, 600);
 		makeGraphic(3, 7, FlxColor.fromRGBFloat(0.6, 0.9, 0.6));
 
+		emitter.maxSize = 15;
 		emitter.scale.set(1, 1, 7, 7);
 		emitter.lifespan.set(0.7);
 		emitter.color.set(FlxColor.fromRGBFloat(0.3, 0.3, 0.8), FlxColor.fromRGBFloat(0.5, 0.5, 1.0));

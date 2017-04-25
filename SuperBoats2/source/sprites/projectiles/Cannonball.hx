@@ -18,6 +18,7 @@ class Cannonball extends Projectile {
 		movementSpeed = 180;
 		makeGraphic(8, 8, FlxColor.fromRGBFloat(0.6, 0.6, 0.6));
 
+		emitter.maxSize = 15;
 		emitter.scale.set(4, 4, 12, 12);
 		emitter.lifespan.set(0.7);
 		emitter.color.set(FlxColor.fromRGBFloat(0.4, 0.0, 0.0), FlxColor.fromRGBFloat(0.6, 0.2, 0.2));
