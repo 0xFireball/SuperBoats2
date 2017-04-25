@@ -35,7 +35,6 @@ class Projectile extends NFSprite {
 
 		owner = Owner;
 		emitter = new FlxEmitter(X, Y);
-		emitter.makeParticles(1, 1, FlxColor.WHITE, 200);
 
 		mass = 500;
 	}
@@ -99,7 +98,7 @@ class Projectile extends NFSprite {
 		emitter.speed.set(trailMag * 0.8, trailMag);
 
 		if (!emitter.emitting) {
-			emitter.start(false, 0.01);
+			emitter.start(false, (1 / 15));
 		}
 	}
 

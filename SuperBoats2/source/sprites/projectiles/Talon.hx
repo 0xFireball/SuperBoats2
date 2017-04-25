@@ -21,6 +21,11 @@ class Talon extends TargetingProjectile {
 		angularThrust = FlxAngle.asDegrees(Math.PI * 0.04);
 		maxVelocity.set(600, 600);
 		makeGraphic(6, 2, FlxColor.fromRGBFloat(0.1, 0.9, 0.9));
+
+		emitter.scale.set(1, 1, 7, 7);
+		emitter.lifespan.set(0.7);
+		emitter.color.set(FlxColor.fromRGBFloat(0.0, 0.8, 0.8), FlxColor.fromRGBFloat(0.2, 1.0, 1.0));
+		emitter.makeParticles(1, 1, FlxColor.WHITE, 15);
 	}
 
 	override public function update(dt:Float) {
