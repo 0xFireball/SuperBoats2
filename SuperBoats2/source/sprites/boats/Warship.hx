@@ -12,6 +12,8 @@ import ai.BoatAiController;
 import states.game.data.*;
 
 import nf4.math.NFMath;
+import nf4.effects.particles.*;
+import nf4.util.*;
 
 using nf4.math.NFMathExt;
 
@@ -120,11 +122,11 @@ class Warship extends Boat {
 		if (x < 0) x += FlxG.width;
 		if (y < 0) y += FlxG.height;
 		// smoke
-		// for (i in 0...14) {
-		// 	stateData.smokeEffectEmitter.emitSquare(x, y, 6,
-		// 		NParticleEmitter.velocitySpread(45, vx / 4, vy / 4),
-		// 		NColorUtil.randCol(0.5, 0.5, 0.5), 0.8);
-		// }
+		for (i in 0...14) {
+			stateData.effectEmitter.emitSquare(x, y, 6,
+				NFParticleEmitter.velocitySpread(45, vx / 4, vy / 4),
+				NFColorUtil.randCol(0.5, 0.5, 0.5, 0.1), 0.8);
+		}
 	}
 
 	private function movement() {

@@ -1,7 +1,5 @@
 package states.game;
 
-import flixel.math.FlxPoint;
-import nf4.util.*;
 import flixel.*;
 import flixel.effects.particles.*;
 import flixel.addons.display.*;
@@ -12,6 +10,9 @@ import sprites.boats.*;
 import sprites.projectiles.*;
 
 import states.game.data.*;
+
+import nf4.util.*;
+import nf4.effects.particles.*;
 
 class PlayState extends FlxState
 {
@@ -76,6 +77,9 @@ class PlayState extends FlxState
 		emitter = new FlxEmitter();
 		stateData.emitter = emitter;
 		add(emitter);
+
+		stateData.effectEmitter = new NFParticleEmitter(84);
+		add(stateData.effectEmitter);
 
 		super.create();
 	}

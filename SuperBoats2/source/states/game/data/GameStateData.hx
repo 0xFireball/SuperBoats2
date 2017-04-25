@@ -7,6 +7,8 @@ import sprites.projectiles.*;
 import flixel.group.FlxGroup;
 import flixel.effects.particles.*;
 
+import nf4.effects.particles.*;
+
 class GameStateData {
     public var player:PlayerBoat;
     public var mothership:Mothership;
@@ -14,10 +16,12 @@ class GameStateData {
     public var warships:FlxTypedGroup<Warship>;
     public var projectiles:FlxTypedGroup<Projectile>;
     public var emitter:FlxEmitter;
+    public var effectEmitter:NFParticleEmitter;
 
     public function new(?Player:PlayerBoat, ?Mothership:Mothership,
         ?WarshipsGroup:FlxTypedGroup<Warship>, ?AlliesGroup:FlxTypedGroup<GreenBoat>, ?ProjectilesGroup:FlxTypedGroup<Projectile>,
-        ?Emitter:FlxEmitter) {
+        ?Emitter:FlxEmitter,
+        ?EffectEmitter:NFParticleEmitter) {
         
         player = Player;
         mothership = Mothership;
@@ -28,5 +32,6 @@ class GameStateData {
         projectiles = ProjectilesGroup;
 
         emitter = Emitter;
+        effectEmitter = EffectEmitter;
     }
 }

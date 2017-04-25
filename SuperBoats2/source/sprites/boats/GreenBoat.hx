@@ -11,7 +11,9 @@ import sprites.projectiles.*;
 import ai.BoatAiState;
 import ai.BoatAiController;
 
-import nf4.math.*;
+import nf4.math.NFMath;
+import nf4.effects.particles.*;
+import nf4.util.*;
 
 import states.game.data.*;
 
@@ -117,6 +119,12 @@ class GreenBoat extends Boat {
 		// apply recoil
 		velocity.addPoint(fTalon.momentum.scale(1 / mass).negate());
 		stateData.projectiles.add(fTalon);
+		// smoke
+		for (i in 0...4) {
+			stateData.effectEmitter.emitSquare(x, y, 6,
+				NFParticleEmitter.velocitySpread(45, tVec.x / 4, tVec.y / 4),
+				NFColorUtil.randCol(0.5, 0.5, 0.5, 0.1), 0.8);
+		}
 	}
 
 	override public function dismantle() {
