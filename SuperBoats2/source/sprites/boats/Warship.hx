@@ -97,7 +97,7 @@ class Warship extends Boat {
 		if (attackCount % 7 == 0) {
 			var projectile:Projectile = null;
 			var hydraRng:Bool = Std.int(Math.random() * 7) == 4;
-			projectile = new Torpedo(this, center.x + width / 2, center.y + height / 2, target);
+			projectile = new Torpedo(this, center.x, center.y, target);
 			var bulletSp = projectile.movementSpeed;
 			var m = -Math.sqrt(dx * dx + dy * dy);
 			var vx = dx * bulletSp / m;
@@ -123,7 +123,7 @@ class Warship extends Boat {
 		if (y < 0) y += FlxG.height;
 		// smoke
 		for (i in 0...14) {
-			stateData.effectEmitter.emitSquare(x, y, 6,
+			stateData.effectEmitter.emitSquare(center.x, center.y, 6,
 				NFParticleEmitter.velocitySpread(45, vx / 4, vy / 4),
 				NFColorUtil.randCol(0.5, 0.5, 0.5, 0.1), 0.8);
 		}

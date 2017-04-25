@@ -121,7 +121,7 @@ class GreenBoat extends Boat {
 		stateData.projectiles.add(fTalon);
 		// smoke
 		for (i in 0...4) {
-			stateData.effectEmitter.emitSquare(x, y, 6,
+			stateData.effectEmitter.emitSquare(center.x, center.y, 6,
 				NFParticleEmitter.velocitySpread(45, tVec.x / 4, tVec.y / 4),
 				NFColorUtil.randCol(0.5, 0.5, 0.5, 0.1), 0.8);
 		}
