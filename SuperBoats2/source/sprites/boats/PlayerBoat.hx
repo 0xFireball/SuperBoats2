@@ -41,7 +41,7 @@ class PlayerBoat extends GreenBoat {
 		if (allyCount < maxAllyCount && Std.int(Math.random() * allySpawnFrequency) == 4) {
 			// spawn ally
 			++allyCount;
-			var ally = new GreenBoat(0, Math.random() * FlxG.height, stateData);
+			var ally = new GreenBoat(Math.random() * (FlxG.width - 60) + 30, Math.random() * (FlxG.height - 60) + 30, stateData);
 			stateData.allies.add(ally);
 		}
 	}
