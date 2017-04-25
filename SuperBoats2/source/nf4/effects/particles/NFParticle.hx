@@ -9,11 +9,13 @@ class NFParticle extends FlxSprite {
 	public var age:Float = 0;
 	public var particleColor:FlxColor;
 
-	public function new(X:Float = 0, Y:Float = 0, PColor:FlxColor, Life:Float = 0) {
+	public function new(X:Float = 0, Y:Float = 0, Width:Int = 0, Height:Int = 0, PColor:FlxColor, Life:Float = 0) {
 		super(X, Y);
 
 		life = Life;
 		particleColor = PColor;
+
+		makeGraphic(Width, Height, PColor);
 	}
 
 	public override function update(dt:Float) {

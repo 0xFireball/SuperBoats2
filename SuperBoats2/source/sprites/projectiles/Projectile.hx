@@ -44,12 +44,7 @@ class Projectile extends NFSprite {
 	}
 
 	override public function explode() {
-
-		// draw pretty collision
-		
 		// blast explosion
-
-		// set timeout for destruction
 		super.explode();
 	}
 
