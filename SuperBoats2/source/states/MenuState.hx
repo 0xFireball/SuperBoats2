@@ -20,6 +20,8 @@ class MenuState extends FlxState
 	private var emitter:FlxEmitter;
 	public var effectEmitter:NFParticleEmitter;
 
+	public var flixelEmitter:Bool = true;
+
 	override public function create():Void
 	{
 		#if !FLX_NO_MOUSE
@@ -36,18 +38,20 @@ class MenuState extends FlxState
 		var titleFinalY = 180;
 		FlxTween.tween(titleTx, { y: titleFinalY }, 0.7, { ease: FlxEase.cubeOut });
 
-		// emitter = new FlxEmitter(FlxG.width / 2, titleFinalY + titleTx.height * 1.2);
-		// emitter.lifespan.set(0.4);
-		// emitter.scale.set(2, 2, 8, 8, 12, 12, 12, 12);
-		// emitter.makeParticles(1, 1, FlxColor.WHITE, 200);
-		// // start emitter
-		// emitter.start(false, 0.003);
-		// emitter.speed.set(120, 280);
-		// emitter.color.set(FlxColor.fromRGBFloat(0.0, 0.4, 0.6), FlxColor.fromRGBFloat(0.4, 0.8, 1.0));
-		// add(emitter);
-
-		effectEmitter = new NFParticleEmitter(120);
-		add(effectEmitter);
+		if (flixelEmitter) {
+			emitter = new FlxEmitter(FlxG.width / 2, titleFinalY + titleTx.height * 1.2);
+			emitter.lifespan.set(0.4);
+			emitter.scale.set(2, 2, 8, 8, 12, 12, 12, 12);
+			emitter.makeParticles(1, 1, FlxColor.WHITE, 200);
+			// start emitter
+			emitter.start(false, 0.003);
+			emitter.speed.set(120, 280);
+			emitter.color.set(FlxColor.fromRGBFloat(0.0, 0.4, 0.6), FlxColor.fromRGBFloat(0.4, 0.8, 1.0));
+			add(emitter);
+		} else {
+			effectEmitter = new NFParticleEmitter(120);
+			add(effectEmitter);
+		}
 
 		add(titleTx); // add title after emitter
 
@@ -68,11 +72,13 @@ class MenuState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
-		// sploosh!
-		for (i in 0...12) {
-			effectEmitter.emitSquare(FlxG.width / 2, FlxG.height / 3, Std.int(Math.random() * 7 + 3),
-				NFParticleEmitter.velocitySpread(420),
-			NFColorUtil.randCol(0.2, 0.6, 0.8, 0.2), 2.2);
+		if (!flixelEmitter) {
+			// sploosh!
+			for (i in 0...12) {
+				effectEmitter.emitSquare(FlxG.width / 2, FlxG.height / 3, Std.int(Math.random() * 7 + 3),
+					NFParticleEmitter.velocitySpread(420),
+				NFColorUtil.randCol(0.2, 0.6, 0.8, 0.2), 2.2);
+			}
 		}
 
 		super.update(elapsed);
