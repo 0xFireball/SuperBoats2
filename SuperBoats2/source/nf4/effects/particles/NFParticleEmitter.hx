@@ -24,4 +24,11 @@ class NFParticleEmitter extends FlxGroup {
 		add(Particle);
 	}
 
+	public static function velocitySpread(Radius:Float, XOffset:Float = 0, YOffset:Float = 0):NPoint {
+		var theta = Math.random() * Math.PI * 2;
+		var u = Math.random() + Math.random();
+		var r = Radius * (u > 1 ? 2 - u : u);
+		return new NPoint(Math.cos(theta) * r + XOffset, Math.sin(theta) * r + YOffset);
+	}
+
 }

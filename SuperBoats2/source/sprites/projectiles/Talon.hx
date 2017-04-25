@@ -6,6 +6,8 @@ import flixel.math.*;
 import flixel.effects.particles.*;
 
 import nf4.NFSprite;
+import nf4.util.*;
+import nf4.effects.particles.*;
 
 using nf4.math.NFMathExt;
 
@@ -35,11 +37,11 @@ class Talon extends TargetingProjectile {
 	}
 
 	override public function explode() {
-		// for (i in 0...14) {
-		// 	stateData.explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 10 + 5),
-		// 		NParticleEmitter.velocitySpread(90),
-		// 	NColorUtil.randCol(0.8, 0.5, 0.2, 0.2), 1.8);
-		// }
+		for (i in 0...14) {
+			explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 10 + 5),
+				NFParticleEmitter.velocitySpread(90),
+			NFColorUtil.randCol(0.8, 0.5, 0.2, 0.2), 1.8);
+		}
 		super.explode();
 	}
 }

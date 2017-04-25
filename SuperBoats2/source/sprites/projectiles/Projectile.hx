@@ -82,6 +82,7 @@ class Projectile extends NFSprite {
 		drawSpray();
 
 		emitter.update(dt);
+		explosionEmitter.update(dt);
 
 		super.update(dt);
 	}
@@ -89,6 +90,7 @@ class Projectile extends NFSprite {
 	override public function draw() {
 		emitter.draw();
 		super.draw();
+		explosionEmitter.draw();
 	}
 
 	private function drawSpray() {

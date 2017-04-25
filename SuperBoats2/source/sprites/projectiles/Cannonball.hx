@@ -6,6 +6,8 @@ import flixel.math.*;
 import flixel.effects.particles.*;
 
 import nf4.NFSprite;
+import nf4.util.*;
+import nf4.effects.particles.*;
 
 using nf4.math.NFMathExt;
 
@@ -31,16 +33,16 @@ class Cannonball extends Projectile {
 	}
 
 	override public function explode() {
-		// for (i in 0...15) {
-		// 	stateData.explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 8 + 4),
-		// 		NParticleEmitter.velocitySpread(50),
-		// 	NColorUtil.randCol(0.8, 0.2, 0.2, 0.2), 1.8);
-		// }
-		// for (i in 0...10) {
-		// 	stateData.explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 8 + 4),
-		// 		NParticleEmitter.velocitySpread(50),
-		// 	NColorUtil.randCol(0.8, 0.8, 0.2, 0.2), 1.8);
-		// }
+		for (i in 0...15) {
+			explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 8 + 4),
+				NFParticleEmitter.velocitySpread(50),
+			NFColorUtil.randCol(0.8, 0.2, 0.2, 0.2), 1.8);
+		}
+		for (i in 0...10) {
+			explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 8 + 4),
+				NFParticleEmitter.velocitySpread(50),
+			NFColorUtil.randCol(0.8, 0.8, 0.2, 0.2), 1.8);
+		}
 		super.explode();
 	}
 }
