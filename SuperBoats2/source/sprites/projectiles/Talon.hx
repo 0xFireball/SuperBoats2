@@ -28,14 +28,6 @@ class Talon extends TargetingProjectile {
 		super.update(dt);
 	}
 
-	override private function drawSpray() {
-		var particleTrailVector = velocity.toVector(); // duplicate velocity vector
-		particleTrailVector.rotate(FlxPoint.weak(0, 0), 180);
-		particleTrailVector.scale(0.7);
-		// TODO
-		particleTrailVector.put();
-	}
-
 	override public function explode() {
 		// for (i in 0...14) {
 		// 	stateData.explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 10 + 5),

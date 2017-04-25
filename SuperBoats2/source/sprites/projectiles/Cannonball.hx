@@ -17,19 +17,14 @@ class Cannonball extends Projectile {
 		target = Target;
 		movementSpeed = 180;
 		makeGraphic(8, 8, FlxColor.fromRGBFloat(0.6, 0.6, 0.6));
+
+		emitter.scale.set(4, 4, 12, 12);
+		emitter.lifespan.set(0.7);
 	}
 
 	override public function update(dt:Float) {
 
 		super.update(dt);
-	}
-
-	override private function drawSpray() {
-		var particleTrailVector = velocity.toVector(); // duplicate velocity vector
-		particleTrailVector.rotate(FlxPoint.weak(0, 0), 180);
-		particleTrailVector.scale(0.7);
-		// TODO
-		particleTrailVector.put();
 	}
 
 	override public function explode() {

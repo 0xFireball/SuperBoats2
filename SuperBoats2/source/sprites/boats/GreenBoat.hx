@@ -106,7 +106,7 @@ class GreenBoat extends Boat {
 	public function autoFire() {
 		var target = acquireTarget();
 		if (target == null) return;
-		var fTalon = new Talon(this, center.x, center.y, target, stateData.emitter);
+		var fTalon = new Talon(this, center.x, center.y, target);
 		// target talon
 		var tVec = fTalon.center.toVector()
 			.subtractPoint(target.center)

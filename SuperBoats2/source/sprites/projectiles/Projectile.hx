@@ -35,7 +35,8 @@ class Projectile extends NFSprite {
 
 		owner = Owner;
 		emitter = new FlxEmitter(X, Y);
-		
+		emitter.makeParticles(1, 1, FlxColor.WHITE, 200);
+
 		mass = 500;
 	}
 
@@ -73,11 +74,30 @@ class Projectile extends NFSprite {
 
 	override public function update(dt:Float) {
 		drawSpray();
+
+		emitter.update(dt);
+
 		super.update(dt);
 	}
 
+	override public function draw() {
+		emitter.draw();
+		super.draw();
+	}
+
 	private function drawSpray() {
-		// To be overriden
+		var trailVec = velocity.toVector()
+			.rotate(FlxPoint.weak(0, 0), 180)
+			.scale(0.7);
+		var trailNg = FlxAngle.asDegrees(Math.atan(trailVec.y / trailVec.x));
+		var trailMag = Math.sqrt(trailVec.x * trailVec.x + trailVec.y * trailVec.y);
+
+		emitter.launchAngle.set(trailNg);
+		emitter.speed.set(trailMag * 0.8, trailMag);
+
+		if (!emitter.emitting) {
+			emitter.start(false, 0.01);
+		}
 	}
 
 	public function hitBoundary() {

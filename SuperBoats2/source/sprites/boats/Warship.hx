@@ -80,7 +80,7 @@ class Warship extends Boat {
 		var dy = dist.y;
 		if (attackCount % 3 == 0) {
 			var projectile:Projectile = null;
-			projectile = new Cannonball(this, center.x + width / 2, center.y + height / 2, target, stateData.emitter);
+			projectile = new Cannonball(this, center.x + width / 2, center.y + height / 2, target);
 			var bulletSp = projectile.movementSpeed;
 			var m = -Math.sqrt(dx * dx + dy * dy);
 			var vx = dx * bulletSp / m;
@@ -95,7 +95,7 @@ class Warship extends Boat {
 		if (attackCount % 7 == 0) {
 			var projectile:Projectile = null;
 			var hydraRng:Bool = Std.int(Math.random() * 7) == 4;
-			projectile = new Torpedo(this, center.x + width / 2, center.y + height / 2, target, stateData.emitter);
+			projectile = new Torpedo(this, center.x + width / 2, center.y + height / 2, target);
 			var bulletSp = projectile.movementSpeed;
 			var m = -Math.sqrt(dx * dx + dy * dy);
 			var vx = dx * bulletSp / m;
