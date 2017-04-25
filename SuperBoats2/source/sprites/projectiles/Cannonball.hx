@@ -33,7 +33,6 @@ class Cannonball extends Projectile {
 	}
 
 	override public function explode() {
-		trace(explosionEmitter);
 		for (i in 0...15) {
 			explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 8 + 4),
 				NFParticleEmitter.velocitySpread(50),

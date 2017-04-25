@@ -3,7 +3,7 @@ package nf4.effects.particles;
 import flixel.*;
 import flixel.util.*;
 
-class NFParticle extends FlxSprite {
+class NFParticle extends NFSprite {
 
 	public var life:Float;
 	public var age:Float = 0;
@@ -22,7 +22,7 @@ class NFParticle extends FlxSprite {
 		age += dt;
 
 		if (age >= life) {
-			destroy();
+			kill();
 		} else {
 			var alpha = 1 - (age / life);
 			color = FlxColor.fromRGBFloat(particleColor.red, particleColor.green, particleColor.blue, alpha);
