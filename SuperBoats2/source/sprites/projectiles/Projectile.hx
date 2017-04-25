@@ -38,7 +38,7 @@ class Projectile extends NFSprite {
 
 		owner = Owner;
 		emitter = new FlxEmitter(X, Y);
-		explosionEmitter = new NFParticleEmitter();
+		explosionEmitter = new NFParticleEmitter(40);
 
 		mass = 500;
 	}

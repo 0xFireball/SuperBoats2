@@ -55,7 +55,7 @@ class NFTypedGroup<T:FlxBasic> extends FlxBasic {
 
 	public function add(Object:T):T {
 		var full:Bool = members.length >= maxSize;
-		if (!full) {
+		if (!full || members.length == 0) {
 			members.push(Object);
 			++memberCount;
 			return Object;
