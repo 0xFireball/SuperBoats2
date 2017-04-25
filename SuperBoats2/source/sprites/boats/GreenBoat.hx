@@ -120,11 +120,11 @@ class GreenBoat extends Boat {
 		velocity.addPoint(fTalon.momentum.scale(1 / mass).negate());
 		stateData.projectiles.add(fTalon);
 		// smoke
-		// for (i in 0...4) {
-		// 	stateData.effectEmitter.emitSquare(center.x, center.y, 6,
-		// 		NFParticleEmitter.velocitySpread(45, tVec.x / 4, tVec.y / 4),
-		// 		NFColorUtil.randCol(0.5, 0.5, 0.5, 0.1), 0.8);
-		// }
+		for (i in 0...4) {
+			stateData.effectEmitter.emitSquare(center.x, center.y, 6,
+				NFParticleEmitter.velocitySpread(45, tVec.x / 4, tVec.y / 4),
+				NFColorUtil.randCol(0.5, 0.5, 0.5, 0.1), 0.8);
+		}
 	}
 
 	override public function dismantle() {
