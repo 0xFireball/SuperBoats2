@@ -28,6 +28,8 @@ class Projectile extends NFSprite {
 
 	public var emitter:FlxEmitter;
 
+	public var explosionEmitter:FlxEmitter;
+
 	public var owner:NFSprite;
 
 	public function new(Owner:NFSprite, X:Float = 0, Y:Float = 0) {
@@ -42,8 +44,11 @@ class Projectile extends NFSprite {
 	override public function explode() {
 
 		// draw pretty collision
-		// TODO
+		
+		// blast explosion
+		explosionEmitter.focusOn(this);
 
+		// set timeout for destruction
 		super.explode();
 	}
 
@@ -57,6 +62,7 @@ class Projectile extends NFSprite {
 	}
 
 	public function hitSprite(sprite:NFSprite) {
+		if (!alive) return; // dead sprites don't explode
 		if (sprite == owner) return;
 		// deal damage
 		var damageDealt = calculateDamage();
