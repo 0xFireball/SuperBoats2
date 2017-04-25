@@ -5,7 +5,10 @@ import flixel.*;
 import flixel.util.*;
 import flixel.math.*;
 import flixel.effects.particles.*;
+
 import nf4.*;
+import nf4.util.*;
+import nf4.effects.particles.*;
 
 import states.game.data.*;
 
@@ -108,25 +111,25 @@ class Boat extends NFSprite {
 	private function manageHealth() {
 		if (damage > 0.2 && damage <= 0.5) {
 			// smoke
-			// for (i in 0...Std.int(4 * damage)) {
-			// 	stateData.explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 6 + 3),
-			// 		NParticleEmitter.velocitySpread(90),
-			// 	NColorUtil.randCol(0.3, 0.3, 0.3, 0.05), 1.8);
-			// }
+			for (i in 0...Std.int(4 * damage)) {
+				stateData.effectEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 6 + 3),
+					NFParticleEmitter.velocitySpread(90),
+				NFColorUtil.randCol(0.3, 0.3, 0.3, 0.05), 1.8);
+			}
 		} else if (damage > 0.5 && damage <= 0.7) {
 			// fire
-			// for (i in 0...Std.int(8 * damage)) {
-			// 	stateData.explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 6 + 3),
-			// 		NParticleEmitter.velocitySpread(90),
-			// 	NColorUtil.randCol(0.8, 0.5, 0.2, 0.2), 1.8);
-			// }
+			for (i in 0...Std.int(8 * damage)) {
+				stateData.effectEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 6 + 3),
+					NFParticleEmitter.velocitySpread(90),
+				NFColorUtil.randCol(0.8, 0.5, 0.2, 0.2), 1.8);
+			}
 		} else if (damage > 0.7) {
 			// bright fire
-			// for (i in 0...Std.int(12 * damage)) {
-			// 	stateData.explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 6 + 3),
-			// 		NParticleEmitter.velocitySpread(90),
-			// 	NColorUtil.randCol(0.9, 0.3, 0.2, 0.1), 2.2);
-			// }
+			for (i in 0...Std.int(12 * damage)) {
+				stateData.effectEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 6 + 3),
+					NFParticleEmitter.velocitySpread(90),
+				NFColorUtil.randCol(0.9, 0.3, 0.2, 0.1), 2.2);
+			}
 		}
 
 		if (damage >= 1) {
@@ -161,8 +164,8 @@ class Boat extends NFSprite {
         // draw spray
 		// for (i in 0...sprayAmount) {
 		// 	stateData.lowerEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 10) + 1,
-		// 		NParticleEmitter.velocitySpread(spraySpread, sprayTrailVector.x, sprayTrailVector.y),
-		// 	NColorUtil.randCol(0.2, 0.6, 0.8, 0.2), Math.random() * 1.0);
+		// 		NFParticleEmitter.velocitySpread(spraySpread, sprayTrailVector.x, sprayTrailVector.y),
+		// 	NFColorUtil.randCol(0.2, 0.6, 0.8, 0.2), Math.random() * 1.0);
 		// }
 		sprayTrailVector.put();
 	}
@@ -170,8 +173,8 @@ class Boat extends NFSprite {
 	override public function explode() {
 		// for (i in 0...50) {
 		// 	stateData.explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 10) + 1,
-		// 		NParticleEmitter.velocitySpread(spraySpread, velocity.x / 4, velocity.y / 4),
-		// 	NColorUtil.randCol(0.95, 0.95, 0.1, 0.05), Math.random() * 1.0);
+		// 		NFParticleEmitter.velocitySpread(spraySpread, velocity.x / 4, velocity.y / 4),
+		// 	NFColorUtil.randCol(0.95, 0.95, 0.1, 0.05), Math.random() * 1.0);
 		// }
 		for (i in 0...50) {
 			// stateData.emitter.emitParticle
