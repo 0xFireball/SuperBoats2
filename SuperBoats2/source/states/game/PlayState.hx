@@ -77,7 +77,7 @@ class PlayState extends FlxState
 		stateData.emitter = emitter;
 		add(emitter);
 
-		stateData.effectEmitter = new NFParticleEmitter(84);
+		stateData.effectEmitter = new NFParticleEmitter(240);
 		add(stateData.effectEmitter);
 
 		super.create();

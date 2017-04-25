@@ -1,7 +1,6 @@
 
 package sprites.boats;
 
-import flixel.*;
 import flixel.util.*;
 import flixel.math.*;
 import flixel.effects.particles.*;
