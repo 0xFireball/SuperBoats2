@@ -8,6 +8,7 @@ import flixel.effects.particles.*;
 import states.game.data.*;
 
 import nf4.*;
+import nf4.effects.particles.NFParticleEmitter;
 using nf4.math.NFMathExt;
 
 class Projectile extends NFSprite {
@@ -28,7 +29,7 @@ class Projectile extends NFSprite {
 
 	public var emitter:FlxEmitter;
 
-	public var explosionEmitter:FlxEmitter;
+	public var explosionEmitter:NFParticleEmitter;
 
 	public var owner:NFSprite;
 
@@ -37,6 +38,7 @@ class Projectile extends NFSprite {
 
 		owner = Owner;
 		emitter = new FlxEmitter(X, Y);
+		explosionEmitter = new NFParticleEmitter();
 
 		mass = 500;
 	}
@@ -46,7 +48,6 @@ class Projectile extends NFSprite {
 		// draw pretty collision
 		
 		// blast explosion
-		explosionEmitter.focusOn(this);
 
 		// set timeout for destruction
 		super.explode();
@@ -110,5 +111,22 @@ class Projectile extends NFSprite {
 
 	public function hitBoundary() {
 		dismantle(); // destroy silently instead of exploding
+	}
+
+	override public function kill() {
+		super.kill();
+
+		emitter.kill();
+		explosionEmitter.kill();
+	}
+
+	override public function destroy() {
+		emitter.destroy();
+		emitter = null;
+
+		explosionEmitter.destroy();
+		explosionEmitter = null;
+
+		super.destroy();
 	}
 }
