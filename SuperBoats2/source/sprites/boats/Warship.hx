@@ -1,6 +1,7 @@
 
 package sprites.boats;
 
+import flixel.util.FlxColor;
 import flixel.*;
 import flixel.math.*;
 
@@ -45,6 +46,8 @@ class Warship extends Boat {
 		angularThrust = FlxAngle.asDegrees(0.034 * Math.PI);
 		maxAngular = FlxAngle.asDegrees(Math.PI / 4);
 		maxVelocity.set(135, 135);
+
+		makeGraphic(20, 43, FlxColor.fromRGBFloat(0.8, 0.4, 0.1));
 	}
 
 	override public function update(dt:Float) {
