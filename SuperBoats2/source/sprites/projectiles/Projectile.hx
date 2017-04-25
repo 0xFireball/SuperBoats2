@@ -79,11 +79,12 @@ class Projectile extends NFSprite {
 	}
 
 	override public function update(dt:Float) {
-		drawSpray();
+		if (alive) {
+			drawSpray();
+		}
 
-		emitter.update(dt);
 		explosionEmitter.update(dt);
-
+		emitter.update(dt);
 		if (!alive && explosionEmitter.memberCount == 0) {
 			finishExplode();
 		}
@@ -92,8 +93,10 @@ class Projectile extends NFSprite {
 	}
 
 	override public function draw() {
-		emitter.draw();
-		super.draw();
+		if (alive) {
+			emitter.draw();
+			super.draw();
+		}
 		explosionEmitter.draw();
 	}
 
