@@ -48,6 +48,8 @@ class YouWonState extends FlxState {
 				NFParticleEmitter.velocitySpread(120),
 			NFColorUtil.randCol(0.9, 0.3, 0.2, 0.1), 2.2);
 		}
+
+        super.update(elapsed);
     }
 
     private function onClickReplay() {
