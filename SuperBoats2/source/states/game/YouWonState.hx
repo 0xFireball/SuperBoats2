@@ -18,6 +18,10 @@ class YouWonState extends FlxState {
     public var effectEmitter:NFParticleEmitter;
 
     public override function create() {
+        #if !FLX_NO_MOUSE
+		FlxG.mouse.visible = true;
+		#end
+
         var titleTx = new NFText(0, 180, "SuperBoats 2", 84);
 		titleTx.color = FlxColor.WHITE;
 		titleTx.screenCenter(FlxAxes.X);
