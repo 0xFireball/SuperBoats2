@@ -77,7 +77,7 @@
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 
 	<!--OpenFL defines-->
-	<haxedef name="next">
+	<haxedef name="next" />
 
 	<!-- _________________________________ Custom _______________________________ -->
 
