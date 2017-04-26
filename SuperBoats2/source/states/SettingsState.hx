@@ -13,7 +13,7 @@ import nf4.ui.*;
 import nf4.effects.particles.*;
 import nf4.util.*;
 
-class SettingsSubState extends FlxSubState
+class SettingsState extends FlxState
 {
 	override public function create():Void
 	{
@@ -27,7 +27,6 @@ class SettingsSubState extends FlxSubState
 		var titleTx = new NFText(0, 80, "Settings", 84);
 		titleTx.color = FlxColor.WHITE;
 		titleTx.screenCenter(FlxAxes.X);
-		titleTx.y = -titleTx.height;
 		add(titleTx);
 
 		var returnBtn = new NFButton(0, 700, "Return", onReturn);
@@ -48,7 +47,9 @@ class SettingsSubState extends FlxSubState
 	}
 
 	private function onReturn() {
-		// return
-		this.close();
+		// switch
+		FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
+			FlxG.switchState(new MenuState());
+		});
 	}
 }

@@ -115,6 +115,8 @@ class MenuState extends FlxState
 	}
 
 	private function onClickSettings() {
-		this.openSubState(new SettingsSubState(FlxColor.fromRGBFloat(0.7, 0.7, 0.7, 0.8)));
+		FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
+			FlxG.switchState(new SettingsState());
+		});
 	}
 }
