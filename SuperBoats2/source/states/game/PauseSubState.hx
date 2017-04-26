@@ -8,8 +8,6 @@ import nf4.ui.*;
 class PauseSubState extends FlxSubState {
 
     public override function create() {
-        super.create();
-
         #if !FLX_NO_MOUSE
 		FlxG.mouse.visible = true;
 		#end
@@ -21,19 +19,8 @@ class PauseSubState extends FlxSubState {
         var returnBtn = new NFButton(0, 700, "Return", onReturnToGame);
 		returnBtn.screenCenter(FlxAxes.X);
 		add(returnBtn);
-    }
 
-    public function onReturnToMenu() {
-        // return to menu
-        FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
-            FlxG.switchState(new MenuState());
-        });
-        this.close();
-    }
-
-    public function onReturnToGame() {
-        // return to game
-        this.close();
+        super.create();
     }
 
     public override function update(dt:Float) {
@@ -43,6 +30,19 @@ class PauseSubState extends FlxSubState {
 		}
 
         super.update(dt);
+    }
+
+    private function onReturnToMenu() {
+        // return to menu
+        FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
+            FlxG.switchState(new MenuState());
+        });
+        this.close();
+    }
+
+    private function onReturnToGame() {
+        // return to game
+        this.close();
     }
 
 }

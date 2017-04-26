@@ -68,6 +68,14 @@ class MenuState extends FlxState
 		playBtn.screenCenter(FlxAxes.X);
 		add(playBtn);
 
+		var settingsBtn = new NFButton(0, 32, "Settings", onClickSettings);
+		settingsBtn.x = FlxG.width - (settingsBtn.width + 32);
+		add(settingsBtn);
+
+		var lvtx = new NFText(0, 410, "level " + Registry.gameLevel, 24);
+		lvtx.screenCenter(FlxAxes.X);
+		add(lvtx);
+
 		FlxTween.color(credits, 0.9, FlxColor.fromRGBFloat(0.8, 0.1, 0.1), FlxColor.fromRGBFloat(0.98, 0.98, 0.98), { startDelay: 0.6, ease: FlxEase.cubeInOut });
 
 		FlxG.camera.shake(0.01, 0.5);
@@ -104,5 +112,9 @@ class MenuState extends FlxState
 				FlxG.switchState(new PlayState());
 			});
 		}});
+	}
+
+	private function onClickSettings() {
+		this.openSubState(new SettingsSubState(FlxColor.fromRGBFloat(0.7, 0.7, 0.7, 0.8)));
 	}
 }
