@@ -18,7 +18,7 @@ class Mothership extends Warship {
 
 	public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
 		super(X, Y, StateData);
-		maxHealth = health = 4750000;
+		maxHealth = health = 2350000;
 		thrust = 0.6;
 		wrapBounds = false;
 		mass = 184000;
@@ -27,6 +27,8 @@ class Mothership extends Warship {
 		angularThrust = FlxAngle.asDegrees(0.03 * Math.PI);
 		maxAngular = FlxAngle.asDegrees(Math.PI / 5);
 		maxVelocity.set(60, 60);
+		
+		attackTime = 0.2;
 
 		if (Registry.gameLevel > 0) {
 			var lvl = Registry.gameLevel;

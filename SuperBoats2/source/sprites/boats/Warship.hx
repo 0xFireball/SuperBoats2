@@ -19,7 +19,7 @@ import nf4.util.*;
 using nf4.math.NFMathExt;
 
 class Warship extends Boat {
-	private static var attackTime:Float = 0.2;
+	private static var attackTime:Float = 0.4;
 	private var attackTimer:Float = 0;
 	private var attackCount:Int = 0;
 	private var cannonMissRange:Float = Math.PI * 1 / 8;
