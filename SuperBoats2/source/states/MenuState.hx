@@ -59,6 +59,11 @@ class MenuState extends FlxState
 		credits.y = FlxG.height - (credits.height + 32);
 		add(credits);
 
+		var version = new NFText(32, 0, Registry.gameVersion, 48);
+		version.y = FlxG.height - (version.height + 32);
+		version.x = FlxG.width - (version.width + 32);
+		add(version);
+
 		var playBtn = new NFButton(0, 350, "Play", onClickPlay);
 		playBtn.screenCenter(FlxAxes.X);
 		add(playBtn);
