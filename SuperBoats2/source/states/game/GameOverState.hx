@@ -51,7 +51,7 @@ class GameOverState extends FlxState {
 			NFColorUtil.randCol(0.9, 0.3, 0.2, 0.1), 2.2);
 		}
 
-        super.update(elapsed);
+        super.update(dt);
     }
 
     private function onClickReturn() {

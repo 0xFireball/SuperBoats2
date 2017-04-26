@@ -20,7 +20,7 @@ class MenuState extends FlxState
 	private var emitter:FlxEmitter;
 	public var effectEmitter:NFParticleEmitter;
 
-	public var flixelEmitter:Bool = false;
+	public var flixelEmitter:Bool = true;
 
 	override public function create():Void
 	{
