@@ -2,6 +2,7 @@ package states.game;
 
 import flixel.util.FlxColor;
 import flixel.*;
+import flixel.input.keyboard.FlxKey;
 import flixel.effects.particles.*;
 import flixel.addons.display.*;
 import flixel.group.FlxGroup;
@@ -105,6 +106,11 @@ class PlayState extends FlxState
 				p.hitBoundary();
 			}
 		});
+
+		// pause menu
+		if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
+			openSubState(new PauseSubState(FlxColor.fromRGBFloat(0.7, 0.7, 0.7, 0.5)));
+		}
 
 		super.update(elapsed);
 
