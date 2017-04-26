@@ -115,13 +115,13 @@ class PlayState extends FlxState
 		if (!player.exists) {
 			// RIP, the player died
 			FlxG.camera.fade(FlxColor.RED, 0.4, false, function () {
-				FlxG.switchState(new GameOverState());
+				FlxG.switchState(new GameOverState(lastMsDamage));
 			});
 		}
 		if (!mothership.exists) {
 			// wow, good job!
 			FlxG.camera.fade(FlxColor.WHITE, 0.4, false, function () {
-				FlxG.switchState(new YouWonState(lastMsDamage));
+				FlxG.switchState(new YouWonState());
 			});
 		}
 	}

@@ -16,6 +16,12 @@ import nf4.util.*;
 class GameOverState extends FlxState {
 
     public var effectEmitter:NFParticleEmitter;
+    public var progress:Float;
+
+    public function new(Progress:Float) {
+        progress = Progress;
+        super();
+    }
 
     public override function create() {
         var titleTx = new NFText(0, 180, "SuperBoats 2", 84);
@@ -25,6 +31,10 @@ class GameOverState extends FlxState {
 
         effectEmitter = new NFParticleEmitter(200);
         add(effectEmitter);
+
+        var tt2 = new NFText(0, FlxG.height * 0.65, "mothership health: " + Std.int((1 - progress) * 100) + "%", 32);
+		tt2.screenCenter(FlxAxes.X);
+		add(tt2);
 
         var playBtn = new FlxButton(0, 350, "Return", onClickReturn);
 		playBtn.screenCenter(FlxAxes.X);

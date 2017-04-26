@@ -26,6 +26,10 @@ class YouWonState extends FlxState {
         effectEmitter = new NFParticleEmitter(200);
         add(effectEmitter);
 
+        var tt2 = new NFText(0, FlxG.height * 0.65, "you won. level " + Registry.gameLevel + " complete.", 32);
+		tt2.screenCenter(FlxAxes.X);
+		add(tt2);
+
         var replayBtn = new FlxButton(0, 350, "Replay", onClickReplay);
 		replayBtn.screenCenter(FlxAxes.X);
 		add(replayBtn);
