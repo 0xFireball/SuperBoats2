@@ -30,11 +30,11 @@ class YouWonState extends FlxState {
 		tt2.screenCenter(FlxAxes.X);
 		add(tt2);
 
-        var replayBtn = new FlxButton(0, 350, "Replay", onClickReplay);
+        var replayBtn = new FlxButton(0, 650, "Replay", onClickReplay);
 		replayBtn.screenCenter(FlxAxes.X);
 		add(replayBtn);
 
-        var nextLevelBtn = new FlxButton(0, 420, "Replay", onClickNextLv);
+        var nextLevelBtn = new FlxButton(0, 720, "Next Level", onClickNextLv);
 		nextLevelBtn.screenCenter(FlxAxes.X);
 		add(nextLevelBtn);
 
