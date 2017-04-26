@@ -26,7 +26,7 @@ class MenuState extends FlxState
 	{
 		#if !FLX_NO_MOUSE
 		FlxG.mouse.visible = true;
-		FlxG.mouse.load("images/mouse.png");
+		FlxG.mouse.load(AssetPaths.mouse__png);
 		#end
 
 		bgColor = FlxColor.fromInt(0x0B2B36);

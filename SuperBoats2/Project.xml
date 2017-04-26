@@ -30,7 +30,6 @@
 	<set name="BUILD_DIR" value="export" />
 	<classpath name="source" />
 	<assets path="assets" embed="true" />
-	<assets path="assets/images" rename="images" embed="true" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
