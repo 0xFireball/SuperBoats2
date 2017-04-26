@@ -55,7 +55,7 @@ class PlayState extends FlxState
 		add(allies);
 
 		// create player
-		player = new PlayerBoat(Math.random() * (FlxG.width - 60) + 30, Math.random() * (FlxG.height - 60) + 30, stateData);
+		player = new PlayerBoat(Math.random() * (FlxG.width - 120) + 60, Math.random() * (FlxG.height - 120) + 60, stateData);
 		player.angle = Math.random() * Math.PI * 2;
 		stateData.player = player;
 		allies.add(player);
@@ -65,7 +65,7 @@ class PlayState extends FlxState
 		add(warships);
 
 		// create mothership
-		mothership = new Mothership(Math.random() * (FlxG.width - 60) + 30, Math.random() * (FlxG.height - 60) + 30, stateData);
+		mothership = new Mothership(Math.random() * (FlxG.width - 120) + 60, Math.random() * (FlxG.height - 120) + 60, stateData);
 		stateData.mothership = mothership;
 		mothership.angle = Math.random() * Math.PI * 2;
 		warships.add(mothership);
