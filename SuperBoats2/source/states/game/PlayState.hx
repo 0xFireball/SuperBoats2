@@ -1,5 +1,6 @@
 package states.game;
 
+import flixel.util.FlxColor;
 import flixel.*;
 import flixel.effects.particles.*;
 import flixel.addons.display.*;
@@ -102,6 +103,27 @@ class PlayState extends FlxState
 		});
 
 		super.update(elapsed);
+
+		// check game status
+		checkGameStatus();
+	}
+
+	private function checkGameStatus() {
+		// update final vars
+		var lastMsDamage = mothership.damage;
+
+		if (!player.exists) {
+			// RIP, the player died
+			FlxG.camera.fade(FlxColor.RED, 0.4, false, function () {
+				FlxG.switchState(new GameOverState());
+			});
+		}
+		if (!mothership.exists) {
+			// wow, good job!
+			FlxG.camera.fade(FlxColor.WHITE, 0.4, false, function () {
+				FlxG.switchState(new YouWonState(lastMsDamage));
+			});
+		}
 	}
 
 	private function shipHitProjectile(s:Boat, j:Projectile) {
