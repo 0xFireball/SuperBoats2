@@ -59,7 +59,7 @@ class MenuState extends FlxState
 		credits.y = FlxG.height - (credits.height + 32);
 		add(credits);
 
-		var playBtn = new FlxButton(0, 350, "Play", onClickPlay);
+		var playBtn = new NFButton(0, 350, "Play", onClickPlay);
 		playBtn.screenCenter(FlxAxes.X);
 		add(playBtn);
 
