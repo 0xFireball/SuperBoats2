@@ -109,7 +109,7 @@ class PlayState extends FlxState
 
 		// pause menu
 		if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
-			openSubState(new PauseSubState(FlxColor.fromRGBFloat(0.7, 0.7, 0.7, 0.5)));
+			openSubState(new PauseSubState(FlxColor.fromRGBFloat(0.7, 0.7, 0.7, 0.8)));
 		}
 
 		super.update(elapsed);
