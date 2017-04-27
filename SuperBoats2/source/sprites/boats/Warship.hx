@@ -7,7 +7,7 @@ import flixel.math.*;
 
 import sprites.projectiles.*;
 
-import ai.BoatAiState;
+import ai.*;
 import ai.BoatAiController;
 
 import states.game.data.*;
@@ -24,15 +24,12 @@ class Warship extends Boat {
 	private var attackCount:Int = 0;
 	private var cannonMissRange:Float = Math.PI * 1 / 8;
 	private var torpedoMissRange:Float = Math.PI * 1 / 3;
-	public var aiController:BoatAiController<Boat>;
 	public var aiState:BoatAiState<Boat>;
 	public var lastStep:ActionState;
 
 	public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
 		super(X, Y, StateData);
 
-		aiController = new BoatAiController<Boat>();
-		aiController.me = this;
 		aiState = new BoatAiState<Boat>();
 		aiController.loadState(aiState);
 		var hypot = NFMath.hypot(FlxG.width, FlxG.height);

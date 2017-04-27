@@ -16,11 +16,19 @@ class BoatAiController<T:Boat> {
 
 	public var state(default, null):BoatAiState<T>;
 
-	public function new() {
+	public function new(Me:Boat) {
+		me = Me;
 	}
 
 	public function loadState(State:BoatAiState<T>) {
 		state = State;
+	}
+
+	public function setObjective(Objective:FlxPoint) {
+		if (state.leader == me) {
+			// i'm the leader, set the objective
+			state.objective = Objective;
+		}
 	}
 
 	public function step():ActionState {
@@ -40,13 +48,24 @@ class BoatAiController<T:Boat> {
 		var targetSetpoint:FlxVector = null;
 		if (target != null) {
 			var targetPos = target.center.toVector();
-			if (style == Aggressive || style == Passive) {
-				if ((selfPosition.distanceTo(targetPos) > chaseRadius)) {
-					targetSetpoint = targetPos;
+			// follow leader commands
+			var hasLeader = state.leader != null && state.leader != me;
+			if (hasLeader && state.objective != null) {
+				// go to leader objective
+				if ((selfPosition.distanceTo(state.objective) > chaseRadius)) {
+					// set goal to travel to objective
+					targetSetpoint = FlxVector.get(state.objective.x, state.objective.y);
 				}
-			} else if (style == Defensive) {
-				if ((selfPosition.distanceTo(targetPos) < chaseRadius)) {
-					targetSetpoint = targetPos;
+			} else {
+				// no objective, or no leader
+				if (style == Aggressive || style == Passive) {
+					if ((selfPosition.distanceTo(targetPos) > chaseRadius)) {
+						targetSetpoint = targetPos;
+					}
+				} else if (style == Defensive) {
+					if ((selfPosition.distanceTo(targetPos) < chaseRadius)) {
+						targetSetpoint = targetPos;
+					}
 				}
 			}
 		} else if (me.x < FlxG.width / 4 || me.x > FlxG.width * (3 / 4)

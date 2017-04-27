@@ -9,7 +9,7 @@ import flixel.effects.particles.*;
 
 import sprites.projectiles.*;
 
-import ai.BoatAiState;
+import ai.*;
 import ai.BoatAiController;
 
 import nf4.math.NFMath;
@@ -25,7 +25,6 @@ class GreenBoat extends Boat {
 	private var attackTimer:Float = 0;
 	private var attackCount:Int = 0;
 
-	public var aiController:BoatAiController<Boat>;
 	public var aiState:BoatAiState<Boat>;
 	public var lastStep:ActionState;
 	public var attacking:Bool = false;
@@ -33,9 +32,8 @@ class GreenBoat extends Boat {
     public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
 		super(X, Y, StateData);
 
-		aiController = new BoatAiController<Boat>();
-		aiController.me = this;
 		aiState = new BoatAiState<Boat>();
+		aiState.leader = StateData.player;
 		aiController.loadState(aiState);
 		aiState.friends = stateData.allies;
 		aiState.enemies = stateData.warships;

@@ -12,6 +12,8 @@ import nf4.math.*;
 import nf4.util.*;
 import nf4.effects.particles.*;
 
+import ai.*;
+
 import states.game.data.*;
 
 class Boat extends NFSprite {
@@ -29,6 +31,8 @@ class Boat extends NFSprite {
 	public var stateData:GameStateData;
 
 	private var sprayEmitter:FlxEmitter;
+		
+	public var aiController:BoatAiController<Boat>;
 
 	public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
 		super(X, Y);
@@ -48,6 +52,8 @@ class Boat extends NFSprite {
 		sprayEmitter.lifespan.set(0.1, 0.7);
 		sprayEmitter.color.set(FlxColor.fromRGBFloat(0.0, 0.4, 0.6, 0.4), FlxColor.fromRGBFloat(0.4, 0.8, 1.0, 0.9));
 		sprayEmitter.makeParticles(1, 1, FlxColor.WHITE, 200);
+
+		aiController = new BoatAiController<Boat>(this);
 	}
 
 	override public function update(dt:Float) {
