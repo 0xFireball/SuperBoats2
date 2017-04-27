@@ -12,6 +12,10 @@ class PauseSubState extends FlxSubState {
 		FlxG.mouse.visible = true;
 		#end
 
+        var levelText = new NFText(0, 160, "level " + Registry.gameLevel, 48);
+        levelText.screenCenter(FlxAxes.X);
+        add(levelText);
+
         var menuBtn = new NFButton(0, 600, "Exit to Menu", onReturnToMenu);
 		menuBtn.screenCenter(FlxAxes.X);
 		add(menuBtn);

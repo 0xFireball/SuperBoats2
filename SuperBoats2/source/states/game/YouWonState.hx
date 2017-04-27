@@ -34,6 +34,10 @@ class YouWonState extends FlxState {
 		tt2.screenCenter(FlxAxes.X);
 		add(tt2);
 
+        var menuBtn = new NFButton(0, 500, "Exit to Menu", onReturnToMenu);
+		menuBtn.screenCenter(FlxAxes.X);
+		add(menuBtn);
+
         var replayBtn = new NFButton(0, 600, "Replay", onClickReplay);
 		replayBtn.screenCenter(FlxAxes.X);
 		add(replayBtn);
@@ -68,6 +72,14 @@ class YouWonState extends FlxState {
         FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
             FlxG.switchState(new PlayState());
         });
+    }
+
+    private function onReturnToMenu() {
+        // return to menu
+        FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
+            FlxG.switchState(new MenuState());
+        });
+        this.close();
     }
 
 }
