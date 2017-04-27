@@ -125,7 +125,7 @@ class MenuState extends FlxState
 		var distortedTitle = new FlxEffectSprite(titleTx, [ waveFct ]);
 		distortedTitle.setPosition(titleTx.x, titleTx.y);
 		add(distortedTitle);
-		FlxTween.tween(titleTx, { alpha: 0 }, 0.2, { onComplete: function (t) {
+		FlxTween.tween(titleTx, { alpha: 0 }, 0.8, { onComplete: function (t) {
 			remove(titleTx);
 		}});
 		FlxTween.tween(distortedTitle, { alpha: 1 }, 0.8, { ease: FlxEase.cubeIn });
