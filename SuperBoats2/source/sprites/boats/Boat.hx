@@ -66,7 +66,13 @@ class Boat extends NFSprite {
 		powerShield();
 
 		sprayEmitter.update(dt);
-		subSprites.update();
+		subSprites.update(dt);
+
+		// nuke dead subsprites
+		subSprites.forEachDead(function (d) {
+			subSprites.remove(d);
+			d.destroy();
+		});
 
 		super.update(dt);
 	}
