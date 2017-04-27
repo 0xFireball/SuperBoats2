@@ -29,6 +29,10 @@ class SettingsState extends FlxState
 		titleTx.screenCenter(FlxAxes.X);
 		add(titleTx);
 
+		var resetGameBtn = new NFButton(0, 540, "Reset Game", onSaveData);
+		resetGameBtn.screenCenter(FlxAxes.X);
+		add(resetGameBtn);
+		
 		var saveDataBtn = new NFButton(0, 600, "Save Game", onSaveData);
 		saveDataBtn.screenCenter(FlxAxes.X);
 		add(saveDataBtn);
@@ -55,6 +59,11 @@ class SettingsState extends FlxState
 		FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
 			FlxG.switchState(new MenuState());
 		});
+	}
+
+	private function onResetSave() {
+		Registry.saveSlot.erase();
+		Registry.saveSlot.flush();
 	}
 
 	private function onSaveData() {
