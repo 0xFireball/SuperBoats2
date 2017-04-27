@@ -17,7 +17,7 @@ class Cannonball extends Projectile {
 		damageFactor = 1.5;
 		mass = 2200;
 		target = Target;
-		movementSpeed = 180;
+		movementSpeed = 120 + Math.random() * 120;
 		makeGraphic(8, 8, FlxColor.fromRGBFloat(0.6, 0.6, 0.6));
 
 		emitter.maxSize = 15;
