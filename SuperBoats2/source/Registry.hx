@@ -1,6 +1,8 @@
 
 package;
 
+import flixel.util.FlxSave;
+
 class Registry {
     // constants
 
@@ -9,4 +11,18 @@ class Registry {
     // vars
 
     public static var gameLevel:Int = 0;
+
+    private static var defaultSaveName:String = "0";
+
+    public static var saveSlot:FlxSave;
+
+    public static function loadSave() {
+        saveSlot = new FlxSave();
+        saveSlot.bind(defaultSaveName);
+        reloadSave();
+    }
+
+    public static function reloadSave() {
+        gameLevel = saveSlot.data.level;
+    }
 }
