@@ -65,7 +65,6 @@ class Warship extends Boat {
 
 	private function attackPlayer() {
 		var target = acquireTarget(center, stateData.allies);
-		trace("attack, "+ center);
 		if (target == null) return;
 		var dist = center.toVector().subtractPoint(target.center);
 		var dx = dist.x;
