@@ -49,8 +49,8 @@ class YouWonState extends FlxState {
         // bright fire
 		for (i in 0...12) {
 			effectEmitter.emitSquare(FlxG.width / 2, FlxG.height / 2, Std.int(Math.random() * 6 + 3),
-				NFParticleEmitter.velocitySpread(120),
-			NFColorUtil.randCol(0.9, 0.3, 0.2, 0.1), 2.2);
+				NFParticleEmitter.velocitySpread(220),
+			NFColorUtil.randCol(0.2, 0.9, 0.2, 0.1), 2.2);
 		}
 
         super.update(dt);
