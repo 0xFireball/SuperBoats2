@@ -42,6 +42,28 @@ class HUD extends FlxSpriteGroup {
 
         hullIntText.text = "Hull Integrity: " + Std.int(stateData.player.healthPercentage) + "%";
 
+        // indicator coloring
+
+        if (stateData.player.shieldPercentage > 97) {
+            shieldIntText.color = FlxColor.fromRGBFloat(0.7, 1.0, 0.7);
+        } else if (stateData.player.shieldPercentage < 55) {
+            shieldIntText.color = FlxColor.fromRGBFloat(1.0, 1.0, 0.7);
+        } else if (stateData.player.shieldPercentage < 25) {
+            shieldIntText.color = FlxColor.fromRGBFloat(1.0, 0.7, 0.7);
+        } else {
+            shieldIntText.color = FlxColor.WHITE;
+        }
+
+        if (stateData.player.healthPercentage > 90) {
+            hullIntText.color = FlxColor.fromRGBFloat(0.7, 1.0, 0.7);
+        } else if (stateData.player.healthPercentage < 60) {
+            hullIntText.color = FlxColor.fromRGBFloat(1.0, 1.0, 0.7);
+        } else if (stateData.player.healthPercentage < 25) {
+            hullIntText.color = FlxColor.fromRGBFloat(1.0, 0.7, 0.7);
+        } else {
+            shieldIntText.color = FlxColor.WHITE;
+        }
+
         super.update(dt);
     }
 
