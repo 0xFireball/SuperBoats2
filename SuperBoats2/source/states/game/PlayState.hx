@@ -31,7 +31,7 @@ class PlayState extends FlxState
 	override public function create():Void
 	{
 		#if !FLX_NO_MOUSE
-		FlxG.mouse.visible = false;
+		FlxG.mouse.visible = true;
 		#end
 
 		bg = new FlxBackdrop(AssetPaths.water__png, 0.5, 0.5);
