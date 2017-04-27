@@ -70,7 +70,7 @@ class Boat extends NFSprite {
 
 		// nuke dead subsprites
 		subSprites.forEachDead(function (d) {
-			subSprites.remove(d);
+			subSprites.remove(d, true);
 			d.destroy();
 		});
 

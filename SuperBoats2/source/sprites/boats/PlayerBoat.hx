@@ -58,6 +58,21 @@ class PlayerBoat extends GreenBoat {
 		right = FlxG.keys.anyPressed([L, RIGHT]);
 		down = FlxG.keys.anyPressed([K, DOWN]);
 
+		var setObjective:Bool = FlxG.keys.anyPressed([C]);
+		var releaseObjective:Bool = FlxG.keys.anyPressed([X]);
+
+		if (setObjective && releaseObjective) {
+			setObjective = false;
+			releaseObjective = false;
+		}
+
+		// apply objective
+		if (setObjective) {
+			aiController.setObjective(center);
+		} else if (releaseObjective) {
+			aiController.setObjective(null);
+		}
+
 		moveDefault(up,
 			left,
 			right,

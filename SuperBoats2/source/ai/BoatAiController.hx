@@ -25,9 +25,12 @@ class BoatAiController<T:Boat> {
 	}
 
 	public function setObjective(Objective:FlxPoint) {
+		state.objective = Objective;
 		if (state.leader == me) {
-			// i'm the leader, set the objective
-			state.objective = Objective;
+			// i'm the leader, set the objective for everyone else too
+			state.friends.forEachAlive(function (f) {
+				f.aiController.setObjective(Objective);
+			});
 		}
 	}
 
