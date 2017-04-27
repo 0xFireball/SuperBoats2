@@ -81,7 +81,7 @@ class GreenBoat extends Boat {
 	private function movement() {
 		// minion should attack
 
-		var target = acquireTarget();
+		var target = acquireTarget(center);
 		aiController.target = target;
 
 		var step = aiController.step();
@@ -95,7 +95,7 @@ class GreenBoat extends Boat {
 	}
 
 	public function autoFire() {
-		var target = acquireTarget();
+		var target = acquireTarget(center);
 		if (target == null) return;
 		var fTalon = new Talon(this, center.x, center.y, target);
 		// target talon

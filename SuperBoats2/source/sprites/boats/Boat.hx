@@ -59,8 +59,7 @@ class Boat extends NFSprite {
 		super.update(dt);
 	}
 
-	private function acquireTarget(?SourcePoint:FlxPoint = null):Boat {
-		if (SourcePoint == null) SourcePoint = center;
+	private function acquireTarget(SourcePoint:FlxPoint):Boat {
 		var target:Boat = null;
 		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
 		var minDistance = hypot * 2;

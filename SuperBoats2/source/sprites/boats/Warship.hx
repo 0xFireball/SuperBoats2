@@ -64,7 +64,7 @@ class Warship extends Boat {
 	}
 
 	private function attackPlayer() {
-		var target = acquireTarget();
+		var target = acquireTarget(center);
 		if (target == null) return;
 		var dist = center.toVector().subtractPoint(target.center);
 		var dx = dist.x;
@@ -118,7 +118,8 @@ class Warship extends Boat {
 	}
 
 	private function movement() {
-		var target = acquireTarget();
+		var target = acquireTarget(center);
+		trace(target);
 		aiState.friends = stateData.warships;
 		aiState.enemies = stateData.allies;
 		aiController.target = target;
