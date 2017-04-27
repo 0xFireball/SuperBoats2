@@ -12,6 +12,9 @@ import nf4.util.*;
 
 import states.game.data.*;
 import sprites.effects.*;
+import sprites.projectiles.*;
+
+using nf4.math.NFMathExt;
 
 class PlayerBoat extends GreenBoat {
     public var allyCount:Int = 0;
@@ -103,7 +106,7 @@ class PlayerBoat extends GreenBoat {
 		var gMgBullet = new MGBullet(this, center.x, center.y, target);
 		var tVec = gMgBullet.center.toVector()
 			.subtractPoint(target.center)
-			.rotate(FlxPoint.weak(0, 0), 180)
+			.rotate(FlxPoint.weak(0, 0), 180 + (Math.random() * 20) - 40)
 			.toVector().normalize().scale(gMgBullet.movementSpeed);
 		gMgBullet.velocity.set(tVec.x, tVec.y);
 		tVec.put();
