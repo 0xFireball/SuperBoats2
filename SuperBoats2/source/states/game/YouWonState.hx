@@ -79,7 +79,6 @@ class YouWonState extends FlxState {
         FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
             FlxG.switchState(new MenuState());
         });
-        this.close();
     }
 
 }
