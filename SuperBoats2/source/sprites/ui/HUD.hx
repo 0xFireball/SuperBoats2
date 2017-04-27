@@ -61,7 +61,7 @@ class HUD extends FlxSpriteGroup {
         } else if (stateData.player.healthPercentage < 60) {
             hullIntText.color = FlxColor.fromRGBFloat(1.0, 1.0, 0.7);
         } else {
-            shieldIntText.color = FlxColor.WHITE;
+            hullIntText.color = FlxColor.WHITE;
         }
 
         super.update(dt);
