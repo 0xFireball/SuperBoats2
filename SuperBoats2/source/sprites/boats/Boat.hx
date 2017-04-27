@@ -27,6 +27,10 @@ class Boat extends NFSprite {
 	public var hullShieldMax:Float = 60000;
 	public var hullShieldIntegrity:Float = 0;
 	public var hullShieldRegen:Float = 100;
+	
+	public var shieldPercentage(get, null):Float;
+
+	public var healthPercentage(get, null):Float;
 
 	public var subSprites:FlxTypedGroup<NFSprite>;
 
@@ -231,5 +235,13 @@ class Boat extends NFSprite {
 		subSprites = null;
 
 		super.destroy();
+	}
+
+	private function get_shieldPercentage():Float {
+		return hullShieldIntegrity / hullShieldMax;
+	}
+
+	private function get_healthPercentage():Float {
+		return health / maxHealth;
 	}
 }
