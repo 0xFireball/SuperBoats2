@@ -32,7 +32,7 @@ class Boat extends NFSprite {
 
 	public var healthPercentage(get, null):Float;
 
-	public var subSprites:FlxTypedGroup<NFSprite>;
+	public var subSprites:FlxTypedGroup<FlxSprite>;
 
 	public var stateData:GameStateData;
 
@@ -59,7 +59,7 @@ class Boat extends NFSprite {
 		sprayEmitter.color.set(FlxColor.fromRGBFloat(0.0, 0.4, 0.6, 0.4), FlxColor.fromRGBFloat(0.4, 0.8, 1.0, 0.9));
 		sprayEmitter.makeParticles(1, 1, FlxColor.WHITE, 200);
 
-		subSprites = new FlxTypedGroup<NFSprite>();
+		subSprites = new FlxTypedGroup<FlxSprite>();
 
 		aiController = new BoatAiController<Boat>(this);
 	}

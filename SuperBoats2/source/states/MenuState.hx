@@ -99,7 +99,6 @@ class MenuState extends FlxState
 	}
 
 	private function onClickPlay() {
-		// TODO
 		var waveFct = new FlxWaveEffect();
 		var distortedTitle = new FlxEffectSprite(titleTx, [ waveFct ]);
 		distortedTitle.setPosition(titleTx.x, titleTx.y);
