@@ -64,6 +64,7 @@ class SettingsState extends FlxState
 	private function onResetSave() {
 		Registry.saveSlot.erase();
 		Registry.saveSlot.flush();
+		Registry.reloadSave();
 	}
 
 	private function onSaveData() {
