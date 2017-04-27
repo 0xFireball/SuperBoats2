@@ -14,7 +14,7 @@ class TargetingProjectile extends Projectile {
     }
 
     override public function update(dt:Float) {
-		if (target != null) {
+		if (target != null && target.alive) {
 			var distToTarget:Float = FlxVector.get(x, y).distanceTo(target.center);
 			// retarget to player
 			var mA = 0;
