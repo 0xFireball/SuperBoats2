@@ -20,8 +20,8 @@ class PlayState extends FlxState
 {
 	public var player:PlayerBoat;
     public var mothership:Mothership;
-    public var allies:FlxTypedGroup<GreenBoat>;
-    public var warships:FlxTypedGroup<Warship>;
+    public var allies:FlxTypedGroup<Boat>;
+    public var warships:FlxTypedGroup<Boat>;
     public var projectiles:FlxTypedGroup<Projectile>;
     public var emitter:FlxEmitter;
 	public var wallMap:FlxTilemap;
@@ -55,7 +55,7 @@ class PlayState extends FlxState
 
 		var stateData = new GameStateData();
 
-		allies = new FlxTypedGroup<GreenBoat>();
+		allies = new FlxTypedGroup<Boat>();
 		stateData.allies = allies;
 		add(allies);
 
@@ -65,7 +65,7 @@ class PlayState extends FlxState
 		stateData.player = player;
 		allies.add(player);
 
-		warships = new FlxTypedGroup<Warship>();
+		warships = new FlxTypedGroup<Boat>();
 		stateData.warships = warships;
 		add(warships);
 

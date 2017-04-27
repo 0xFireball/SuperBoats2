@@ -25,17 +25,17 @@ class GreenBoat extends Boat {
 	private var attackTimer:Float = 0;
 	private var attackCount:Int = 0;
 
-	public var aiController:BoatAiController<GreenBoat, Warship>;
-	public var aiState:BoatAiState<GreenBoat, Warship>;
+	public var aiController:BoatAiController<Boat>;
+	public var aiState:BoatAiState<Boat>;
 	public var lastStep:ActionState;
 	public var attacking:Bool = false;
 
     public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
 		super(X, Y, StateData);
 
-		aiController = new BoatAiController<GreenBoat, Warship>();
+		aiController = new BoatAiController<Boat>();
 		aiController.me = this;
-		aiState = new BoatAiState<GreenBoat, Warship>();
+		aiState = new BoatAiState<Boat>();
 		aiController.loadState(aiState);
 		aiState.friends = stateData.allies;
 		aiState.enemies = stateData.warships;
@@ -81,7 +81,7 @@ class GreenBoat extends Boat {
 	private function movement() {
 		// minion should attack
 
-		var target = acquireTarget(center);
+		var target = acquireTarget(center, stateData.warships);
 		aiController.target = target;
 
 		var step = aiController.step();
@@ -95,7 +95,7 @@ class GreenBoat extends Boat {
 	}
 
 	public function autoFire() {
-		var target = acquireTarget(center);
+		var target = acquireTarget(center, stateData.warships);
 		if (target == null) return;
 		var fTalon = new Talon(this, center.x, center.y, target);
 		// target talon

@@ -24,16 +24,16 @@ class Warship extends Boat {
 	private var attackCount:Int = 0;
 	private var cannonMissRange:Float = Math.PI * 1 / 8;
 	private var torpedoMissRange:Float = Math.PI * 1 / 3;
-	public var aiController:BoatAiController<Warship, GreenBoat>;
-	public var aiState:BoatAiState<Warship, GreenBoat>;
+	public var aiController:BoatAiController<Boat>;
+	public var aiState:BoatAiState<Boat>;
 	public var lastStep:ActionState;
 
 	public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
 		super(X, Y, StateData);
 
-		aiController = new BoatAiController<Warship, GreenBoat>();
+		aiController = new BoatAiController<Boat>();
 		aiController.me = this;
-		aiState = new BoatAiState<Warship, GreenBoat>();
+		aiState = new BoatAiState<Boat>();
 		aiController.loadState(aiState);
 		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
 		aiController.triggerRadius = hypot / 4;
@@ -64,7 +64,8 @@ class Warship extends Boat {
 	}
 
 	private function attackPlayer() {
-		var target = acquireTarget(center);
+		var target = acquireTarget(center, stateData.allies);
+		trace("attack, "+ center);
 		if (target == null) return;
 		var dist = center.toVector().subtractPoint(target.center);
 		var dx = dist.x;
@@ -118,8 +119,7 @@ class Warship extends Boat {
 	}
 
 	private function movement() {
-		var target = acquireTarget(center);
-		trace(target);
+		var target = acquireTarget(center, stateData.allies);
 		aiState.friends = stateData.warships;
 		aiState.enemies = stateData.allies;
 		aiController.target = target;

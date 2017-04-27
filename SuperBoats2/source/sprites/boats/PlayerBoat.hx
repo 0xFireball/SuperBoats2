@@ -4,6 +4,7 @@ package sprites.boats;
 import flixel.*;
 import flixel.math.*;
 import flixel.input.keyboard.FlxKey;
+import flixel.group.FlxGroup;
 
 import states.game.data.*;
 
@@ -65,9 +66,9 @@ class PlayerBoat extends GreenBoat {
 		attacking = FlxG.keys.anyPressed([F, M]);
 	}
 
-	private override function acquireTarget(SourcePoint:FlxPoint):Boat {
+	private override function acquireTarget(SourcePoint:FlxPoint, BoatCollection:FlxTypedGroup<Boat>):Boat {
 		SourcePoint = FlxG.mouse.getPosition();
-		var target = super.acquireTarget(SourcePoint);
+		var target = super.acquireTarget(SourcePoint, BoatCollection);
 		SourcePoint.put();
 		return target;
 	}

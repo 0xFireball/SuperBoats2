@@ -12,14 +12,14 @@ import nf4.effects.particles.*;
 class GameStateData {
     public var player:PlayerBoat;
     public var mothership:Mothership;
-    public var allies:FlxTypedGroup<GreenBoat>;
-    public var warships:FlxTypedGroup<Warship>;
+    public var allies:FlxTypedGroup<Boat>;
+    public var warships:FlxTypedGroup<Boat>;
     public var projectiles:FlxTypedGroup<Projectile>;
     public var emitter:FlxEmitter;
     public var effectEmitter:NFParticleEmitter;
 
     public function new(?Player:PlayerBoat, ?Mothership:Mothership,
-        ?WarshipsGroup:FlxTypedGroup<Warship>, ?AlliesGroup:FlxTypedGroup<GreenBoat>, ?ProjectilesGroup:FlxTypedGroup<Projectile>,
+        ?WarshipsGroup:FlxTypedGroup<Boat>, ?AlliesGroup:FlxTypedGroup<Boat>, ?ProjectilesGroup:FlxTypedGroup<Projectile>,
         ?Emitter:FlxEmitter,
         ?EffectEmitter:NFParticleEmitter) {
         

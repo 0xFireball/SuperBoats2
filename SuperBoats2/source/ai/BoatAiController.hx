@@ -4,20 +4,22 @@ import flixel.*;
 import flixel.math.*;
 import nf4.*;
 
+import sprites.boats.*;
+
 using nf4.math.NFMathExt;
 
-class BoatAiController<T1:NFSprite, T2:NFSprite> {
+class BoatAiController<T:Boat> {
 	public var triggerRadius:Float;
 	public var style:Style = Passive;
 	public var me:NFSprite;
 	public var target:NFSprite;
 
-	public var state(default, null):BoatAiState<T1, T2>;
+	public var state(default, null):BoatAiState<T>;
 
 	public function new() {
 	}
 
-	public function loadState(State:BoatAiState<T1, T2>) {
+	public function loadState(State:BoatAiState<T>) {
 		state = State;
 	}
 

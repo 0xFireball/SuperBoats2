@@ -4,6 +4,7 @@ package sprites.boats;
 import flixel.*;
 import flixel.util.*;
 import flixel.math.*;
+import flixel.group.FlxGroup;
 import flixel.effects.particles.*;
 
 import nf4.*;
@@ -59,11 +60,11 @@ class Boat extends NFSprite {
 		super.update(dt);
 	}
 
-	private function acquireTarget(SourcePoint:FlxPoint):Boat {
+	private function acquireTarget(SourcePoint:FlxPoint, BoatCollection:FlxTypedGroup<Boat>):Boat {
 		var target:Boat = null;
 		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
 		var minDistance = hypot * 2;
-		stateData.warships.forEachAlive(function (boat) {
+		BoatCollection.forEachAlive(function (boat) {
 			var dist = boat.center.distanceTo(SourcePoint);
 			if (dist < minDistance) {
 				minDistance = dist;
