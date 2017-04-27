@@ -64,4 +64,11 @@ class PlayerBoat extends GreenBoat {
 
 		attacking = FlxG.keys.anyPressed([F, M]);
 	}
+
+	private override function acquireTarget(?SourcePoint:FlxPoint):Boat {
+		SourcePoint = FlxG.mouse.getPosition();
+		var target = super.acquireTarget(SourcePoint);
+		SourcePoint.put();
+		return target;
+	}
 }
