@@ -1,11 +1,13 @@
 
 package sprites.boats;
 
+import flixel.*;
 import flixel.util.*;
 import flixel.math.*;
 import flixel.effects.particles.*;
 
 import nf4.*;
+import nf4.math.*;
 import nf4.util.*;
 import nf4.effects.particles.*;
 
@@ -57,8 +59,22 @@ class Boat extends NFSprite {
 		super.update(dt);
 	}
 
-	override public function draw():Void
-	{
+	private function acquireTarget(?SourcePoint:FlxPoint):Boat {
+		if (SourcePoint == null) SourcePoint = center;
+		var target:Boat = null;
+		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
+		var minDistance = hypot * 2;
+		stateData.warships.forEachAlive(function (boat) {
+			var dist = boat.center.distanceTo(SourcePoint);
+			if (dist < minDistance) {
+				minDistance = dist;
+				target = boat;
+			}
+		});
+		return target;
+	}
+
+	override public function draw():Void {
 		// draw spray below
 		sprayEmitter.draw();
 

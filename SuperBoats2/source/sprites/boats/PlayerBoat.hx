@@ -46,7 +46,7 @@ class PlayerBoat extends GreenBoat {
 		}
 	}
 
-	override private function movement() {
+	public override function movement() {
 		var up:Bool = false;
 		var left:Bool = false;
 		var right:Bool = false;

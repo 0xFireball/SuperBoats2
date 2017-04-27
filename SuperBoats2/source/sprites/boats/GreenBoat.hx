@@ -76,20 +76,6 @@ class GreenBoat extends Boat {
 		}
 
 		super.update(dt);
-	}	
-
-	private function acquireTarget():Warship {
-		var target:Warship = null;
-		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
-		var minDistance = hypot * 2;
-		stateData.warships.forEachAlive(function (boat) {
-			var dist = boat.center.distanceTo(center);
-			if (dist < minDistance) {
-				minDistance = dist;
-				target = boat;
-			}
-		});
-		return target;
 	}
 
 	private function movement() {

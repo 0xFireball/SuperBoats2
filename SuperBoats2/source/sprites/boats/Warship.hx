@@ -63,20 +63,6 @@ class Warship extends Boat {
 		super.update(dt);
 	}
 
-	private function acquireTarget():GreenBoat {
-		var target:GreenBoat = null;
-		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
-		var minDistance = hypot * 2;
-		stateData.allies.forEachAlive(function (boat) {
-			var dist = boat.center.distanceTo(center);
-			if (dist < minDistance) {
-				minDistance = dist;
-				target = boat;
-			}
-		});
-		return target;
-	}
-
 	private function attackPlayer() {
 		var target = acquireTarget();
 		if (target == null) return;
