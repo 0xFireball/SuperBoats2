@@ -5,6 +5,7 @@ import flixel.*;
 import flixel.math.*;
 import flixel.input.keyboard.FlxKey;
 import flixel.group.FlxGroup;
+import flixel.util.*;
 
 import states.game.data.*;
 
@@ -60,8 +61,8 @@ class PlayerBoat extends GreenBoat {
 		right = FlxG.keys.anyPressed([L, RIGHT]);
 		down = FlxG.keys.anyPressed([K, DOWN]);
 
-		var setObjective:Bool = FlxG.keys.anyPressed([C]);
-		var releaseObjective:Bool = FlxG.keys.anyPressed([X]);
+		var setObjective:Bool = FlxG.keys.anyJustPressed([C]);
+		var releaseObjective:Bool = FlxG.keys.anyJustPressed([X]);
 
 		if (setObjective && releaseObjective) {
 			setObjective = false;
@@ -71,13 +72,11 @@ class PlayerBoat extends GreenBoat {
 		// apply objective
 		if (setObjective) {
 			aiController.setObjective(center);
-		} else if (releaseObjective) {
-			aiController.setObjective(null);
-		}
-
-		if (setObjective || releaseObjective) {
 			// draw epicenter
-			subSprites.add(new Epicenter(center.x, center.y));
+			subSprites.add(new Epicenter(center.x, center.y, FlxColor.fromRGBFloat(0.2, 0.9, 0.2)));
+		} else if (releaseObjective) {
+			subSprites.add(new Epicenter(center.x, center.y, FlxColor.fromRGBFloat(0.9, 0.2, 0.2)));
+			aiController.setObjective(null);
 		}
 
 		moveDefault(up,
