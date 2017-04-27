@@ -21,6 +21,8 @@ class PlayerBoat extends GreenBoat {
 		
 		super(X, Y, StateData);
 
+		aiState.leader = this;
+
 		maxHealth = health = 420000;
 		hullShieldMax = hullShieldIntegrity = 172000;
 		hullShieldRegen = 100;
