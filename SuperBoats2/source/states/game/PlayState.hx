@@ -10,6 +10,7 @@ import flixel.tile.FlxTilemap;
 
 import sprites.boats.*;
 import sprites.projectiles.*;
+import sprites.ui.*;
 
 import states.game.data.*;
 
@@ -85,6 +86,9 @@ class PlayState extends FlxState
 
 		stateData.effectEmitter = new NFParticleEmitter(240);
 		add(stateData.effectEmitter);
+
+		var hud = new HUD(stateData);
+		add(hud);
 
 		super.create();
 	}

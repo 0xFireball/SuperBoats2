@@ -4,6 +4,7 @@ import flixel.*;
 import flixel.group.*;
 import flixel.util.*;
 
+import nf4.*;
 import nf4.ui.*;
 
 import states.game.data.*;
@@ -13,17 +14,23 @@ class HUD extends FlxSpriteGroup {
     public var shieldIntText:NFText;
     public var hullIntText:NFText;
 
+    public var backing:NFSprite;
+
     public var stateData:GameStateData;
 
     public function new(StateData:GameStateData) {
         super();
 
-        stateData = GameStateData;
+        stateData = StateData;
 
-        shieldIntText = new NFText(4, 4, "Shield Integrity");
+        backing = new NFSprite();
+        backing.makeGraphic(FlxG.width, 24, FlxColor.fromRGBFloat(0.3, 0.3, 0.3, 0.6));
+        add(backing);
+
+        shieldIntText = new NFText(40, 4, "Shield Integrity", 16);
         add(shieldIntText);
 
-        hullIntText = new NFText(4 + shieldIntText.x + shieldIntText.width, 4, "Hull Integrity");
+        hullIntText = new NFText(60 + shieldIntText.x + shieldIntText.width, 4, "Hull Integrity", 16);
         add(hullIntText);
 
         scrollFactor.set(0, 0);

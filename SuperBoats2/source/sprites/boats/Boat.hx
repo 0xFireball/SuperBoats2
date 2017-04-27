@@ -238,10 +238,10 @@ class Boat extends NFSprite {
 	}
 
 	private function get_shieldPercentage():Float {
-		return hullShieldIntegrity / hullShieldMax;
+		return hullShieldIntegrity * 100 / hullShieldMax;
 	}
 
 	private function get_healthPercentage():Float {
-		return health / maxHealth;
+		return health * 100 / maxHealth;
 	}
 }
