@@ -31,6 +31,7 @@ class PlayerBoat extends GreenBoat {
 		hullShieldMax = hullShieldIntegrity = 172000;
 		hullShieldRegen = 100;
 		attackTime = 0.4;
+		secondaryAttackTime = 0.05;
 		angularThrust = FlxAngle.asDegrees(0.05 * Math.PI);
 		thrust = 3.5;
 		wrapBounds = false;
@@ -116,7 +117,7 @@ class PlayerBoat extends GreenBoat {
 		// smoke
 		for (i in 0...4) {
 			stateData.effectEmitter.emitSquare(center.x, center.y, 2,
-				NFParticleEmitter.velocitySpread(45, tVec.x / 4, tVec.y / 4),
+				NFParticleEmitter.velocitySpread(45, tVec.x, tVec.y),
 				NFColorUtil.randCol(0.5, 0.5, 0.5, 0.1), 0.8);
 		}
 	}

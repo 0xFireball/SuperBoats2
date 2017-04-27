@@ -18,7 +18,7 @@ class MGBullet extends Projectile {
 		damageFactor = 0.1;
 		mass = 2;
 		target = Target;
-		movementSpeed = 400;
+		movementSpeed = 500;
 		maxVelocity.set(800, 800);
 		makeGraphic(2, 2, FlxColor.fromRGBFloat(0.6, 0.6, 0.8));
 
