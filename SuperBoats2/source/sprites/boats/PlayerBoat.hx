@@ -8,6 +8,8 @@ import flixel.group.FlxGroup;
 
 import states.game.data.*;
 
+import sprites.effects.*;
+
 class PlayerBoat extends GreenBoat {
     public var allyCount:Int = 0;
 	public var maxAllyCount:Int = 6;
@@ -71,6 +73,11 @@ class PlayerBoat extends GreenBoat {
 			aiController.setObjective(center);
 		} else if (releaseObjective) {
 			aiController.setObjective(null);
+		}
+
+		if (setObjective || releaseObjective) {
+			// draw epicenter
+			subSprites.add(new Epicenter(center.x, center.y));
 		}
 
 		moveDefault(up,

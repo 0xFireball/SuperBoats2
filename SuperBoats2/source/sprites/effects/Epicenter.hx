@@ -1,9 +1,10 @@
 package sprites.effects;
 
 import flixel.*;
-import flixel.util.*;
 
-class Epicenter extends FlxSprite {
+import nf4.*;
+
+class Epicenter extends NFSprite {
 
     public var life:Float = 2.0;
     public var age:Float = 0;
