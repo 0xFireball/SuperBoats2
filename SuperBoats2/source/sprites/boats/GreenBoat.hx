@@ -42,9 +42,9 @@ class GreenBoat extends Boat {
 
 		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
 		aiController.triggerRadius = hypot / 4;
-		maxHealth = health = 170000;
-		hullShieldMax = hullShieldIntegrity = 57000;
-		hullShieldRegen = 100;
+		maxHealth = health = 290000;
+		hullShieldMax = hullShieldIntegrity = 157000;
+		hullShieldRegen = 120;
 		attackTime = 0.7;
 		angularThrust = FlxAngle.asDegrees(0.05 * Math.PI);
 		thrust = 3.5;
@@ -65,6 +65,7 @@ class GreenBoat extends Boat {
 	}
 
 	override public function update(dt:Float) {
+		aiController.style = damage < 0.7 ? Aggressive : Defensive;
 		movement();
 
 		attackTimer += dt;
