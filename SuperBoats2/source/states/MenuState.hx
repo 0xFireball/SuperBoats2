@@ -40,13 +40,14 @@ class MenuState extends FlxState
 
 		if (flixelEmitter) {
 			emitter = new FlxEmitter(FlxG.width / 2, titleFinalY + titleTx.height * 1.2);
-			emitter.lifespan.set(0.4);
+			emitter.lifespan.set(0.6);
 			emitter.scale.set(2, 2, 8, 8, 12, 12, 12, 12);
 			emitter.makeParticles(1, 1, FlxColor.WHITE, 200);
 			// start emitter
 			emitter.start(false, 0.003);
 			emitter.speed.set(120, 280);
 			emitter.color.set(FlxColor.fromRGBFloat(0.0, 0.4, 0.6), FlxColor.fromRGBFloat(0.4, 0.8, 1.0));
+			emitter.alpha.set(1, 1, 0, 0);
 			add(emitter);
 		} else {
 			effectEmitter = new NFParticleEmitter(120);
