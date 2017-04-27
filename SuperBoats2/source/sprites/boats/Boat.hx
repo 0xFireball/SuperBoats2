@@ -28,6 +28,8 @@ class Boat extends NFSprite {
 	public var hullShieldIntegrity:Float = 0;
 	public var hullShieldRegen:Float = 100;
 
+	public var subSprites:FlxTypedGroup<NFSprite>;
+
 	public var stateData:GameStateData;
 
 	private var sprayEmitter:FlxEmitter;
@@ -53,6 +55,8 @@ class Boat extends NFSprite {
 		sprayEmitter.color.set(FlxColor.fromRGBFloat(0.0, 0.4, 0.6, 0.4), FlxColor.fromRGBFloat(0.4, 0.8, 1.0, 0.9));
 		sprayEmitter.makeParticles(1, 1, FlxColor.WHITE, 200);
 
+		subSprites = new FlxTypedGroup<NFSprite>();
+
 		aiController = new BoatAiController<Boat>(this);
 	}
 
@@ -62,6 +66,7 @@ class Boat extends NFSprite {
 		powerShield();
 
 		sprayEmitter.update(dt);
+		subSprites.update();
 
 		super.update(dt);
 	}
@@ -85,6 +90,8 @@ class Boat extends NFSprite {
 		sprayEmitter.draw();
 
 		super.draw();
+
+		subSprites.draw();
 	}
 
 	private function moveDefault(Thrust:Bool, Left:Bool, Right:Bool, Brake:Bool) {
@@ -207,11 +214,15 @@ class Boat extends NFSprite {
 	override public function kill() {
 		super.kill();
 		sprayEmitter.kill();
+		subSprites.kill();
 	}
 
 	override public function destroy() {
 		sprayEmitter.destroy();
 		sprayEmitter = null;
+
+		subSprites.destroy();
+		subSprites = null;
 
 		super.destroy();
 	}
