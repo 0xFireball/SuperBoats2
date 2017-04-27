@@ -29,7 +29,7 @@ class SettingsState extends FlxState
 		titleTx.screenCenter(FlxAxes.X);
 		add(titleTx);
 
-		var resetGameBtn = new NFButton(0, 540, "Reset Game", onSaveData);
+		var resetGameBtn = new NFButton(0, 540, "Reset Game", onResetSave);
 		resetGameBtn.screenCenter(FlxAxes.X);
 		add(resetGameBtn);
 		

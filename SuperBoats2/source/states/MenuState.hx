@@ -21,6 +21,10 @@ class MenuState extends FlxState
 	public var effectEmitter:NFParticleEmitter;
 
 	public var flixelEmitter:Bool = true;
+	
+	public var emitterExplosion:Bool = true;
+	public var normalEmitTime:Float = 1.1;
+	public var normalEmitTimer:Float = 0;
 
 	override public function create():Void
 	{
@@ -40,14 +44,14 @@ class MenuState extends FlxState
 
 		if (flixelEmitter) {
 			emitter = new FlxEmitter(FlxG.width / 2, titleFinalY + titleTx.height * 1.2);
-			emitter.lifespan.set(0.6);
 			emitter.scale.set(2, 2, 8, 8, 12, 12, 12, 12);
 			emitter.makeParticles(1, 1, FlxColor.WHITE, 200);
-			// start emitter
-			emitter.start(false, 0.003);
-			emitter.speed.set(120, 280);
 			emitter.color.set(FlxColor.fromRGBFloat(0.0, 0.4, 0.6), FlxColor.fromRGBFloat(0.4, 0.8, 1.0));
 			emitter.alpha.set(1, 1, 0, 0);
+			emitter.speed.set(400, 580);
+			emitter.lifespan.set(0.8);
+			// start emitter
+			emitter.start(true);
 			add(emitter);
 		} else {
 			effectEmitter = new NFParticleEmitter(120);
@@ -79,7 +83,17 @@ class MenuState extends FlxState
 
 		FlxTween.color(credits, 0.9, FlxColor.fromRGBFloat(0.8, 0.1, 0.1), FlxColor.fromRGBFloat(0.98, 0.98, 0.98), { startDelay: 0.6, ease: FlxEase.cubeInOut });
 
+		FlxG.camera.fade(FlxColor.fromInt(0x0B2B37), 1.1, true);
 		FlxG.camera.shake(0.01, 0.5);
+
+		// just explode!
+		if (!flixelEmitter) {
+			for (i in 0...22) {
+				effectEmitter.emitSquare(FlxG.width / 2, FlxG.height / 3, Std.int(Math.random() * 7 + 3),
+					NFParticleEmitter.velocitySpread(520),
+				NFColorUtil.randCol(0.3, 0.65, 0.9, 0.1), 2.2);
+			}
+		}
 
 		super.create();
 	}
@@ -93,25 +107,32 @@ class MenuState extends FlxState
 					NFParticleEmitter.velocitySpread(420),
 				NFColorUtil.randCol(0.2, 0.6, 0.8, 0.2), 2.2);
 			}
+		} else {
+			normalEmitTimer += elapsed;
+			if (emitterExplosion && normalEmitTimer > normalEmitTime) {
+				emitterExplosion = false;
+				emitter.speed.set(120, 280);
+				emitter.lifespan.set(0.6);
+				emitter.start(false, 0.003);
+			}
 		}
 
 		super.update(elapsed);
 	}
 
 	private function onClickPlay() {
-		var waveFct = new FlxWaveEffect();
+		var waveFct = new FlxWaveEffect(12);
 		var distortedTitle = new FlxEffectSprite(titleTx, [ waveFct ]);
 		distortedTitle.setPosition(titleTx.x, titleTx.y);
 		add(distortedTitle);
-		FlxTween.tween(titleTx, { alpha: 0 }, 0.4, { onComplete: function (t) {
+		FlxTween.tween(titleTx, { alpha: 0 }, 0.2, { onComplete: function (t) {
 			remove(titleTx);
 		}});
-		FlxTween.tween(distortedTitle, { alpha: 1 }, 0.4, { onComplete: function (t) {
-			// switch
-			FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
-				FlxG.switchState(new PlayState());
-			});
-		}});
+		FlxTween.tween(distortedTitle, { alpha: 1 }, 0.8, { ease: FlxEase.cubeIn });
+		// switch
+		FlxG.camera.fade(FlxColor.BLACK, 0.8, false, function () {
+			FlxG.switchState(new PlayState());
+		});
 	}
 
 	private function onClickSettings() {
