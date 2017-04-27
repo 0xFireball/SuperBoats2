@@ -7,8 +7,10 @@ import flixel.input.keyboard.FlxKey;
 import flixel.group.FlxGroup;
 import flixel.util.*;
 
-import states.game.data.*;
+import nf4.effects.particles.*;
+import nf4.util.*;
 
+import states.game.data.*;
 import sprites.effects.*;
 
 class PlayerBoat extends GreenBoat {
@@ -18,7 +20,6 @@ class PlayerBoat extends GreenBoat {
 	private var allySpawnFrequency:Int = 400;
 
     public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
-		
 		super(X, Y, StateData);
 
 		aiState.leader = this;
@@ -87,6 +88,7 @@ class PlayerBoat extends GreenBoat {
 			down);
 
 		attacking = FlxG.keys.anyPressed([F, M]);
+		attackingSecondary = FlxG.keys.anyPressed([G, N]);
 	}
 
 	private override function acquireTarget(SourcePoint:FlxPoint, BoatCollection:FlxTypedGroup<Boat>):Boat {
@@ -94,5 +96,25 @@ class PlayerBoat extends GreenBoat {
 		var target = super.acquireTarget(SourcePoint, BoatCollection);
 		SourcePoint.put();
 		return target;
+	}
+
+	private override function secondaryFire() {
+		var target = acquireTarget(center, stateData.warships);
+		var gMgBullet = new MGBullet(this, center.x, center.y, target);
+		var tVec = gMgBullet.center.toVector()
+			.subtractPoint(target.center)
+			.rotate(FlxPoint.weak(0, 0), 180)
+			.toVector().normalize().scale(gMgBullet.movementSpeed);
+		gMgBullet.velocity.set(tVec.x, tVec.y);
+		tVec.put();
+		// apply recoil
+		velocity.addPoint(gMgBullet.momentum.scale(1 / mass).negate());
+		stateData.projectiles.add(gMgBullet);
+		// smoke
+		for (i in 0...4) {
+			stateData.effectEmitter.emitSquare(center.x, center.y, 2,
+				NFParticleEmitter.velocitySpread(45, tVec.x / 4, tVec.y / 4),
+				NFColorUtil.randCol(0.5, 0.5, 0.5, 0.1), 0.8);
+		}
 	}
 }

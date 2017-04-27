@@ -22,12 +22,15 @@ using nf4.math.NFMathExt;
 
 class GreenBoat extends Boat {
     private var attackTime:Float = 1.0;
+	private var secondaryAttackTime:Float = 0.1;
 	private var attackTimer:Float = 0;
 	private var attackCount:Int = 0;
 
 	public var aiState:BoatAiState<Boat>;
 	public var lastStep:ActionState;
+
 	public var attacking:Bool = false;
+	public var attackingSecondary:Bool = false;
 
     public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
 		super(X, Y, StateData);
@@ -67,8 +70,14 @@ class GreenBoat extends Boat {
 		movement();
 
 		attackTimer += dt;
-		if (attackTimer > attackTime && attacking) {
+		if (attacking && attackTimer > attackTime) {
 			autoFire();
+			++attackCount;
+			attackTimer = 0;
+		}
+
+		if (attackingSecondary && attackTimer > secondaryAttackTime) {
+			secondaryFire();
 			++attackCount;
 			attackTimer = 0;
 		}
@@ -112,6 +121,10 @@ class GreenBoat extends Boat {
 				NFParticleEmitter.velocitySpread(45, tVec.x / 4, tVec.y / 4),
 				NFColorUtil.randCol(0.5, 0.5, 0.5, 0.1), 0.8);
 		}
+	}
+
+	private function secondaryFire() {
+		// override
 	}
 
 	override public function dismantle() {
