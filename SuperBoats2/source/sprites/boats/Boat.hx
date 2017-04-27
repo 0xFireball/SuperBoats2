@@ -59,7 +59,7 @@ class Boat extends NFSprite {
 		super.update(dt);
 	}
 
-	private function acquireTarget(?SourcePoint:FlxPoint):Boat {
+	private function acquireTarget(?SourcePoint:FlxPoint = null):Boat {
 		if (SourcePoint == null) SourcePoint = center;
 		var target:Boat = null;
 		var hypot = NFMath.hypot(FlxG.width, FlxG.height);
