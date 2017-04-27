@@ -40,7 +40,7 @@ class GameOverState extends FlxState {
 		tt2.screenCenter(FlxAxes.X);
 		add(tt2);
 
-        var playBtn = new NFButton(0, 650, "Return", onClickReturn);
+        var playBtn = new NFButton(0, 700, "Return", onClickReturn);
 		playBtn.screenCenter(FlxAxes.X);
 		add(playBtn);
 

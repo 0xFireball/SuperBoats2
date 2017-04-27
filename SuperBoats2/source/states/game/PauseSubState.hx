@@ -16,7 +16,7 @@ class PauseSubState extends FlxSubState {
         levelText.screenCenter(FlxAxes.X);
         add(levelText);
 
-        var menuBtn = new NFButton(0, 600, "Exit to Menu", onReturnToMenu);
+        var menuBtn = new NFButton(0, 640, "Exit to Menu", onReturnToMenu);
 		menuBtn.screenCenter(FlxAxes.X);
 		add(menuBtn);
 
