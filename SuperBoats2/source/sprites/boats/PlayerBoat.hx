@@ -105,9 +105,10 @@ class PlayerBoat extends GreenBoat {
 	private override function secondaryFire() {
 		var target = acquireTarget(center, stateData.warships);
 		var gMgBullet = new MGBullet(this, center.x, center.y, target);
+		var bulletSpread:Float = 10;
 		var tVec = gMgBullet.center.toVector()
 			.subtractPoint(target.center)
-			.rotate(FlxPoint.weak(0, 0), 180 + (Math.random() * 20) - 40)
+			.rotate(FlxPoint.weak(0, 0), (180 - (bulletSpread / 2)) + (Math.random() * bulletSpread))
 			.toVector().normalize().scale(gMgBullet.movementSpeed);
 		gMgBullet.velocity.set(tVec.x, tVec.y);
 		tVec.put();
