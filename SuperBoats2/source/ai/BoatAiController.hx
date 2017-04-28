@@ -70,7 +70,9 @@ class BoatAiController<T:Boat> {
 					}
 				} else if (style == Defensive) {
 					if ((selfPosition.distanceTo(targetPos) < chaseRadius)) {
-						targetSetpoint = targetPos;
+						var awayPos = selfPosition.subtractPoint(targetPos);
+						targetSetpoint = awayPos.toVector();
+						awayPos.putWeak();
 					}
 				}
 			}
