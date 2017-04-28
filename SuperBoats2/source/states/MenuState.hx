@@ -94,6 +94,18 @@ class MenuState extends FlxState
 			emitter.start(false, 0.003);
 		}
 
+		// hotkeys
+
+		if (FlxG.keys.anyJustPressed([ S ])) {
+			onClickSettings();
+		}
+		if (FlxG.keys.anyJustPressed([ ENTER ])) {
+			onClickPlay();
+		}
+		if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
+			// TODO
+		}
+
 		super.update(elapsed);
 	}
 

@@ -55,6 +55,12 @@ class GameOverState extends FlxState {
 			NFColorUtil.randCol(0.9, 0.3, 0.2, 0.1), 2.2);
 		}
 
+        // hotkeys
+
+        if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
+			onClickReturn();
+		}
+
         super.update(dt);
     }
 

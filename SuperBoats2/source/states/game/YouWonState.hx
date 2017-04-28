@@ -34,7 +34,7 @@ class YouWonState extends FlxState {
 		tt2.screenCenter(FlxAxes.X);
 		add(tt2);
 
-        var menuBtn = new NFButton(0, 580, "Exit to Menu", onReturnToMenu);
+        var menuBtn = new NFButton(0, 580, "Menu", onReturnToMenu);
 		menuBtn.screenCenter(FlxAxes.X);
 		add(menuBtn);
 
@@ -55,6 +55,15 @@ class YouWonState extends FlxState {
 			effectEmitter.emitSquare(FlxG.width / 2, FlxG.height / 2, Std.int(Math.random() * 6 + 3),
 				NFParticleEmitter.velocitySpread(220),
 			NFColorUtil.randCol(0.2, 0.9, 0.2, 0.1), 2.2);
+		}
+
+        // hotkeys
+
+		if (FlxG.keys.anyJustPressed([ ENTER ])) {
+			onClickNextLv();
+		}
+        if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
+			onReturnToMenu();
 		}
 
         super.update(dt);
