@@ -15,7 +15,7 @@ class Torpedo extends TargetingProjectile {
 	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
 		super(Owner, X, Y, Target);
 		damageFactor = 0.4;
-		mass = 4400;
+		mass = 3800;
 		thrust = 6;
 		target = Target;
 		movementSpeed = 90;
