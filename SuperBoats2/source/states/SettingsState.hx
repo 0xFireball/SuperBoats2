@@ -62,8 +62,6 @@ class SettingsState extends FlxState
 	}
 
 	private function onResetSave() {
-		Registry.saveSlot.erase();
-		Registry.saveSlot.flush();
 		Registry.gameLevel = 0;
 		Registry.saveSlot.data.level = Registry.gameLevel;
 		onSaveData();
