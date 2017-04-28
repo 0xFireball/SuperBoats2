@@ -17,10 +17,10 @@ class Talon extends TargetingProjectile {
 		super(Owner, X, Y, Target);
 		damageFactor = 0.4;
 		mass = 1800;
-		thrust = 1;
+		thrust = 3;
 		target = Target;
 		movementSpeed = 360;
-		angularThrust = FlxAngle.asDegrees(Math.PI * 0.04);
+		angularThrust = FlxAngle.asDegrees(Math.PI * 0.05);
 		maxVelocity.set(600, 600);
 		makeGraphic(6, 2, FlxColor.fromRGBFloat(0.1, 0.9, 0.9));
 

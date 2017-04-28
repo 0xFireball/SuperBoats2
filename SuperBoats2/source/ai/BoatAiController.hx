@@ -109,13 +109,17 @@ class BoatAiController<T:Boat> {
 			}
 			targetSetpoint.put();
 		}
+
+		// make sure it's clear to shoot
+		// TODO
+		result.attack.lightWeapon = true;
+		// result.attack.heavyWeapon = true;
+
 		result.movement.thrust = up;
 		result.movement.brake = down;
 		result.movement.left = left;
 		result.movement.right = right;
 
-		result.attack.lightWeapon = true;
-		result.attack.heavyWeapon = true;
 		return result;
 	}
 }
