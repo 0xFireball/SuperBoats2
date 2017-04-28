@@ -1,0 +1,3 @@
+[submodule "SuperBoats2/lib/nf4"]
+	path = SuperBoats2/lib/nf4
+	url = https://0xFireball@gitlab.com/0xFireball/nf4_flixel.git
