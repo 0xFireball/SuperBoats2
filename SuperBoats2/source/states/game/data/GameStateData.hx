@@ -34,4 +34,14 @@ class GameStateData {
         emitter = Emitter;
         effectEmitter = EffectEmitter;
     }
+
+    public function destroy() {
+        player = null;
+        mothership = null;
+        warships = null;
+        allies = null;
+        projectiles = null;
+        emitter = null;
+        effectEmitter = null;
+    }
 }

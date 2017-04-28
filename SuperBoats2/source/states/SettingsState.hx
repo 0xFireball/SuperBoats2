@@ -41,6 +41,8 @@ class SettingsState extends FlxState
 		returnBtn.screenCenter(FlxAxes.X);
 		add(returnBtn);
 
+		FlxG.camera.fade(bgColor, 0.4, true);
+
 		super.create();
 	}
 

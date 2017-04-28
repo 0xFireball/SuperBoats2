@@ -29,6 +29,8 @@ class PlayState extends FlxState
 
 	public var bg:FlxBackdrop;
 
+	public var stateData:GameStateData;
+
 	override public function create():Void
 	{
 		#if !FLX_NO_MOUSE
@@ -54,7 +56,7 @@ class PlayState extends FlxState
 		);
 		add(wallMap);
 
-		var stateData = new GameStateData();
+		stateData = new GameStateData();
 
 		allies = new FlxTypedGroup<Boat>();
 		stateData.allies = allies;
@@ -142,5 +144,12 @@ class PlayState extends FlxState
 
 	private function shipHitProjectile(s:Boat, j:Projectile) {
 		j.hitSprite(s);
+	}
+
+	public override function destroy() {
+		stateData.destroy();
+		stateData = null;
+
+		super.destroy();
 	}
 }

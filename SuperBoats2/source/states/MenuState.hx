@@ -16,12 +16,12 @@ import nf4.util.*;
 class MenuState extends FlxState
 {
 	private var titleTx:NFText;
-	
+
 	private var emitter:FlxEmitter;
 	public var effectEmitter:NFParticleEmitter;
 
 	public var flixelEmitter:Bool = true;
-	
+
 	public var emitterExplosion:Bool = true;
 	public var normalEmitTime:Float = 1.1;
 	public var normalEmitTimer:Float = 0;
@@ -42,21 +42,16 @@ class MenuState extends FlxState
 		var titleFinalY = 180;
 		FlxTween.tween(titleTx, { y: titleFinalY }, 0.7, { ease: FlxEase.cubeOut });
 
-		if (flixelEmitter) {
-			emitter = new FlxEmitter(FlxG.width / 2, titleFinalY + titleTx.height * 1.2);
-			emitter.scale.set(2, 2, 8, 8, 12, 12, 12, 12);
-			emitter.makeParticles(1, 1, FlxColor.WHITE, 200);
-			emitter.color.set(FlxColor.fromRGBFloat(0.0, 0.4, 0.6), FlxColor.fromRGBFloat(0.4, 0.8, 1.0));
-			emitter.alpha.set(1, 1, 0, 0);
-			emitter.speed.set(400, 580);
-			emitter.lifespan.set(0.8);
-			// start emitter
-			emitter.start(true);
-			add(emitter);
-		} else {
-			effectEmitter = new NFParticleEmitter(120);
-			add(effectEmitter);
-		}
+		emitter = new FlxEmitter(FlxG.width / 2, titleFinalY + titleTx.height * 1.2);
+		emitter.scale.set(2, 2, 8, 8, 12, 12, 12, 12);
+		emitter.makeParticles(1, 1, FlxColor.WHITE, 200);
+		emitter.color.set(FlxColor.fromRGBFloat(0.0, 0.4, 0.6), FlxColor.fromRGBFloat(0.4, 0.8, 1.0));
+		emitter.alpha.set(1, 1, 0, 0);
+		emitter.speed.set(400, 580);
+		emitter.lifespan.set(0.8);
+		// start emitter
+		emitter.start(true);
+		add(emitter);
 
 		add(titleTx); // add title after emitter
 
@@ -86,35 +81,17 @@ class MenuState extends FlxState
 		FlxG.camera.fade(FlxColor.fromInt(0x0B2B37), 1.1, true);
 		FlxG.camera.shake(0.01, 0.5);
 
-		// just explode!
-		if (!flixelEmitter) {
-			for (i in 0...22) {
-				effectEmitter.emitSquare(FlxG.width / 2, FlxG.height / 3, Std.int(Math.random() * 7 + 3),
-					NFParticleEmitter.velocitySpread(520),
-				NFColorUtil.randCol(0.3, 0.65, 0.9, 0.1), 2.2);
-			}
-		}
-
 		super.create();
 	}
 
 	override public function update(elapsed:Float):Void
 	{
-		if (!flixelEmitter) {
-			// sploosh!
-			for (i in 0...12) {
-				effectEmitter.emitSquare(FlxG.width / 2, FlxG.height / 3, Std.int(Math.random() * 7 + 3),
-					NFParticleEmitter.velocitySpread(420),
-				NFColorUtil.randCol(0.2, 0.6, 0.8, 0.2), 2.2);
-			}
-		} else {
-			normalEmitTimer += elapsed;
-			if (emitterExplosion && normalEmitTimer > normalEmitTime) {
-				emitterExplosion = false;
-				emitter.speed.set(120, 280);
-				emitter.lifespan.set(0.6);
-				emitter.start(false, 0.003);
-			}
+		normalEmitTimer += elapsed;
+		if (emitterExplosion && normalEmitTimer > normalEmitTime) {
+			emitterExplosion = false;
+			emitter.speed.set(120, 280);
+			emitter.lifespan.set(0.6);
+			emitter.start(false, 0.003);
 		}
 
 		super.update(elapsed);
