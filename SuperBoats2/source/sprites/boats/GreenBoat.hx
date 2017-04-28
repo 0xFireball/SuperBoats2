@@ -45,12 +45,12 @@ class GreenBoat extends Boat {
 		aiController.triggerRadius = hypot / 4;
 		maxHealth = health = 290000;
 		hullShieldMax = hullShieldIntegrity = 157000;
-		hullShieldRegen = 120;
+		hullShieldRegen = 140;
 		attackTime = 0.7;
-		angularThrust = FlxAngle.asDegrees(0.05 * Math.PI);
+		angularThrust = FlxAngle.asDegrees(0.07 * Math.PI);
 		thrust = 3.5;
 		wrapBounds = false;
-		mass = 26000;
+		mass = 22000;
 		maxVelocity.set(200, 200);
 		sprayAmount = 8;
 		// renderGraphic(14, 32, function (gpx) {

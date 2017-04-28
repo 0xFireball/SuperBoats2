@@ -27,13 +27,13 @@ class PlayerBoat extends GreenBoat {
 
 		aiState.leader = this;
 
-		maxHealth = health = 420000;
-		hullShieldMax = hullShieldIntegrity = 172000;
+		maxHealth = health = 540000;
+		hullShieldMax = hullShieldIntegrity = 216000;
 		hullShieldRegen = 100;
 		attackTime = 0.4;
 		secondaryAttackTime = 0.05;
 		angularThrust = FlxAngle.asDegrees(0.05 * Math.PI);
-		thrust = 3.5;
+		thrust = 3.7;
 		wrapBounds = false;
 		mass = 28000;
 		sprayAmount = 8;
