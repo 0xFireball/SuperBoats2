@@ -29,6 +29,7 @@
 
 	<set name="BUILD_DIR" value="export" />
 	<classpath name="source" />
+	<classpath name="lib/nf4" />
 	<assets path="assets" embed="true" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
