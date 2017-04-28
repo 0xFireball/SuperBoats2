@@ -6,7 +6,7 @@ import flixel.util.FlxSave;
 class Registry {
     // constants
 
-    public static var gameVersion:String = "v0.1.3.4 alpha";
+    public static var gameVersion:String = "v0.1.4.0 alpha";
 
     // vars
 
