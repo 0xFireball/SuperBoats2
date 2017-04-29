@@ -28,6 +28,8 @@ class MenuState extends FlxState
 	public var normalEmitTime:Float = 1.1;
 	public var normalEmitTimer:Float = 0;
 
+	public var hitPlay:Bool = false;
+
 	override public function create():Void
 	{
 		#if !FLX_NO_MOUSE
@@ -112,6 +114,8 @@ class MenuState extends FlxState
 	}
 
 	private function onClickPlay() {
+		if (hitPlay) return;
+		hitPlay = true;
 		var waveFct = new FlxWaveEffect(12);
 		var distortedTitle = new FlxEffectSprite(titleTx, [ waveFct ]);
 		distortedTitle.setPosition(titleTx.x, titleTx.y);
