@@ -6,7 +6,7 @@ import flixel.util.FlxSave;
 class Registry {
     // constants
 
-    public static var gameVersion:String = "v0.1.4.0 alpha";
+    public static var gameVersion:String = "v0.1.4.1 alpha";
 
     // vars
 
@@ -24,8 +24,10 @@ class Registry {
 
     public static function reloadSave() {
         gameLevel = saveSlot.data.level;
+        #if (!cpp)
         if (gameLevel == null) {
             gameLevel = 0;
         }
+        #endif
     }
 }
