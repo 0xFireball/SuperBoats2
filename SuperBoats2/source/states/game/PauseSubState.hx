@@ -12,6 +12,7 @@ class PauseSubState extends FlxSubState {
     public override function create() {
         #if !FLX_NO_MOUSE
 		FlxG.mouse.visible = true;
+		FlxG.mouse.load(AssetPaths.diamond_mouse__png);
 		#end
 
         var levelText = new SBNFText(0, 160, "level " + Registry.gameLevel, 48);

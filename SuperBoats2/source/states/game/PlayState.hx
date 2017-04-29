@@ -35,6 +35,7 @@ class PlayState extends FlxState
 	{
 		#if !FLX_NO_MOUSE
 		FlxG.mouse.visible = true;
+		FlxG.mouse.load(AssetPaths.diamond_mouse__png);
 		#end
 
 		bg = new FlxBackdrop(AssetPaths.water__png, 0.5, 0.5);
