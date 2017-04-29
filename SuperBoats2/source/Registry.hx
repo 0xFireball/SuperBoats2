@@ -28,6 +28,6 @@ class Registry {
         if (gameLevel == null) {
             gameLevel = 0;
         }
-        #endif
+        #end
     }
 }
