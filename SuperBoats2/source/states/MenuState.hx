@@ -29,6 +29,7 @@ class MenuState extends FlxState
 	public var normalEmitTimer:Float = 0;
 
 	public var hitPlay:Bool = false;
+	public var canPlay:Bool = false;
 
 	override public function create():Void
 	{
@@ -82,7 +83,9 @@ class MenuState extends FlxState
 
 		FlxTween.color(credits, 0.9, FlxColor.fromRGBFloat(0.8, 0.1, 0.1), FlxColor.fromRGBFloat(0.98, 0.98, 0.98), { startDelay: 0.6, ease: FlxEase.cubeInOut });
 
-		FlxG.camera.fade(FlxColor.fromInt(0xFF0B2B37), 1.1, true);
+		FlxG.camera.fade(FlxColor.fromInt(0xFF0B2B37), 1.1, true, function () {
+			canPlay = true;
+		});
 		FlxG.camera.shake(0.01, 0.5);
 
 		super.create();
@@ -114,7 +117,7 @@ class MenuState extends FlxState
 	}
 
 	private function onClickPlay() {
-		if (hitPlay) return;
+		if (!canPlay || hitPlay) return;
 		hitPlay = true;
 		var waveFct = new FlxWaveEffect(12);
 		var distortedTitle = new FlxEffectSprite(titleTx, [ waveFct ]);
