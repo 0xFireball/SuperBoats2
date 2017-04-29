@@ -37,7 +37,7 @@ class MenuState extends FlxState
 		FlxG.mouse.load(AssetPaths.mouse__png);
 		#end
 
-		bgColor = FlxColor.fromInt(0x0B2B36);
+		bgColor = FlxColor.fromInt(0xFF0B2B36);
 
 		titleTx = new SBNFText(0, 0, "SuperBoats 2", 84);
 		titleTx.color = FlxColor.WHITE;
@@ -82,7 +82,7 @@ class MenuState extends FlxState
 
 		FlxTween.color(credits, 0.9, FlxColor.fromRGBFloat(0.8, 0.1, 0.1), FlxColor.fromRGBFloat(0.98, 0.98, 0.98), { startDelay: 0.6, ease: FlxEase.cubeInOut });
 
-		FlxG.camera.fade(FlxColor.fromInt(0x0B2B37), 1.1, true);
+		FlxG.camera.fade(FlxColor.fromInt(0xFF0B2B37), 1.1, true);
 		FlxG.camera.shake(0.01, 0.5);
 
 		super.create();
