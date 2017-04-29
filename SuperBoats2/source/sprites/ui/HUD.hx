@@ -9,6 +9,8 @@ import nf4.ui.*;
 
 import states.game.data.*;
 
+import ui.*;
+
 class HUD extends FlxSpriteGroup {
 
     public var shieldIntText:NFText;
