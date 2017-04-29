@@ -19,6 +19,8 @@ class YouWonState extends FlxState {
 
     public var effectEmitter:NFParticleEmitter;
 
+    private var nextLevel:Int;
+
     public override function create() {
         #if !FLX_NO_MOUSE
 		FlxG.mouse.visible = true;
@@ -47,6 +49,8 @@ class YouWonState extends FlxState {
         var nextLevelBtn = new SBNFButton(0, 700, "Next Level", onClickNextLv);
 		nextLevelBtn.screenCenter(FlxAxes.X);
 		add(nextLevelBtn);
+
+        nextLevel = Registry.gameLevel + 1;
 
         super.create();
     }
@@ -79,7 +83,7 @@ class YouWonState extends FlxState {
 
     private function onClickNextLv() {
         // increase the difficulty
-        Registry.gameLevel++;
+        Registry.gameLevel = nextLevel;
         FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
             FlxG.switchState(new PlayState());
         });
