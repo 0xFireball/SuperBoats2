@@ -24,5 +24,8 @@ class Registry {
 
     public static function reloadSave() {
         gameLevel = saveSlot.data.level;
+        if (gameLevel == null) {
+            gameLevel = 0;
+        }
     }
 }
