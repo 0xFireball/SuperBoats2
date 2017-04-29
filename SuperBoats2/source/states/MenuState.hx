@@ -13,6 +13,8 @@ import nf4.ui.*;
 import nf4.effects.particles.*;
 import nf4.util.*;
 
+import ui.*;
+
 class MenuState extends FlxState
 {
 	private var titleTx:NFText;
@@ -35,7 +37,7 @@ class MenuState extends FlxState
 
 		bgColor = FlxColor.fromInt(0x0B2B36);
 
-		titleTx = new NFText(0, 0, "SuperBoats 2", 84);
+		titleTx = new SBNFText(0, 0, "SuperBoats 2", 84);
 		titleTx.color = FlxColor.WHITE;
 		titleTx.screenCenter(FlxAxes.X);
 		titleTx.y = -titleTx.height;
@@ -55,24 +57,24 @@ class MenuState extends FlxState
 
 		add(titleTx); // add title after emitter
 
-		var credits = new NFText(32, 0, "PetaPhaser", 48);
+		var credits = new SBNFText(32, 0, "PetaPhaser", 48);
 		credits.y = FlxG.height - (credits.height + 32);
 		add(credits);
 
-		var version = new NFText(32, 0, Registry.gameVersion, 48);
+		var version = new SBNFText(32, 0, Registry.gameVersion, 48);
 		version.y = FlxG.height - (version.height + 32);
 		version.x = FlxG.width - (version.width + 32);
 		add(version);
 
-		var playBtn = new NFButton(0, 350, "Play", onClickPlay);
+		var playBtn = new SBNFButton(0, 350, "Play", onClickPlay);
 		playBtn.screenCenter(FlxAxes.X);
 		add(playBtn);
 
-		var settingsBtn = new NFButton(0, 32, "Settings", onClickSettings);
+		var settingsBtn = new SBNFButton(0, 32, "Settings", onClickSettings);
 		settingsBtn.x = FlxG.width - (settingsBtn.width + 32);
 		add(settingsBtn);
 
-		var lvtx = new NFText(0, 410, "level " + Registry.gameLevel, 24);
+		var lvtx = new SBNFText(0, 410, "level " + Registry.gameLevel, 24);
 		lvtx.screenCenter(FlxAxes.X);
 		add(lvtx);
 

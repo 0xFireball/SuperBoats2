@@ -13,6 +13,8 @@ import nf4.ui.*;
 import nf4.effects.particles.*;
 import nf4.util.*;
 
+import ui.*;
+
 class SettingsState extends FlxState
 {
 	override public function create():Void
@@ -24,20 +26,20 @@ class SettingsState extends FlxState
 
 		bgColor = FlxColor.fromInt(0x0B2B36);
 
-		var titleTx = new NFText(0, 80, "Settings", 84);
+		var titleTx = new SBNFText(0, 80, "Settings", 84);
 		titleTx.color = FlxColor.WHITE;
 		titleTx.screenCenter(FlxAxes.X);
 		add(titleTx);
 
-		var resetGameBtn = new NFButton(0, 540, "Reset Game", onResetSave);
+		var resetGameBtn = new SBNFButton(0, 540, "Reset Game", onResetSave);
 		resetGameBtn.screenCenter(FlxAxes.X);
 		add(resetGameBtn);
 		
-		var saveDataBtn = new NFButton(0, 600, "Save Game", onSaveData);
+		var saveDataBtn = new SBNFButton(0, 600, "Save Game", onSaveData);
 		saveDataBtn.screenCenter(FlxAxes.X);
 		add(saveDataBtn);
 
-		var returnBtn = new NFButton(0, 700, "Return", onReturn);
+		var returnBtn = new SBNFButton(0, 700, "Return", onReturn);
 		returnBtn.screenCenter(FlxAxes.X);
 		add(returnBtn);
 

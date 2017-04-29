@@ -13,6 +13,8 @@ import nf4.ui.*;
 import nf4.effects.particles.*;
 import nf4.util.*;
 
+import ui.*;
+
 class YouWonState extends FlxState {
 
     public var effectEmitter:NFParticleEmitter;
@@ -22,7 +24,7 @@ class YouWonState extends FlxState {
 		FlxG.mouse.visible = true;
 		#end
 
-        var titleTx = new NFText(0, 180, "SuperBoats 2", 84);
+        var titleTx = new SBNFText(0, 180, "SuperBoats 2", 84);
 		titleTx.color = FlxColor.WHITE;
 		titleTx.screenCenter(FlxAxes.X);
         add(titleTx);
@@ -30,19 +32,19 @@ class YouWonState extends FlxState {
         effectEmitter = new NFParticleEmitter(200);
         add(effectEmitter);
 
-        var tt2 = new NFText(0, FlxG.height * 0.65, "you won. level " + Registry.gameLevel + " complete.", 32);
+        var tt2 = new SBNFText(0, FlxG.height * 0.65, "you won. level " + Registry.gameLevel + " complete.", 32);
 		tt2.screenCenter(FlxAxes.X);
 		add(tt2);
 
-        var menuBtn = new NFButton(0, 580, "Menu", onReturnToMenu);
+        var menuBtn = new SBNFButton(0, 580, "Menu", onReturnToMenu);
 		menuBtn.screenCenter(FlxAxes.X);
 		add(menuBtn);
 
-        var replayBtn = new NFButton(0, 640, "Replay", onClickReplay);
+        var replayBtn = new SBNFButton(0, 640, "Replay", onClickReplay);
 		replayBtn.screenCenter(FlxAxes.X);
 		add(replayBtn);
 
-        var nextLevelBtn = new NFButton(0, 700, "Next Level", onClickNextLv);
+        var nextLevelBtn = new SBNFButton(0, 700, "Next Level", onClickNextLv);
 		nextLevelBtn.screenCenter(FlxAxes.X);
 		add(nextLevelBtn);
 

@@ -5,6 +5,8 @@ import flixel.util.*;
 
 import nf4.ui.*;
 
+import ui.*;
+
 class PauseSubState extends FlxSubState {
 
     public override function create() {
@@ -12,15 +14,15 @@ class PauseSubState extends FlxSubState {
 		FlxG.mouse.visible = true;
 		#end
 
-        var levelText = new NFText(0, 160, "level " + Registry.gameLevel, 48);
+        var levelText = new SBNFText(0, 160, "level " + Registry.gameLevel, 48);
         levelText.screenCenter(FlxAxes.X);
         add(levelText);
 
-        var menuBtn = new NFButton(0, 640, "Exit to Menu", onReturnToMenu);
+        var menuBtn = new SBNFButton(0, 640, "Exit to Menu", onReturnToMenu);
 		menuBtn.screenCenter(FlxAxes.X);
 		add(menuBtn);
 
-        var returnBtn = new NFButton(0, 700, "Return", onReturnToGame);
+        var returnBtn = new SBNFButton(0, 700, "Return", onReturnToGame);
 		returnBtn.screenCenter(FlxAxes.X);
 		add(returnBtn);
 

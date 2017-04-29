@@ -27,10 +27,10 @@ class HUD extends FlxSpriteGroup {
         backing.makeGraphic(FlxG.width, 24, FlxColor.fromRGBFloat(0.3, 0.3, 0.3, 0.6));
         add(backing);
 
-        shieldIntText = new NFText(40, 4, "Shield Integrity", 16);
+        shieldIntText = new SBNFText(40, 4, "Shield Integrity", 16);
         add(shieldIntText);
 
-        hullIntText = new NFText(60 + shieldIntText.x + shieldIntText.width, 4, "Hull Integrity", 16);
+        hullIntText = new SBNFText(60 + shieldIntText.x + shieldIntText.width, 4, "Hull Integrity", 16);
         add(hullIntText);
 
         scrollFactor.set(0, 0);
