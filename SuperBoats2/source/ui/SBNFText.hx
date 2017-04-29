@@ -7,6 +7,6 @@ class SBNFText extends NFText {
 	{
 		super(X, Y, FieldWidth, Text, Size, EmbeddedFont);
 
-        font = AssetPaths.champagneLimousines__ttf;
+        font = AssetPaths.disposable_droid__ttf;
     }
 }
