@@ -35,6 +35,7 @@ class PlayState extends FlxState
 
 	private var announcementText:SBNFText;
 	private var announcementTime:Float = 1.8;
+	private var announcementFade:Float = 0.6;
 	private var announcementTimer:Float = 0;
 	private var announcements = [];
 	private var announcing:Bool = true;
@@ -144,9 +145,9 @@ class PlayState extends FlxState
 			if (announcementTimer > announcementTime) {
 				announcementTimer = 0;
 				announcing = false;
-				FlxTween.tween(announcementText, { alpha: 0}, 0.4, { onComplete: function (t) {
+				FlxTween.tween(announcementText, { alpha: 0}, announcementFade, { onComplete: function (t) {
 					announcementText.text = announcements[++announcementIndex];
-					FlxTween.tween(announcementText, { alpha: 1}, 0.4, { onComplete: function (t) {
+					FlxTween.tween(announcementText, { alpha: 1}, announcementFade, { onComplete: function (t) {
 						announcing = true;
 					} });
 				} });
