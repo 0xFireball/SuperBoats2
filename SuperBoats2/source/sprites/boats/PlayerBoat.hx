@@ -40,6 +40,7 @@ class PlayerBoat extends GreenBoat {
         loadGraphic(AssetPaths.player_boat__png);
 		offset.set(13, 3);
 		setSize(16, 36);
+		updateHitbox();
 	}
 
 	override public function update(dt:Float) {
