@@ -16,7 +16,7 @@ class MortarShell extends Projectile {
 	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
 		super(Owner, X, Y);
 		damageFactor = 3.2;
-		mass = 3400;
+		mass = (Math.random() * 3400) + 2000;
 		target = Target;
 		movementSpeed = 80 + Math.random() * 120;
 		makeGraphic(11, 11, FlxColor.fromRGBFloat(0.569, 0.678, 0.122));
@@ -50,5 +50,9 @@ class MortarShell extends Projectile {
 			NFColorUtil.randCol(0.8, 0.8, 0.2, 0.2), 1.8);
 		}
 		super.explode();
+	}
+
+	private override function onDamageDealt(dmg:Float) {
+		trace(dmg);
 	}
 }
