@@ -42,6 +42,8 @@ class Mothership extends Warship {
 		}
 
 		loadGraphic(AssetPaths.mothership_boat__png);
+		setSize(32, 63);
+		offset.set(16, 0);
 		updateHitbox();
 		
 		// renderGraphic(30, 65, function (gpx) {
