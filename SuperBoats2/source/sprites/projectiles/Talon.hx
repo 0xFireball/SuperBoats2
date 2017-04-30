@@ -44,4 +44,8 @@ class Talon extends TargetingProjectile {
 		}
 		super.explode();
 	}
+
+	private override function onDamageDealt(dmg:Float) {
+		trace("talon:" + dmg);
+	}
 }

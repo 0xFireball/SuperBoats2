@@ -139,7 +139,7 @@ class PlayerBoat extends GreenBoat {
 		mortarShell.velocity.set(tVec.x, tVec.y);
 		tVec.put();
 		// apply recoil
-		var mortarBlast:Float = 8;
+		var mortarBlast:Float = 2.5;
 		velocity.addPoint(mortarShell.momentum.scale(1 * mortarBlast / mass).negate());
 		stateData.projectiles.add(mortarShell);
 		// smoke

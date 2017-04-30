@@ -15,7 +15,7 @@ class MGBullet extends Projectile {
 
 	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
 		super(Owner, X, Y);
-		damageFactor = 0.1;
+		damageFactor = 500;
 		mass = 2;
 		target = Target;
 		movementSpeed = 500;
@@ -41,5 +41,9 @@ class MGBullet extends Projectile {
 			NFColorUtil.randCol(0.4, 0.4, 0.4, 0.3), 0.4);
 		}
 		super.explode();
+	}
+
+	private override function onDamageDealt(dmg:Float) {
+		trace("mgb:" + dmg);
 	}
 }
