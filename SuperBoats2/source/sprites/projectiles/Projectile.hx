@@ -70,7 +70,7 @@ class Projectile extends NFSprite {
 		sprite.hurt(damageDealt);
 
 		// apply conservation of momentum collision
-		var transferredMomentum = this.velocity.toVector().scale(this.mass / target.mass);
+		var transferredMomentum = this.velocity.toVector().scale(this.mass / sprite.mass);
 		sprite.velocity.addPoint(transferredMomentum);
 
 		// trace('dealt ${damageDealt} damage');

@@ -123,4 +123,12 @@ class PlayerBoat extends GreenBoat {
 				NFColorUtil.randCol(0.5, 0.5, 0.5, 0.1), 0.8);
 		}
 	}
+
+	private override function heavyFire() {
+		var heavyWeaponError:Float = 25;
+		var xErr = (Math.random() * heavyWeaponError * 2) - heavyWeaponError;
+		var yErr = (Math.random() * heavyWeaponError * 2) - heavyWeaponError;
+		var targetPos = FlxG.mouse.getPosition().addPoint(FlxPoint.weak(xErr, yErr));
+		var mortarShell = new MortarShell(this, center.x, center.y, null);
+	}
 }

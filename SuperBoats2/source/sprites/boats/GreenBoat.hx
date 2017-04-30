@@ -21,16 +21,18 @@ import states.game.data.*;
 using nf4.math.NFMathExt;
 
 class GreenBoat extends Boat {
-    private var attackTime:Float = 1.0;
-	private var secondaryAttackTime:Float = 0.1;
+    private var weapon1AttackTime:Float = 1.0;
+	private var weapon2AttackTime:Float = 0.1;
+	private var weapon3AttackTime:Float = 1.4;
+
 	private var attackTimer:Float = 0;
 	private var attackCount:Int = 0;
 
 	public var aiState:BoatAiState<Boat>;
 	public var lastStep:ActionState;
 
-	public var attacking:Bool = false;
-	public var attackingSecondary:Bool = false;
+	public var attacking1:Bool = false;
+	public var attacking2:Bool = false;
 
     public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
 		super(X, Y, StateData);
@@ -46,7 +48,7 @@ class GreenBoat extends Boat {
 		maxHealth = health = 290000;
 		hullShieldMax = hullShieldIntegrity = 157000;
 		hullShieldRegen = 140;
-		attackTime = 0.7;
+		weapon1AttackTime = 0.7;
 		angularThrust = FlxAngle.asDegrees(0.07 * Math.PI);
 		thrust = 3.5;
 		wrapBounds = false;
@@ -70,14 +72,20 @@ class GreenBoat extends Boat {
 		movement();
 
 		attackTimer += dt;
-		if (attacking && attackTimer > attackTime) {
+		if (attacking1 && attackTimer > weapon1AttackTime) {
 			autoFire();
 			++attackCount;
 			attackTimer = 0;
 		}
 
-		if (attackingSecondary && attackTimer > secondaryAttackTime) {
+		if (attacking2 && attackTimer > weapon2AttackTime) {
 			secondaryFire();
+			++attackCount;
+			attackTimer = 0;
+		}
+
+		if (attacking3 && attackTimer > weapon3AttackTime) {
+			heavyFire();
 			++attackCount;
 			attackTimer = 0;
 		}
@@ -98,7 +106,7 @@ class GreenBoat extends Boat {
 			step.movement.right,
 			step.movement.brake);
 
-		attacking = lastStep.attack.anyWeapon;
+		attacking1 = lastStep.attack.anyWeapon;
 	}
 
 	public function autoFire() {
@@ -124,6 +132,10 @@ class GreenBoat extends Boat {
 	}
 
 	private function secondaryFire() {
+		// override
+	}
+
+	private function heavyFire() {
 		// override
 	}
 
