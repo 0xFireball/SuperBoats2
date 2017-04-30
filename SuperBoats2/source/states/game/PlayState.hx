@@ -103,12 +103,13 @@ class PlayState extends FlxState
 		add(hud);
 
 		if (Registry.gameLevel == 0) {
-			for (introAnnouncement in ["Welcome to SuperBoats 2!", "WASD: move", "Mouse: aim", "C/X: Set/release objective", "R/F/G: Fire", "Protect your allies (green)", "How far will you get?"]) {
+			for (introAnnouncement in ["Welcome to SuperBoats 2!", "WASD: move", "Mouse: aim", "C/X: Set/release objective", "R/F/G: Fire",
+				"Destroy the mothership (red)", "Protect your allies (green)", "How far will you get?"]) {
 				announcements.push(introAnnouncement);
 			}
 		}
 
-		announcementText = new SBNFText(32, 0, announcements[announcementIndex], 48);
+		announcementText = new SBNFText(32, 0, announcements[announcementIndex], 36);
 		announcementText.y = FlxG.height - (announcementText.height + 32);
 		add(announcementText);
 
