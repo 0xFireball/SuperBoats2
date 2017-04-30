@@ -1,12 +1,12 @@
 package states.game;
 
-import flixel.util.FlxColor;
 import flixel.*;
-import flixel.input.keyboard.FlxKey;
+import flixel.tweens.*;
+import flixel.util.*;
 import flixel.effects.particles.*;
 import flixel.addons.display.*;
 import flixel.group.FlxGroup;
-import flixel.tile.FlxTilemap;
+import flixel.tile.*;
 
 import sprites.boats.*;
 import sprites.projectiles.*;
@@ -16,6 +16,8 @@ import states.game.data.*;
 
 import nf4.util.*;
 import nf4.effects.particles.*;
+
+import ui.*;
 
 class PlayState extends FlxState
 {
@@ -30,6 +32,13 @@ class PlayState extends FlxState
 	public var bg:FlxBackdrop;
 
 	public var stateData:GameStateData;
+
+	private var announcementText:SBNFText;
+	private var announcementTime:Float = 1.8;
+	private var announcementTimer:Float = 0;
+	private var announcements = [];
+	private var announcing:Bool = true;
+	private var announcementIndex:Int = 0;
 
 	override public function create():Void
 	{
@@ -93,10 +102,20 @@ class PlayState extends FlxState
 		var hud = new HUD(stateData);
 		add(hud);
 
+		if (Registry.gameLevel == 0) {
+			for (introAnnouncement in ["Welcome to SuperBoats 2!", "WASD: move", "Mouse: aim", "C/X: Set/release objective", "R/F/G: Fire", "Protect your allies (green)", "How far will you get?"]) {
+				announcements.push(introAnnouncement);
+			}
+		}
+
+		announcementText = new SBNFText(32, 0, announcements[announcementIndex], 48);
+		announcementText.y = FlxG.height - (announcementText.height + 32);
+		add(announcementText);
+
 		super.create();
 	}
 
-	override public function update(elapsed:Float):Void
+	override public function update(dt:Float):Void
 	{
 		// sprite collision
 		FlxG.overlap(allies, projectiles, shipHitProjectile);
@@ -119,7 +138,25 @@ class PlayState extends FlxState
 			openSubState(new PauseSubState(FlxColor.fromRGBFloat(0.7, 0.7, 0.7, 0.8)));
 		}
 
-		super.update(elapsed);
+		// announcements
+		if (announcementIndex < announcements.length) {
+			if (announcementTimer > announcementTime) {
+				announcementTimer = 0;
+				announcing = false;
+				FlxTween.tween(announcementText, { alpha: 0}, 0.4, { onComplete: function (t) {
+					announcementText.text = announcements[++announcementIndex];
+					FlxTween.tween(announcementText, { alpha: 1}, 0.4, { onComplete: function (t) {
+						announcing = true;
+					} });
+				} });
+			} else if (announcing) {
+				announcementTimer += dt;
+			}
+		} else {
+			announcementText.text = "";
+		}
+
+		super.update(dt);
 
 		// check game status
 		checkGameStatus();

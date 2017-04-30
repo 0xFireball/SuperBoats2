@@ -12,7 +12,7 @@ class Registry {
 
     public static var gameLevel:Int = 0;
 
-    private static var defaultSaveName:String = "0";
+    private static var defaultSaveName:String = "superboats2_slot0";
 
     public static var saveSlot:FlxSave;
 
