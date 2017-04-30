@@ -30,8 +30,9 @@ class PlayerBoat extends GreenBoat {
 		maxHealth = health = 540000;
 		hullShieldMax = hullShieldIntegrity = 216000;
 		hullShieldRegen = 100;
-		attackTime = 0.4;
-		secondaryAttackTime = 0.05;
+		weapon1AttackTime = 0.4;
+		weapon2AttackTime = 0.05;
+		weapon3AttackTime = 1.6;
 		angularThrust = FlxAngle.asDegrees(0.05 * Math.PI);
 		thrust = 3.7;
 		wrapBounds = false;
@@ -132,8 +133,8 @@ class PlayerBoat extends GreenBoat {
 		var targetPos = FlxG.mouse.getPosition().addPoint(FlxPoint.weak(xErr, yErr));
 		var mortarShell = new MortarShell(this, center.x, center.y, null);
 		var tVec = mortarShell.center.toVector()
+			.negate()
 			.subtractPoint(targetPos)
-			.rotate(FlxPoint.weak(0, 0), 180)
 			.toVector().normalize().scale(mortarShell.movementSpeed);
 		mortarShell.velocity.set(tVec.x, tVec.y);
 		tVec.put();
