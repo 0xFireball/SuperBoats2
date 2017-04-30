@@ -15,7 +15,7 @@ class MortarShell extends Projectile {
 
 	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
 		super(Owner, X, Y);
-		damageFactor = 3.2;
+		damageFactor = Math.random() * 10 + 2;
 		mass = (Math.random() * 6400) + 2000;
 		target = Target;
 		movementSpeed = 80 + Math.random() * 80;

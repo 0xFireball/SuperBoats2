@@ -15,7 +15,7 @@ class MGBullet extends Projectile {
 
 	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
 		super(Owner, X, Y);
-		damageFactor = 500;
+		damageFactor = 20;
 		mass = 2;
 		target = Target;
 		movementSpeed = 500;
