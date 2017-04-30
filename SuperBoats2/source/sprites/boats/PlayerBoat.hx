@@ -92,8 +92,9 @@ class PlayerBoat extends GreenBoat {
 			right,
 			down);
 
-		attacking = FlxG.keys.anyPressed([F, M]);
-		attackingSecondary = FlxG.keys.anyPressed([G, N]);
+		attacking1 = FlxG.keys.anyPressed([F, M]);
+		attacking2 = FlxG.keys.anyPressed([G, N]);
+		attacking3 = FlxG.keys.anyPressed([R, B]);
 	}
 
 	private override function acquireTarget(SourcePoint:FlxPoint, BoatCollection:FlxTypedGroup<Boat>):Boat {
@@ -130,5 +131,20 @@ class PlayerBoat extends GreenBoat {
 		var yErr = (Math.random() * heavyWeaponError * 2) - heavyWeaponError;
 		var targetPos = FlxG.mouse.getPosition().addPoint(FlxPoint.weak(xErr, yErr));
 		var mortarShell = new MortarShell(this, center.x, center.y, null);
+		var tVec = mortarShell.center.toVector()
+			.subtractPoint(targetPos)
+			.rotate(FlxPoint.weak(0, 0), 180)
+			.toVector().normalize().scale(mortarShell.movementSpeed);
+		mortarShell.velocity.set(tVec.x, tVec.y);
+		tVec.put();
+		// apply recoil
+		velocity.addPoint(mortarShell.momentum.scale(1 / mass).negate());
+		stateData.projectiles.add(mortarShell);
+		// smoke
+		for (i in 0...10) {
+			stateData.effectEmitter.emitSquare(center.x, center.y, 6,
+				NFParticleEmitter.velocitySpread(70, tVec.x, tVec.y),
+				NFColorUtil.randCol(0.5, 0.5, 0.5, 0.1), 1.1);
+		}
 	}
 }

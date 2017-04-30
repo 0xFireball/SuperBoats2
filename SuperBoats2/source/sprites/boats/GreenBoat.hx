@@ -33,6 +33,7 @@ class GreenBoat extends Boat {
 
 	public var attacking1:Bool = false;
 	public var attacking2:Bool = false;
+	public var attacking3:Bool = false;
 
     public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
 		super(X, Y, StateData);
