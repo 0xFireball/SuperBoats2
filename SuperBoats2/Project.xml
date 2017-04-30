@@ -80,6 +80,9 @@
 	<!--OpenFL defines-->
 	<haxedef name="next" />
 
+	<!-- Compiler Flags -->
+	<haxedef name="no-traces" if="!debug" />
+
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->

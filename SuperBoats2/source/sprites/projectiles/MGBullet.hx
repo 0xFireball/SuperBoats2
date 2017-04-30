@@ -43,7 +43,7 @@ class MGBullet extends Projectile {
 		super.explode();
 	}
 
-	private override function onDamageDealt(dmg:Float) {
-		trace("mgb:" + dmg);
-	}
+	// private override function onDamageDealt(dmg:Float) {
+	// 	trace("mgb:" + dmg);
+	// }
 }

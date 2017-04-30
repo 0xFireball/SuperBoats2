@@ -52,7 +52,7 @@ class MortarShell extends Projectile {
 		super.explode();
 	}
 
-	private override function onDamageDealt(dmg:Float) {
-		trace("mortar:" + dmg);
-	}
+	// private override function onDamageDealt(dmg:Float) {
+	// 	trace("mortar:" + dmg);
+	// }
 }
