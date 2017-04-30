@@ -65,10 +65,10 @@ class PlayerBoat extends GreenBoat {
 		var right:Bool = false;
 		var down:Bool = false;
 
-		left = FlxG.keys.anyPressed([J, LEFT]);
-		up = FlxG.keys.anyPressed([I, UP]);
-		right = FlxG.keys.anyPressed([L, RIGHT]);
-		down = FlxG.keys.anyPressed([K, DOWN]);
+		left = FlxG.keys.anyPressed([W]);
+		up = FlxG.keys.anyPressed([A]);
+		right = FlxG.keys.anyPressed([S]);
+		down = FlxG.keys.anyPressed([D]);
 
 		var setObjective:Bool = FlxG.keys.anyJustPressed([C]);
 		var releaseObjective:Bool = FlxG.keys.anyJustPressed([X]);
@@ -93,9 +93,9 @@ class PlayerBoat extends GreenBoat {
 			right,
 			down);
 
-		attacking1 = FlxG.keys.anyPressed([F, M]);
-		attacking2 = FlxG.keys.anyPressed([G, N]);
-		attacking3 = FlxG.keys.anyPressed([R, B]);
+		attacking1 = FlxG.keys.anyPressed([F]);
+		attacking2 = FlxG.keys.anyPressed([G]);
+		attacking3 = FlxG.keys.anyPressed([R]);
 	}
 
 	private override function acquireTarget(SourcePoint:FlxPoint, BoatCollection:FlxTypedGroup<Boat>):Boat {
@@ -133,13 +133,14 @@ class PlayerBoat extends GreenBoat {
 		var targetPos = FlxG.mouse.getPosition().addPoint(FlxPoint.weak(xErr, yErr));
 		var mortarShell = new MortarShell(this, center.x, center.y, null);
 		var tVec = mortarShell.center.toVector()
-			.negate()
 			.subtractPoint(targetPos)
+			.rotate(FlxPoint.weak(0, 0), 180)
 			.toVector().normalize().scale(mortarShell.movementSpeed);
 		mortarShell.velocity.set(tVec.x, tVec.y);
 		tVec.put();
 		// apply recoil
-		velocity.addPoint(mortarShell.momentum.scale(1 / mass).negate());
+		var mortarBlast:Float = 8;
+		velocity.addPoint(mortarShell.momentum.scale(1 * mortarBlast / mass).negate());
 		stateData.projectiles.add(mortarShell);
 		// smoke
 		for (i in 0...10) {
