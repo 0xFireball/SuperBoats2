@@ -14,13 +14,13 @@ using nf4.math.NFMathExt;
 class Torpedo extends TargetingProjectile {
 	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
 		super(Owner, X, Y, Target);
-		damageFactor = 0.4;
+		damageFactor = 0.5;
 		mass = 3800;
 		thrust = 6;
 		target = Target;
 		movementSpeed = 90;
 		angularThrust = FlxAngle.asDegrees(Math.PI * 0.09);
-		maxVelocity.set(600, 600);
+		maxVelocity.set(700, 700);
 		makeGraphic(3, 7, FlxColor.fromRGBFloat(0.6, 0.9, 0.6));
 
 		emitter.maxSize = 15;
