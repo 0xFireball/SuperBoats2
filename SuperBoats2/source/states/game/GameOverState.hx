@@ -59,7 +59,7 @@ class GameOverState extends FlxState {
 
         // hotkeys
 
-        if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
+        if (FlxG.keys.anyJustPressed([ ESCAPE, ENTER ])) {
 			onClickReturn();
 		}
 
