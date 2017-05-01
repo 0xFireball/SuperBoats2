@@ -65,10 +65,10 @@ class PlayerBoat extends GreenBoat {
 		var right:Bool = false;
 		var down:Bool = false;
 
-		up = FlxG.keys.anyPressed([W]);
-		left = FlxG.keys.anyPressed([A]);
-		down = FlxG.keys.anyPressed([S]);
-		right = FlxG.keys.anyPressed([D]);
+		up = FlxG.keys.anyPressed([W, I, UP]);
+		left = FlxG.keys.anyPressed([A, J, LEFT]);
+		down = FlxG.keys.anyPressed([S, K, DOWN]);
+		right = FlxG.keys.anyPressed([D, L, RIGHT]);
 
 		var setObjective:Bool = FlxG.keys.anyJustPressed([C]);
 		var releaseObjective:Bool = FlxG.keys.anyJustPressed([X]);
