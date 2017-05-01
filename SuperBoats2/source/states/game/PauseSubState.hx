@@ -17,15 +17,15 @@ class PauseSubState extends FlxSubState {
 		FlxG.mouse.load(AssetPaths.diamond_mouse__png);
 		#end
 
-        var levelText = new SBNFText(0, 160, "level " + Registry.gameLevel, 48);
+        var levelText = new SBNFText(0, FlxG.camera.scroll.y + 160, "level " + Registry.gameLevel, 48);
         levelText.screenCenter(FlxAxes.X);
         add(levelText);
 
-        var menuBtn = new SBNFButton(0, 640, "Exit to Menu", onReturnToMenu);
+        var menuBtn = new SBNFButton(0, FlxG.camera.scroll.y + 640, "Exit to Menu", onReturnToMenu);
 		menuBtn.screenCenter(FlxAxes.X);
 		add(menuBtn);
 
-        var returnBtn = new SBNFButton(0, 700, "Return", onReturnToGame);
+        var returnBtn = new SBNFButton(0, FlxG.camera.scroll.y + 700, "Return", onReturnToGame);
 		returnBtn.screenCenter(FlxAxes.X);
 		add(returnBtn);
 
