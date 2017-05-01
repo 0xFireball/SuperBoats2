@@ -18,7 +18,7 @@ using nf4.math.NFMathExt;
 
 class PlayerBoat extends GreenBoat {
     public var allyCount:Int = 0;
-	public var maxAllyCount:Int = 6;
+	public var maxAllyCount:Int = 7;
 
 	private var allySpawnFrequency:Int = 400;
 
@@ -38,7 +38,7 @@ class PlayerBoat extends GreenBoat {
 		wrapBounds = false;
 		mass = 28000;
 		sprayAmount = 8;
-		maxAllyCount += Std.int(Registry.gameLevel / 5) * 4;
+		maxAllyCount += Std.int(Registry.gameLevel / 3) * 2;
         loadGraphic(AssetPaths.player_boat__png);
 		offset.set(13, 3);
 		setSize(16, 36);
