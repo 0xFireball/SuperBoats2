@@ -3,6 +3,7 @@ package states.game;
 import flixel.*;
 import flixel.tweens.*;
 import flixel.util.*;
+import flixel.math.*;
 import flixel.effects.particles.*;
 import flixel.addons.display.*;
 import flixel.group.FlxGroup;
@@ -57,14 +58,15 @@ class WarPlayState extends FlxState
 		wallMap = new FlxTilemap();
 		var mapGenerator = new NavalMapGenerator();
 		var warWorldRoomSize:Int = 4;
-		var mapWidth = Std.int(FlxG.width / 16) * warWorldRoomSize;
-		var mapHeight = Std.int(FlxG.height/ 16) * warWorldRoomSize;
+		var worldTileSize:Int = 16;
+		var mapWidth = Std.int(FlxG.width / worldTileSize) * warWorldRoomSize;
+		var mapHeight = Std.int(FlxG.height/ worldTileSize) * warWorldRoomSize;
 		wallMap.loadMapFromArray(
 			mapGenerator.generateMap(mapWidth, mapHeight),
 			mapWidth,
 			mapHeight,
 			AssetPaths.wall_tiles__png,
-			16, 16
+			worldTileSize, worldTileSize
 		);
 		add(wallMap);
 
@@ -138,10 +140,10 @@ class WarPlayState extends FlxState
 		// wall collision
 		FlxG.collide(wallMap, allies);
 		FlxG.collide(wallMap, warships);
-		
+
 		// keep projectiles in bounds
 		projectiles.forEachAlive(function (p) {
-			if (p.x < p.width || p.y < p.height || p.x > FlxG.width + p.width || p.y > FlxG.height + p.height) {
+			if (wallMap.overlaps(p)) {
 				p.hitBoundary();
 			}
 		});
