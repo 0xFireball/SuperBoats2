@@ -121,7 +121,13 @@ class PlayerBoat extends GreenBoat {
 
 	private override function secondaryFire() {
 		var target = acquireTarget(center, stateData.warships);
-		weapons[1].fireFree(target);
+		var targetPos:FlxPoint;
+		if (target != null) {
+			targetPos = target.center;
+		} else {
+			targetPos = FlxG.mouse.getPosition();	
+		}
+		weapons[1].fireFree(targetPos);
 	}
 
 	private override function heavyFire() {

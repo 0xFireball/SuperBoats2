@@ -56,8 +56,9 @@ class WarPlayState extends FlxState
 		// create and load boundary map
 		wallMap = new FlxTilemap();
 		var mapGenerator = new NavalMapGenerator();
-		var mapWidth = Std.int(FlxG.width / 16) * 4;
-		var mapHeight = Std.int(FlxG.height/ 16) * 4;
+		var warWorldRoomSize:Int = 4;
+		var mapWidth = Std.int(FlxG.width / 16) * warWorldRoomSize;
+		var mapHeight = Std.int(FlxG.height/ 16) * warWorldRoomSize;
 		wallMap.loadMapFromArray(
 			mapGenerator.generateMap(mapWidth, mapHeight),
 			mapWidth,
