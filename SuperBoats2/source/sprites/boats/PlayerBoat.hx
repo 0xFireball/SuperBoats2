@@ -136,10 +136,12 @@ class PlayerBoat extends GreenBoat {
 	}
 
 	private override function heavyFire() {
-		var heavyWeaponError:Float = 25;
+		var targetPos = FlxG.mouse.getPosition();
+		var firingDistance = targetPos.distanceTo(center);
+		var heavyWeaponError:Float = 0.25 * firingDistance;
 		var xErr = (Math.random() * heavyWeaponError * 2) - heavyWeaponError;
 		var yErr = (Math.random() * heavyWeaponError * 2) - heavyWeaponError;
-		var targetPos = FlxG.mouse.getPosition().addPoint(FlxPoint.weak(xErr, yErr));
+		targetPos = targetPos.addPoint(FlxPoint.weak(xErr, yErr));
 		var mortarShell = new MortarShell(this, center.x, center.y, null);
 		var tVec = mortarShell.center.toVector()
 			.subtractPoint(targetPos)
