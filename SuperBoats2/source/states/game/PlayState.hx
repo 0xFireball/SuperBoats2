@@ -82,6 +82,8 @@ class PlayState extends FlxState
 		emitter = new FlxEmitter();
 		stateData.emitter = emitter;
 
+		stateData.effectEmitter = new NFParticleEmitter(240);
+
 		// create player
 		player = new PlayerBoat(Math.random() * (FlxG.width - 120) + 60, Math.random() * (FlxG.height - 120) + 60, stateData);
 		player.angle = Math.random() * Math.PI * 2;
@@ -100,7 +102,6 @@ class PlayState extends FlxState
 
 		add(emitter);
 
-		stateData.effectEmitter = new NFParticleEmitter(240);
 		add(stateData.effectEmitter);
 
 		var hud = new HUD(stateData);
