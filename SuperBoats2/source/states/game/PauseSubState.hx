@@ -9,6 +9,8 @@ import ui.*;
 
 class PauseSubState extends FlxSubState {
 
+    private var previousZoom:Float;
+
     public override function create() {
         #if !FLX_NO_MOUSE
 		FlxG.mouse.visible = true;
@@ -26,6 +28,9 @@ class PauseSubState extends FlxSubState {
         var returnBtn = new SBNFButton(0, 700, "Return", onReturnToGame);
 		returnBtn.screenCenter(FlxAxes.X);
 		add(returnBtn);
+
+        previousZoom = FlxG.camera.zoom;
+        FlxG.camera.zoom = FlxG.camera.initialZoom;
 
         super.create();
     }
@@ -48,6 +53,7 @@ class PauseSubState extends FlxSubState {
     }
 
     private function onReturnToGame() {
+        FlxG.camera.zoom = previousZoom;
         // return to game
         this.close();
     }

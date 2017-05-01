@@ -44,6 +44,9 @@ class WarPlayState extends FlxState
 	private var announcing:Bool = true;
 	private var announcementIndex:Int = 0;
 
+	private var overviewZoom:Bool = false;
+	private var zooming:Bool = false;
+
 	override public function create():Void
 	{
 		#if !FLX_NO_MOUSE
@@ -154,6 +157,13 @@ class WarPlayState extends FlxState
 			openSubState(new PauseSubState(FlxColor.fromRGBFloat(0.7, 0.7, 0.7, 0.8)));
 		}
 
+		// zoom tools
+		if (FlxG.keys.anyJustPressed([ Z ])) {
+			if (!zooming) {
+				updateZoomTool();
+			}
+		}
+
 		// announcements
 		if (announcementIndex < announcements.length) {
 			if (announcementTimer > announcementTime) {
@@ -176,6 +186,24 @@ class WarPlayState extends FlxState
 
 		// check game status
 		checkGameStatus();
+	}
+
+	private function updateZoomTool() {
+		zooming = true;
+		if (!overviewZoom) {
+			// tween the zoom
+			var finalZoom = (FlxG.width / FlxG.worldBounds.width);
+			FlxTween.tween(FlxG.camera, { zoom: finalZoom }, 0.4, { ease: FlxEase.cubeIn, onComplete: function (t) {
+				zooming = false;
+				overviewZoom = true;
+			} });
+		} else {
+			// return to initial zoom
+			FlxTween.tween(FlxG.camera, { zoom: FlxG.camera.initialZoom }, 0.4, { ease: FlxEase.cubeIn, onComplete: function (t) {
+				zooming = false;
+				overviewZoom = false;
+			} });
+		}
 	}
 
 	private function checkGameStatus() {
