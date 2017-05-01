@@ -37,7 +37,7 @@ class WeaponSystem<TWeapon:Projectile> {
         return true;
     }
 
-    public function fireFree(target:FlxPoint):TWeapon {
+    public function fireFree(?targetPos:FlxPoint, ?targetBoat:Boat):TWeapon {
         // Override
         return null;
     }
