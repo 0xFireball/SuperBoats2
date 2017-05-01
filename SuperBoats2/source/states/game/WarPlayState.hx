@@ -37,8 +37,8 @@ class WarPlayState extends FlxState
 	public var stateData:GameStateData;
 
 	private var announcementText:SBNFText;
-	private var announcementTime:Float = 1.8;
-	private var announcementFade:Float = 0.6;
+	private var announcementTime:Float = 2.2;
+	private var announcementFade:Float = 0.8;
 	private var announcementTimer:Float = 0;
 	private var announcements = [];
 	private var announcing:Bool = true;
