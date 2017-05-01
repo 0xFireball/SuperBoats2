@@ -134,7 +134,7 @@ class WarPlayState extends FlxState
 		#if cpp
 		// render minimap on native only
 		var cameraSize:Int = 160;
-		var cameraZoom:Float = 0.4;
+		var cameraZoom:Float = 0.2;
 		var minimap:FlxCamera = new FlxCamera(10, FlxG.height - cameraSize,
 			Std.int(cameraSize / cameraZoom), Std.int(cameraSize / cameraZoom), cameraZoom);
 		minimap.color = FlxColor.fromRGB(200, 200, 200);
