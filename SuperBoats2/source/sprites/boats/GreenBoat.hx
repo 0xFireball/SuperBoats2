@@ -11,6 +11,7 @@ import sprites.projectiles.*;
 
 import ai.*;
 import ai.BoatAiController;
+import sprites.boats.weapons.*;
 
 import nf4.math.NFMath;
 import nf4.effects.particles.*;
@@ -21,12 +22,6 @@ import states.game.data.*;
 using nf4.math.NFMathExt;
 
 class GreenBoat extends Boat {
-    private var weapon1AttackTime:Float = 1.0;
-	private var weapon2AttackTime:Float = 0.1;
-	private var weapon3AttackTime:Float = 1.4;
-
-	private var attackTimer:Float = 0;
-	private var attackCount:Int = 0;
 
 	public var aiState:BoatAiState<Boat>;
 	public var lastStep:ActionState;
@@ -56,40 +51,31 @@ class GreenBoat extends Boat {
 		mass = 22000;
 		maxVelocity.set(200, 200);
 		sprayAmount = 8;
-		// renderGraphic(14, 32, function (gpx) {
-		// 	var ctx = gpx.g2;
-		// 	ctx.begin();
-		// 	ctx.color = FlxColor.fromRGBFloat(0.1, 0.9, 0.3);
-		// 	ctx.fillRect(0, 0, width, height);
-		// 	ctx.color = FlxColor.fromRGBFloat(0.1, 0.9, 0.5);
-		// 	ctx.fillRect(width / 3, height * (3 / 4), width / 3, height / 4);
-		// 	ctx.end();
-		// }, "greenboat");
+		
 		makeGraphic(14, 32, FlxColor.fromRGBFloat(0.1, 0.9, 0.5));
+	}
+
+	private override function addWeapons() {
+		weapons.push(new TalonLauncher(this, 0.7, stateData.effectEmitter, stateData.projectiles));
 	}
 
 	override public function update(dt:Float) {
 		aiController.style = damage < 0.7 ? Aggressive : Defensive;
 		movement();
 
-		attackTimer += dt;
-		if (attacking1 && attackTimer > weapon1AttackTime) {
-			autoFire();
-			++attackCount;
-			attackTimer = 0;
+		if (attacking1) {
+			autoPrimaryFire();
 		}
 
-		if (attacking2 && attackTimer > weapon2AttackTime) {
-			secondaryFire();
-			++attackCount;
-			attackTimer = 0;
-		}
+		// if (attacking2 && attackTimer > weapon2AttackTime) {
+		// 	secondaryFire();
+		// 	attackTimer = 0;
+		// }
 
-		if (attacking3 && attackTimer > weapon3AttackTime) {
-			heavyFire();
-			++attackCount;
-			attackTimer = 0;
-		}
+		// if (attacking3 && attackTimer > weapon3AttackTime) {
+		// 	heavyFire();
+		// 	attackTimer = 0;
+		// }
 
 		super.update(dt);
 	}
@@ -110,30 +96,14 @@ class GreenBoat extends Boat {
 		attacking1 = lastStep.attack.anyWeapon;
 	}
 
-	public function autoFire() {
+	public function autoPrimaryFire() {
 		var target = acquireTarget(center, stateData.warships);
 		if (target == null) return;
 		primaryFire(target, target.center);
 	}
 
 	private function primaryFire(target:Boat, initialAim:FlxPoint) {
-		var fTalon = new Talon(this, center.x, center.y, target);
-		// target talon
-		var tVec = fTalon.center.toVector()
-			.subtractPoint(initialAim)
-			.rotate(FlxPoint.weak(0, 0), 180)
-			.toVector().normalize().scale(fTalon.movementSpeed);
-		fTalon.velocity.set(tVec.x, tVec.y);
-		tVec.put();
-		// apply recoil
-		velocity.addPoint(fTalon.momentum.scale(1 / mass).negate());
-		stateData.projectiles.add(fTalon);
-		// smoke
-		for (i in 0...4) {
-			stateData.effectEmitter.emitSquare(center.x, center.y, 6,
-				NFParticleEmitter.velocitySpread(45, tVec.x / 4, tVec.y / 4),
-				NFColorUtil.randCol(0.5, 0.5, 0.5, 0.1), 0.8);
-		}
+		weapons[0].fireFree(initialAim, target);
 	}
 
 	private function secondaryFire() {

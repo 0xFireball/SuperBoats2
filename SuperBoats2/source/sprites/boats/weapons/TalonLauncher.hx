@@ -11,7 +11,7 @@ import sprites.projectiles.*;
 
 using nf4.math.NFMathExt;
 
-class TalonLauncher extends WeaponSystem<Talon> {
+class TalonLauncher extends WeaponSystem {
 
     private var missRange:Float = Math.PI * 1 / 3;
     

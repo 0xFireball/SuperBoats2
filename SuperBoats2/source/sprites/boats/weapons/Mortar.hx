@@ -11,7 +11,7 @@ import sprites.projectiles.*;
 
 using nf4.math.NFMathExt;
 
-class Mortar extends WeaponSystem<MortarShell> {
+class Mortar extends WeaponSystem {
 
     private var missRange:Float = Math.PI * 1 / 3;
     

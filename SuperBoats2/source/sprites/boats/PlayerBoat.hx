@@ -10,9 +10,11 @@ import flixel.util.*;
 import nf4.effects.particles.*;
 import nf4.util.*;
 
+
 import states.game.data.*;
 import sprites.effects.*;
 import sprites.projectiles.*;
+import sprites.boats.weapons.*;
 
 using nf4.math.NFMathExt;
 
@@ -45,7 +47,13 @@ class PlayerBoat extends GreenBoat {
 		updateHitbox();
 	}
 
-	override public function update(dt:Float) {
+	private override function addWeapons() {
+		super.addWeapons();
+		weapons.push(new MachineGun(this, 0.05, stateData.effectEmitter, stateData.projectiles));
+		weapons.push(new Mortar(this, 1.4, stateData.effectEmitter, stateData.projectiles));
+	}
+
+	public override function update(dt:Float) {
 		spawnAllies();
 
 		super.update(dt);
@@ -116,48 +124,11 @@ class PlayerBoat extends GreenBoat {
 
 	private override function secondaryFire() {
 		var target = acquireTarget(center, stateData.warships);
-		var gMgBullet = new MGBullet(this, center.x, center.y, target);
-		var bulletSpread:Float = 10;
-		var tVec = gMgBullet.center.toVector()
-			.subtractPoint(target.center)
-			.rotate(FlxPoint.weak(0, 0), (180 - (bulletSpread / 2)) + (Math.random() * bulletSpread))
-			.toVector().normalize().scale(gMgBullet.movementSpeed);
-		gMgBullet.velocity.set(tVec.x, tVec.y);
-		tVec.put();
-		// apply recoil
-		velocity.addPoint(gMgBullet.momentum.scale(1 / mass).negate());
-		stateData.projectiles.add(gMgBullet);
-		// smoke
-		for (i in 0...4) {
-			stateData.effectEmitter.emitSquare(center.x, center.y, 2,
-				NFParticleEmitter.velocitySpread(45, tVec.x, tVec.y),
-				NFColorUtil.randCol(0.5, 0.5, 0.5, 0.1), 0.8);
-		}
+		weapons[1].fireFree(target);
 	}
 
 	private override function heavyFire() {
 		var targetPos = FlxG.mouse.getPosition();
-		var firingDistance = targetPos.distanceTo(center);
-		var heavyWeaponError:Float = 0.25 * firingDistance;
-		var xErr = (Math.random() * heavyWeaponError * 2) - heavyWeaponError;
-		var yErr = (Math.random() * heavyWeaponError * 2) - heavyWeaponError;
-		targetPos = targetPos.addPoint(FlxPoint.weak(xErr, yErr));
-		var mortarShell = new MortarShell(this, center.x, center.y, null);
-		var tVec = mortarShell.center.toVector()
-			.subtractPoint(targetPos)
-			.rotate(FlxPoint.weak(0, 0), 180)
-			.toVector().normalize().scale(mortarShell.movementSpeed);
-		mortarShell.velocity.set(tVec.x, tVec.y);
-		tVec.put();
-		// apply recoil
-		var mortarBlast:Float = 2.5;
-		velocity.addPoint(mortarShell.momentum.scale(1 * mortarBlast / mass).negate());
-		stateData.projectiles.add(mortarShell);
-		// smoke
-		for (i in 0...10) {
-			stateData.effectEmitter.emitSquare(center.x, center.y, 6,
-				NFParticleEmitter.velocitySpread(70, tVec.x, tVec.y),
-				NFColorUtil.randCol(0.5, 0.5, 0.5, 0.1), 1.1);
-		}
+		weapons[2].fireFree(targetPos);
 	}
 }

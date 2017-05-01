@@ -22,13 +22,13 @@ class Boat extends NFSprite {
 	public var thrust(default, null):Float = 3.5;
 	public var sprayAmount(default, null):Int = 5;
 	public var spraySpread(default, null):Int = 40;
-	
+
 	private var wrapBounds:Bool = true;
 
 	public var hullShieldMax:Float = 60000;
 	public var hullShieldIntegrity:Float = 0;
 	public var hullShieldRegen:Float = 100;
-	
+
 	public var shieldPercentage(get, null):Float;
 	public var healthPercentage(get, null):Float;
 
@@ -37,7 +37,7 @@ class Boat extends NFSprite {
 	public var stateData:GameStateData;
 
 	private var sprayEmitter:FlxEmitter;
-		
+
 	public var aiController:BoatAiController<Boat>;
 
 	public var weapons:Array<WeaponSystem>;
@@ -46,7 +46,7 @@ class Boat extends NFSprite {
 		super(X, Y);
 
 		stateData = StateData;
-		
+
 		maxHealth = health = 100000;
 		maxVelocity.set(200, 200);
 		maxAngular = FlxAngle.asDegrees(Math.PI);
@@ -64,6 +64,14 @@ class Boat extends NFSprite {
 		subSprites = new FlxTypedGroup<FlxSprite>();
 
 		aiController = new BoatAiController<Boat>(this);
+
+		weapons = new Array<WeaponSystem>();
+
+		addWeapons();
+	}
+
+	private function addWeapons() {
+		
 	}
 
 	override public function update(dt:Float) {
