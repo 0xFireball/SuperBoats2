@@ -47,7 +47,7 @@ class GreenBoat extends Boat {
 		angularThrust = FlxAngle.asDegrees(0.07 * Math.PI);
 		thrust = 3.5;
 		wrapBounds = false;
-		mass = 22000;
+		mass = 42000;
 		maxVelocity.set(200, 200);
 		sprayAmount = 8;
 		

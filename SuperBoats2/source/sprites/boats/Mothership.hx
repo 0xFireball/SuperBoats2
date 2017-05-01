@@ -21,7 +21,7 @@ class Mothership extends Warship {
 		maxHealth = health = 2350000;
 		thrust = 0.6;
 		wrapBounds = false;
-		mass = 184000;
+		mass = 234000;
 		sprayAmount = 20;
 		spraySpread = 80;
 		angularThrust = FlxAngle.asDegrees(0.03 * Math.PI);

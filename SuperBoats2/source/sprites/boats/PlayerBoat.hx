@@ -35,7 +35,7 @@ class PlayerBoat extends GreenBoat {
 		angularThrust = FlxAngle.asDegrees(0.05 * Math.PI);
 		thrust = 3.7;
 		wrapBounds = false;
-		mass = 28000;
+		mass = 58000;
 		sprayAmount = 8;
 		maxAllyCount += Std.int(Registry.gameLevel / 3) * 2;
         loadGraphic(AssetPaths.player_boat__png);
