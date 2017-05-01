@@ -80,6 +80,8 @@ class GameSelectState extends FlxState
 	}
 
 	private function onSelectNavalWar() {
-		// todo
+		FlxG.camera.fade(FlxColor.BLACK, 0.6, false, function () {
+			FlxG.switchState(new WarPlayState());
+		});
 	}
 }
