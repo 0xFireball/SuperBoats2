@@ -99,7 +99,7 @@ class WarPlayState extends FlxState
 		stateData.effectEmitter = new NFParticleEmitter(240);
 
 		// create player
-		player = new PlayerBoat(Math.random() * (mapWidth - 120) + 60, Math.random() * (mapHeight - 120) + 60, stateData);
+		player = new PlayerBoat(Math.random() * (mapWidth * worldTileSize - 120) + 60, Math.random() * (mapHeight * worldTileSize - 120) + 60, stateData);
 		player.angle = Math.random() * Math.PI * 2;
 		stateData.player = player;
 		allies.add(player);
@@ -109,7 +109,7 @@ class WarPlayState extends FlxState
 		add(warships);
 
 		// create mothership
-		mothership = new Mothership(Math.random() * (mapWidth - 120) + 60, Math.random() * (mapHeight - 120) + 60, stateData);
+		mothership = new Mothership(Math.random() * (mapWidth * worldTileSize - 120) + 60, Math.random() * (mapHeight * worldTileSize - 120) + 60, stateData);
 		stateData.mothership = mothership;
 		mothership.angle = Math.random() * Math.PI * 2;
 		warships.add(mothership);
