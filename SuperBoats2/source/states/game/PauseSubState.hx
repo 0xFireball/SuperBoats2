@@ -37,10 +37,12 @@ class PauseSubState extends FlxSubState {
     }
 
     public override function update(dt:Float) {
+        #if !FLX_NO_KEYBOARD
 		if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
             // dismiss menu
 			onReturnToGame();
 		}
+        #end
 
         super.update(dt);
     }

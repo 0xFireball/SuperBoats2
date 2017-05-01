@@ -70,14 +70,22 @@ class PlayerBoat extends GreenBoat {
 		var left:Bool = false;
 		var right:Bool = false;
 		var down:Bool = false;
+		var setObjective:Bool = false;
+		var releaseObjective:Bool = false;
 
+		#if !FLX_NO_KEYBOARD
 		up = FlxG.keys.anyPressed([W, I, UP]);
 		left = FlxG.keys.anyPressed([A, J, LEFT]);
 		down = FlxG.keys.anyPressed([S, K, DOWN]);
 		right = FlxG.keys.anyPressed([D, L, RIGHT]);
 
-		var setObjective:Bool = FlxG.keys.anyJustPressed([C]);
-		var releaseObjective:Bool = FlxG.keys.anyJustPressed([X]);
+		setObjective = FlxG.keys.anyJustPressed([C]);
+		releaseObjective = FlxG.keys.anyJustPressed([X]);
+
+		attacking1 = FlxG.keys.anyPressed([F]);
+		attacking2 = FlxG.keys.anyPressed([G]);
+		attacking3 = FlxG.keys.anyPressed([R]);
+		#end
 
 		if (setObjective && releaseObjective) {
 			setObjective = false;
@@ -98,10 +106,6 @@ class PlayerBoat extends GreenBoat {
 			left,
 			right,
 			down);
-
-		attacking1 = FlxG.keys.anyPressed([F]);
-		attacking2 = FlxG.keys.anyPressed([G]);
-		attacking3 = FlxG.keys.anyPressed([R]);
 	}
 
 	private override function acquireTarget(SourcePoint:FlxPoint, BoatCollection:FlxTypedGroup<Boat>):Boat {
@@ -112,10 +116,12 @@ class PlayerBoat extends GreenBoat {
 	}
 
 	private override function primaryFire(target:Boat, initialAim:FlxPoint) {
+		#if !FLX_NO_KEYBOARD
 		if (FlxG.keys.anyPressed([E])) {
 			var tpos = FlxG.mouse.getPosition();
 			initialAim.set(tpos.x, tpos.y);
 		}
+		#end
 		super.primaryFire(target, initialAim);
 	}
 

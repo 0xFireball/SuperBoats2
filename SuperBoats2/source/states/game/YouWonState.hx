@@ -64,13 +64,14 @@ class YouWonState extends FlxState {
 		}
 
         // hotkeys
-
+        #if !FLX_NO_KEYBOARD
 		if (FlxG.keys.anyJustPressed([ ENTER ])) {
 			onClickNextLv();
 		}
         if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
 			onReturnToMenu();
 		}
+        #end
 
         super.update(dt);
     }

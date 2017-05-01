@@ -50,6 +50,7 @@ class GameSelectState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
+		#if !FLX_NO_KEYBOARD
 		if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
             // dismiss menu
 			onReturn();
@@ -62,6 +63,7 @@ class GameSelectState extends FlxState
 		if (FlxG.keys.anyJustPressed([ TWO ])) {
             onSelectNavalWar();
 		}
+		#end
 
 		super.update(elapsed);
 	}

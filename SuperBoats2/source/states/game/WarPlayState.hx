@@ -165,6 +165,7 @@ class WarPlayState extends FlxState
 			}
 		});
 
+		#if !FLX_NO_KEYBOARD
 		// pause menu
 		if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
 			openSubState(new PauseSubState(FlxColor.fromRGBFloat(0.7, 0.7, 0.7, 0.8)));
@@ -177,6 +178,7 @@ class WarPlayState extends FlxState
 				// updateZoomTool();
 			}
 		}
+		#end
 
 		// announcements
 		if (announcementIndex < announcements.length) {

@@ -58,10 +58,11 @@ class GameOverState extends FlxState {
 		}
 
         // hotkeys
-
+        #if !FLX_NO_KEYBOARD
         if (FlxG.keys.anyJustPressed([ ESCAPE, ENTER ])) {
 			onClickReturn();
 		}
+        #end
 
         super.update(dt);
     }

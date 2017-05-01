@@ -102,7 +102,7 @@ class MenuState extends FlxState
 		}
 
 		// hotkeys
-
+		#if !FLX_NO_KEYBOARD
 		if (FlxG.keys.anyJustPressed([ S ])) {
 			onClickSettings();
 		}
@@ -112,6 +112,7 @@ class MenuState extends FlxState
 		if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
 			openfl.Lib.exit();
 		}
+		#end
 
 		super.update(elapsed);
 	}
