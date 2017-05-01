@@ -47,6 +47,10 @@ class WarPlayState extends FlxState
 	private var overviewZoom:Bool = false;
 	private var zooming:Bool = false;
 
+	#if cpp
+	private var minimap:FlxCamera;
+	#end
+
 	override public function create():Void
 	{
 		#if !FLX_NO_MOUSE
@@ -75,7 +79,7 @@ class WarPlayState extends FlxState
 		add(wallMap);
 
 		// set bounds
-		FlxG.worldBounds.set(-20, -20, wallMap.width + 20, wallMap.height + 20);
+		FlxG.worldBounds.set(-20, -20, mapWidth * worldTileSize + 20, mapHeight * worldTileSize + 20);
 
 		stateData = new GameStateData();
 
@@ -136,7 +140,7 @@ class WarPlayState extends FlxState
 		// render minimap on native only
 		var cameraSize:Int = 160;
 		var cameraZoom:Float = 0.2;
-		var minimap:FlxCamera = new FlxCamera(10, FlxG.height - cameraSize,
+		minimap = new FlxCamera(10, FlxG.height - cameraSize,
 			Std.int(cameraSize / cameraZoom), Std.int(cameraSize / cameraZoom), cameraZoom);
 		minimap.color = FlxColor.fromRGB(200, 200, 200);
 		minimap.bgColor = FlxColor.BLACK;
@@ -239,7 +243,8 @@ class WarPlayState extends FlxState
 		if (!mothership.exists) {
 			// wow, good job!
 			FlxG.camera.fade(FlxColor.WHITE, 0.4, false, function () {
-				FlxG.switchState(new YouWonState());
+				removeMapAddons();
+				FlxG.switchState(new YouWonState(true));
 			});
 		}
 	}
@@ -248,9 +253,17 @@ class WarPlayState extends FlxState
 		j.hitSprite(s);
 	}
 
+	private function removeMapAddons() {
+		#if cpp
+		FlxG.cameras.remove(minimap);
+		#end
+	}
+
 	public override function destroy() {
 		stateData.destroy();
 		stateData = null;
+
+		removeMapAddons();
 
 		super.destroy();
 	}

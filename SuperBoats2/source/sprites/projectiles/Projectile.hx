@@ -36,7 +36,7 @@ class Projectile extends NFSprite {
 
 	public var life:Float;
 
-	public var age:Float;
+	public var age:Float = 0.0;
 
 	public function new(Owner:NFSprite, X:Float = 0, Y:Float = 0, Life:Float = 30.0, ?Target:NFSprite) {
 		super(X, Y);

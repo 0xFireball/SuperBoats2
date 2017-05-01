@@ -21,6 +21,14 @@ class YouWonState extends FlxState {
 
     private var nextLevel:Int;
 
+    private var navalWar:Bool;
+
+    public function new(NavalWar:Bool = false) {
+        super();
+
+        navalWar = NavalWar;
+    }
+
     public override function create() {
         #if !FLX_NO_MOUSE
 		FlxG.mouse.visible = true;
@@ -78,7 +86,11 @@ class YouWonState extends FlxState {
 
     private function onClickReplay() {
         FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
-            FlxG.switchState(new ClassicPlayState());
+            if (navalWar) {
+                FlxG.switchState(new WarPlayState());
+            } else {
+                FlxG.switchState(new ClassicPlayState());
+            }
         });
     }
 
