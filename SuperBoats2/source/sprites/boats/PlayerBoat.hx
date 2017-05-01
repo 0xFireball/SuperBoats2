@@ -40,8 +40,8 @@ class PlayerBoat extends GreenBoat {
 		sprayAmount = 8;
 		maxAllyCount += Std.int(Registry.gameLevel / 3) * 2;
         loadGraphic(AssetPaths.player_boat__png);
-		offset.set(13, 3);
-		setSize(16, 36);
+		offset.set(14, 9);
+		setSize(14, 30);
 		updateHitbox();
 	}
 
