@@ -131,6 +131,18 @@ class WarPlayState extends FlxState
 		// follow player
 		FlxG.camera.follow(player, TOPDOWN_TIGHT, 1.0);
 
+		#if cpp
+		// render minimap on native only
+		var cameraSize:Int = 160;
+		var cameraZoom:Float = 0.4;
+		var minimap:FlxCamera = new FlxCamera(10, FlxG.height - cameraSize,
+			Std.int(cameraSize / cameraZoom), Std.int(cameraSize / cameraZoom), cameraZoom);
+		minimap.color = FlxColor.fromRGB(200, 200, 200);
+		minimap.bgColor = FlxColor.BLACK;
+		minimap.follow(player, LOCKON, 1.0);
+		FlxG.cameras.add(minimap);
+		#end
+
 		super.create();
 	}
 
@@ -197,12 +209,14 @@ class WarPlayState extends FlxState
 				zooming = false;
 				overviewZoom = true;
 			} });
+			// FlxG.camera.setSize(Std.int(FlxG.width / finalZoom), Std.int(FlxG.height / finalZoom));
 		} else {
 			// return to initial zoom
 			FlxTween.tween(FlxG.camera, { zoom: FlxG.camera.initialZoom }, 0.4, { ease: FlxEase.cubeIn, onComplete: function (t) {
 				zooming = false;
 				overviewZoom = false;
 			} });
+			// FlxG.camera.setSize(Std.int(FlxG.width), Std.int(FlxG.height));
 		}
 	}
 
