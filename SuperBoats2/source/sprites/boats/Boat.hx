@@ -89,7 +89,7 @@ class Boat extends NFSprite {
 		});
 
 		for (weapon in weapons) {
-			weapon.update();
+			weapon.update(dt);
 		}
 
 		super.update(dt);

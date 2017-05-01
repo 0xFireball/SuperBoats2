@@ -15,7 +15,7 @@ class WeaponSystem {
 
     private var carrier:Boat;
 
-    private var fireTimer:Float;
+    private var fireTimer:Float = 0;
     private var reloadTime:Float;
     private var effectEmitter:NFParticleEmitter;
     private var projectilesGroup:FlxTypedGroup<Projectile>;
