@@ -45,7 +45,6 @@ class PlayerBoat extends GreenBoat {
 	}
 
 	private override function addWeapons() {
-		super.addWeapons();
 		weapons.push(new TalonLauncher(this, 0.4, stateData.effectEmitter, stateData.projectiles));
 		weapons.push(new MachineGun(this, 0.05, stateData.effectEmitter, stateData.projectiles));
 		weapons.push(new Mortar(this, 1.6, stateData.effectEmitter, stateData.projectiles));

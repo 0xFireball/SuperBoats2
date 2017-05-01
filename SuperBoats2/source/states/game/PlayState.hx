@@ -73,6 +73,15 @@ class PlayState extends FlxState
 		stateData.allies = allies;
 		add(allies);
 
+		// create projectiles and emitter for weapon systems
+
+		projectiles = new FlxTypedGroup<Projectile>();
+		stateData.projectiles = projectiles;
+		add(projectiles);
+
+		emitter = new FlxEmitter();
+		stateData.emitter = emitter;
+
 		// create player
 		player = new PlayerBoat(Math.random() * (FlxG.width - 120) + 60, Math.random() * (FlxG.height - 120) + 60, stateData);
 		player.angle = Math.random() * Math.PI * 2;
@@ -89,12 +98,6 @@ class PlayState extends FlxState
 		mothership.angle = Math.random() * Math.PI * 2;
 		warships.add(mothership);
 
-		projectiles = new FlxTypedGroup<Projectile>();
-		stateData.projectiles = projectiles;
-		add(projectiles);
-
-		emitter = new FlxEmitter();
-		stateData.emitter = emitter;
 		add(emitter);
 
 		stateData.effectEmitter = new NFParticleEmitter(240);
