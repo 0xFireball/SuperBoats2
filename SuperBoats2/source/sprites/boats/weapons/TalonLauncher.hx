@@ -21,6 +21,7 @@ class TalonLauncher extends WeaponSystem<Talon> {
 
     public override function fireFree(?targetPos:FlxPoint, ?targetBoat:Boat):Talon {
         if (!canFire()) return null;
+        if (targetPos == null) targetPos = targetBoat.center;
         var talon = new Talon(carrier, carrier.center.x, carrier.center.y, targetBoat);
 		// target talon
 		var tVec = talon.center.toVector()
@@ -29,6 +30,8 @@ class TalonLauncher extends WeaponSystem<Talon> {
 			.toVector().normalize().scale(talon.movementSpeed);
         launchProjectile(talon, tVec.x, tVec.y);
 		tVec.put();
+        // apply recoil
+		carrier.velocity.addPoint(talon.momentum.scale(1 / carrier.mass).negate());
         // smoke
 		for (i in 0...4) {
 			effectEmitter.emitSquare(carrier.center.x, carrier.center.y, 6,

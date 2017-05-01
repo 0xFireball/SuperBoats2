@@ -21,6 +21,7 @@ class Cannon extends WeaponSystem<Cannonball> {
 
     public override function fireFree(?targetPos:FlxPoint, ?targetBoat:Boat):Cannonball {
         if (!canFire()) return null;
+        if (targetPos == null) targetPos = targetBoat.center;
         var dist = carrier.center.toVector().subtractPoint(targetPos);
 		var dx = dist.x;
 		var dy = dist.y;
@@ -35,6 +36,9 @@ class Cannon extends WeaponSystem<Cannonball> {
         vx = velVec.x;
         vy = velVec.y;
         launchProjectile(projectile, vx, vy);
+        velVec.put();
+        // recoil
+        carrier.velocity.addPoint(projectile.momentum.scale(1 / carrier.mass).negate());
         // smoke
 		for (i in 0...14) {
 			effectEmitter.emitSquare(carrier.center.x, carrier.center.y, 6,

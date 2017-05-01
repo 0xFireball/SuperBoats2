@@ -21,6 +21,7 @@ class TorpedoLauncher extends WeaponSystem<Torpedo> {
 
     public override function fireFree(?targetPos:FlxPoint, ?targetBoat:Boat):Torpedo {
         if (!canFire()) return null;
+        if (targetPos == null) targetPos = targetBoat.center;
         var dist = carrier.center.toVector().subtractPoint(targetBoat.center);
 		var dx = dist.x;
 		var dy = dist.y;
@@ -32,10 +33,12 @@ class TorpedoLauncher extends WeaponSystem<Torpedo> {
         var velVec = FlxPoint.get(vx, vy);
         // accuracy isn't perfect
         velVec.rotate(FlxPoint.weak(0, 0), Math.random() * FlxAngle.asDegrees(Math.random() * missRange * 2 - missRange));
-        velVec.put();
         vx = velVec.x;
         vy = velVec.y;
         launchProjectile(projectile, vx, vy);
+        velVec.put();
+        // recoil
+        carrier.velocity.addPoint(projectile.momentum.scale(1 / carrier.mass).negate());
         // smoke
 		for (i in 0...14) {
 			effectEmitter.emitSquare(carrier.center.x, carrier.center.y, 6,
