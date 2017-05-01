@@ -19,7 +19,7 @@ class Torpedo extends TargetingProjectile {
 		thrust = 6;
 		target = Target;
 		movementSpeed = 90;
-		angularThrust = FlxAngle.asDegrees(Math.PI * 0.08);
+		angularThrust = FlxAngle.asDegrees(Math.PI * 0.09);
 		maxVelocity.set(600, 600);
 		makeGraphic(3, 7, FlxColor.fromRGBFloat(0.6, 0.9, 0.6));
 
