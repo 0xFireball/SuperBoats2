@@ -13,6 +13,7 @@ import nf4.util.*;
 import nf4.effects.particles.*;
 
 import ai.*;
+import sprites.boats.weapons.*;
 
 import states.game.data.*;
 
@@ -29,7 +30,6 @@ class Boat extends NFSprite {
 	public var hullShieldRegen:Float = 100;
 	
 	public var shieldPercentage(get, null):Float;
-
 	public var healthPercentage(get, null):Float;
 
 	public var subSprites:FlxTypedGroup<FlxSprite>;
@@ -39,6 +39,8 @@ class Boat extends NFSprite {
 	private var sprayEmitter:FlxEmitter;
 		
 	public var aiController:BoatAiController<Boat>;
+
+	public var weapons:Array<WeaponSystem>;
 
 	public function new(?X:Float = 0, ?Y:Float = 0, StateData:GameStateData) {
 		super(X, Y);

@@ -11,7 +11,7 @@ import sprites.projectiles.*;
 
 using nf4.math.NFMathExt;
 
-class WeaponSystem<TWeapon:Projectile> {
+class WeaponSystem {
 
     private var carrier:Boat;
 
@@ -37,12 +37,12 @@ class WeaponSystem<TWeapon:Projectile> {
         return true;
     }
 
-    public function fireFree(?targetPos:FlxPoint, ?targetBoat:Boat):TWeapon {
+    public function fireFree(?targetPos:FlxPoint, ?targetBoat:Boat):Projectile {
         // Override
         return null;
     }
 
-    public function launchProjectile(Projectile:TWeapon, Vx:Float, Vy:Float) {
+    public function launchProjectile(Projectile:Projectile, Vx:Float, Vy:Float) {
         projectilesGroup.add(Projectile);
         Projectile.velocity.set(Vx, Vy);
 		var recoil = Projectile.momentum.scale(1 / carrier.mass).negate();
