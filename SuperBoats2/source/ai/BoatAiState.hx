@@ -13,4 +13,13 @@ class BoatAiState<T:Boat> {
 	// smart grouping
 	public var leader:T; // optional, stores a leader
 	public var objective:FlxPoint;
+
+	public function destroy() {
+		objective.put();
+		objective = null;
+
+		friends = null;
+		enemies = null;
+		leader = null;
+	}
 }

@@ -122,6 +122,14 @@ class BoatAiController<T:Boat> {
 
 		return result;
 	}
+
+	public function destroy() {
+		me = null;
+		target = null;
+
+		state.destroy();
+		state = null;
+	}
 }
 
 enum Style {

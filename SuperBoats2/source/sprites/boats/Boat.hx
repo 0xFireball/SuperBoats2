@@ -234,6 +234,12 @@ class Boat extends NFSprite {
 		subSprites.destroy();
 		subSprites = null;
 
+		stateData.destroy();
+		stateData = null;
+
+		aiController.destroy();
+		aiController = null;
+
 		super.destroy();
 	}
 
