@@ -118,7 +118,7 @@ class WarPlayState extends FlxState
 		add(hud);
 
 		if (Registry.gameLevel == 0) {
-			for (introAnnouncement in ["Welcome to SuperBoats 2!", "WASD: move", "Mouse: aim", "C/X: Set/release objective", "R/F/G: Fire",
+			for (introAnnouncement in ["Welcome to SuperBoats 2!", "Naval War is an experimental new gameplay mode!", "WASD: move", "Mouse: aim", "C/X: Set/release objective", "R/F/G: Fire",
 				"Destroy the mothership (red)", "Protect your allies (green)", "How far will you get?"]) {
 				announcements.push(introAnnouncement);
 			}
@@ -126,6 +126,7 @@ class WarPlayState extends FlxState
 
 		announcementText = new SBNFText(32, 0, announcements[announcementIndex], 36);
 		announcementText.y = FlxG.height - (announcementText.height + 32);
+		announcementText.x = FlxG.width - announcementText.width - 32;
 		add(announcementText);
 
 		// follow player
@@ -172,12 +173,15 @@ class WarPlayState extends FlxState
 		// zoom tools
 		if (FlxG.keys.anyJustPressed([ Z ])) {
 			if (!zooming) {
-				updateZoomTool();
+				// temporarily disable
+				// updateZoomTool();
 			}
 		}
 
 		// announcements
 		if (announcementIndex < announcements.length) {
+			announcementText.x = FlxG.width - announcementText.width - 32 + FlxG.camera.scroll.x;
+			announcementText.y = FlxG.height - announcementText.height - 32 + FlxG.camera.scroll.y;
 			if (announcementTimer > announcementTime) {
 				announcementTimer = 0;
 				announcing = false;
