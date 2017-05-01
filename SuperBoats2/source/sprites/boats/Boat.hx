@@ -198,25 +198,14 @@ class Boat extends NFSprite {
 		} else {
 			sprayEmitter.emitting = false; // stop emitting
 		}
-
-        // draw spray
-		// for (i in 0...sprayAmount) {
-		// 	stateData.lowerEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 10) + 1,
-		// 		NFParticleEmitter.velocitySpread(spraySpread, sprayTrailVector.x, sprayTrailVector.y),
-		// 	NFColorUtil.randCol(0.2, 0.6, 0.8, 0.2), Math.random() * 1.0);
-		// }
 		sprayTrailVector.put();
 	}
 
 	override public function explode() {
-		// for (i in 0...50) {
-		// 	stateData.explosionEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 10) + 1,
-		// 		NFParticleEmitter.velocitySpread(spraySpread, velocity.x / 4, velocity.y / 4),
-		// 	NFColorUtil.randCol(0.95, 0.95, 0.1, 0.05), Math.random() * 1.0);
-		// }
 		for (i in 0...50) {
-			// stateData.emitter.emitParticle
-			// NFColorUtil.randCol(0.95, 0.95, 0.1, 0.05)
+			stateData.effectEmitter.emitSquare(center.x, center.y, Std.int(Math.random() * 10) + 1,
+				NFParticleEmitter.velocitySpread(spraySpread, velocity.x / 4, velocity.y / 4),
+			NFColorUtil.randCol(0.95, 0.95, 0.1, 0.05), Math.random() * 1.0);
 		}
 		super.explode();
 	}
