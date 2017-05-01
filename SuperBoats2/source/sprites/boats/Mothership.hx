@@ -5,6 +5,7 @@ import flixel.math.*;
 import flixel.util.*;
 
 import states.game.data.*;
+import sprites.boats.weapons.*;
 
 import nf4.math.*;
 
@@ -28,8 +29,6 @@ class Mothership extends Warship {
 		maxAngular = FlxAngle.asDegrees(Math.PI / 5);
 		maxVelocity.set(60, 60);
 		
-		attackTime = 0.2;
-
 		if (Registry.gameLevel > 0) {
 			var lvl = Registry.gameLevel;
 			health *= 1.8 * Math.pow(1.1, lvl);
@@ -45,17 +44,11 @@ class Mothership extends Warship {
 		setSize(32, 63);
 		offset.set(16, 0);
 		updateHitbox();
-		
-		// renderGraphic(30, 65, function (gpx) {
-		// 	var ctx = gpx.g2;
-		// 	ctx.begin();
-		// 	ctx.color = FlxColor.fromRGBFloat(0.9, 0.3, 0.1);
-		// 	ctx.fillRect(0, 0, width, height);
-			
-		// 	ctx.color = FlxColor.fromRGBFloat(0.9, 0.5, 0.1);
-		// 	ctx.fillRect(width / 3, height * (3 / 4), width / 3, height / 4);
-		// 	ctx.end();
-		// }, "main_warship");
+	}
+
+	private override function addWeapons() {
+		weapons.push(new Cannon(this, 0.2 * 3, stateData.effectEmitter, stateData.projectiles));
+		weapons.push(new TorpedoLauncher(this, 0.2 * 7, stateData.effectEmitter, stateData.projectiles));
 	}
 
 	override public function update(dt:Float) {
