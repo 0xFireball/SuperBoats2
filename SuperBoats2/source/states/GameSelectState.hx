@@ -15,7 +15,7 @@ import nf4.util.*;
 
 import ui.*;
 
-class SettingsState extends FlxState
+class GameSelectState extends FlxState
 {
 	override public function create():Void
 	{
@@ -26,18 +26,18 @@ class SettingsState extends FlxState
 
 		bgColor = FlxColor.fromInt(0x0B2B36);
 
-		var titleTx = new SBNFText(0, 80, "Settings", 84);
+		var titleTx = new SBNFText(0, 80, "Game Mode", 84);
 		titleTx.color = FlxColor.WHITE;
 		titleTx.screenCenter(FlxAxes.X);
 		add(titleTx);
 
-		var resetGameBtn = new SBNFButton(0, 540, "Reset Game", onResetSave);
-		resetGameBtn.screenCenter(FlxAxes.X);
-		add(resetGameBtn);
+		var classicGameBtn = new SBNFButton(0, 350, "Classic", onSelectClassic);
+		classicGameBtn.screenCenter(FlxAxes.X);
+		add(classicGameBtn);
 		
-		var saveDataBtn = new SBNFButton(0, 600, "Save Game", onSaveData);
-		saveDataBtn.screenCenter(FlxAxes.X);
-		add(saveDataBtn);
+		var warGameBtn = new SBNFButton(0, 410, "Naval War", onSelectNavalWar);
+		warGameBtn.screenCenter(FlxAxes.X);
+		add(warGameBtn);
 
 		var returnBtn = new SBNFButton(0, 700, "Return", onReturn);
 		returnBtn.screenCenter(FlxAxes.X);
@@ -55,6 +55,14 @@ class SettingsState extends FlxState
 			onReturn();
 		}
 
+		if (FlxG.keys.anyJustPressed([ 1 ])) {
+            onSelectClassic();
+		}
+
+		if (FlxG.keys.anyJustPressed([ 2 ])) {
+            onSelectNavalWar();
+		}
+
 		super.update(elapsed);
 	}
 
@@ -65,13 +73,13 @@ class SettingsState extends FlxState
 		});
 	}
 
-	private function onResetSave() {
-		Registry.gameLevel = 0;
-		onSaveData();
+	private function onSelectClassic() {
+		FlxG.camera.fade(FlxColor.BLACK, 0.6, false, function () {
+			FlxG.switchState(new ClassicPlayState());
+		});
 	}
 
-	private function onSaveData() {
-		Registry.saveSlot.data.level = Registry.gameLevel;
-		Registry.saveSlot.flush();
+	private function onSelectNavalWar() {
+		// todo
 	}
 }

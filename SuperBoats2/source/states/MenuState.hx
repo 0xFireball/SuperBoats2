@@ -7,7 +7,7 @@ import flixel.tweens.*;
 import flixel.effects.particles.*;
 import flixel.addons.effects.chainable.*;
 
-import states.game.PlayState;
+import states.game.*;
 
 import nf4.ui.*;
 import nf4.effects.particles.*;
@@ -129,7 +129,7 @@ class MenuState extends FlxState
 		FlxTween.tween(distortedTitle, { alpha: 1 }, 0.8, { ease: FlxEase.cubeIn });
 		// switch
 		FlxG.camera.fade(FlxColor.BLACK, 0.8, false, function () {
-			FlxG.switchState(new PlayState());
+			FlxG.switchState(new GameSelectState());
 		});
 	}
 

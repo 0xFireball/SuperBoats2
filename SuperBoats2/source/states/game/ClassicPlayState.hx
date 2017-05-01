@@ -19,7 +19,7 @@ import nf4.effects.particles.*;
 
 import ui.*;
 
-class PlayState extends FlxState
+class ClassicPlayState extends FlxState
 {
 	public var player:PlayerBoat;
     public var mothership:Mothership;

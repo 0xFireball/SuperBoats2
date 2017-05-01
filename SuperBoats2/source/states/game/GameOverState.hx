@@ -7,7 +7,7 @@ import flixel.tweens.*;
 import flixel.effects.particles.*;
 import flixel.addons.effects.chainable.*;
 
-import states.game.PlayState;
+import states.game.*;
 
 import nf4.ui.*;
 import nf4.effects.particles.*;

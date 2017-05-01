@@ -7,7 +7,7 @@ import flixel.tweens.*;
 import flixel.effects.particles.*;
 import flixel.addons.effects.chainable.*;
 
-import states.game.PlayState;
+import states.game.*;
 
 import nf4.ui.*;
 import nf4.effects.particles.*;
@@ -77,16 +77,14 @@ class YouWonState extends FlxState {
 
     private function onClickReplay() {
         FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
-            FlxG.switchState(new PlayState());
+            FlxG.switchState(new ClassicPlayState());
         });
     }
 
     private function onClickNextLv() {
         // increase the difficulty
         Registry.gameLevel = nextLevel;
-        FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
-            FlxG.switchState(new PlayState());
-        });
+        onClickReplay(); // replay just reloads play, but we updated level
     }
 
     private function onReturnToMenu() {
