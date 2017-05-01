@@ -56,6 +56,7 @@ class ClassicPlayState extends FlxState
 		
 		// create and load boundary map
 		wallMap = new FlxTilemap();
+		wallMap.immovable = true;
 		var mapWidth = Std.int(FlxG.width / 16);
 		var mapHeight = Std.int(FlxG.height/ 16);
 		wallMap.loadMapFromArray(
