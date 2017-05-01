@@ -55,11 +55,11 @@ class GameSelectState extends FlxState
 			onReturn();
 		}
 
-		if (FlxG.keys.anyJustPressed([ 1 ])) {
+		if (FlxG.keys.anyJustPressed([ ONE ])) {
             onSelectClassic();
 		}
 
-		if (FlxG.keys.anyJustPressed([ 2 ])) {
+		if (FlxG.keys.anyJustPressed([ TWO ])) {
             onSelectNavalWar();
 		}
 
