@@ -113,10 +113,14 @@ class GreenBoat extends Boat {
 	public function autoFire() {
 		var target = acquireTarget(center, stateData.warships);
 		if (target == null) return;
+		primaryFire(target, target.center);
+	}
+
+	private function primaryFire(target:Boat, initialAim:FlxPoint) {
 		var fTalon = new Talon(this, center.x, center.y, target);
 		// target talon
 		var tVec = fTalon.center.toVector()
-			.subtractPoint(target.center)
+			.subtractPoint(initialAim)
 			.rotate(FlxPoint.weak(0, 0), 180)
 			.toVector().normalize().scale(fTalon.movementSpeed);
 		fTalon.velocity.set(tVec.x, tVec.y);

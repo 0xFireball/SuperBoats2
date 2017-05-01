@@ -106,6 +106,14 @@ class PlayerBoat extends GreenBoat {
 		return target;
 	}
 
+	private override function primaryFire(target:Boat, initialAim:FlxPoint) {
+		if (FlxG.keys.anyPressed([E])) {
+			var tpos = FlxG.mouse.getPosition();
+			initialAim.set(tpos.x, tpos.y);
+		}
+		super.primaryFire(target, initialAim);
+	}
+
 	private override function secondaryFire() {
 		var target = acquireTarget(center, stateData.warships);
 		var gMgBullet = new MGBullet(this, center.x, center.y, target);
