@@ -13,11 +13,10 @@ using nf4.math.NFMathExt;
 
 class MGBullet extends Projectile {
 
-	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
-		super(Owner, X, Y);
+	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Life:Float = 30.0, Target:NFSprite) {
+		super(Owner, X, Y, Life, Target);
 		damageFactor = 20;
 		mass = 2;
-		target = Target;
 		movementSpeed = 500;
 		maxVelocity.set(800, 800);
 		makeGraphic(2, 2, FlxColor.fromRGBFloat(0.6, 0.6, 0.8));

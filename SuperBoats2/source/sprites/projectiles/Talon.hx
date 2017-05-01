@@ -13,12 +13,11 @@ using nf4.math.NFMathExt;
 
 class Talon extends TargetingProjectile {
 
-	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
-		super(Owner, X, Y, Target);
+	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Life:Float = 30.0, Target:NFSprite) {
+		super(Owner, X, Y, Life, Target);
 		damageFactor = 0.4;
 		mass = 1800;
 		thrust = 3;
-		target = Target;
 		movementSpeed = 360;
 		angularThrust = FlxAngle.asDegrees(Math.PI * 0.05);
 		maxVelocity.set(600, 600);

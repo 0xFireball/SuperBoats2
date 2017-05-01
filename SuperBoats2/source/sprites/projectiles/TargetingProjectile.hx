@@ -9,8 +9,8 @@ class TargetingProjectile extends Projectile {
 	public var thrust(default, null):Float = 1;
 	public var angularThrust(default, null):Float = FlxAngle.asDegrees(Math.PI * 0.015);
 
-    public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
-		super(Owner, X, Y);
+    public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Life:Float = 30.0, Target:NFSprite) {
+		super(Owner, X, Y, Life, Target);
     }
 
     override public function update(dt:Float) {

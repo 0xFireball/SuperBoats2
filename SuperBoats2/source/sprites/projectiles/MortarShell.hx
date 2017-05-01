@@ -13,11 +13,10 @@ using nf4.math.NFMathExt;
 
 class MortarShell extends Projectile {
 
-	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
-		super(Owner, X, Y);
+	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Life:Float = 30.0, Target:NFSprite) {
+		super(Owner, X, Y, Life, Target);
 		damageFactor = Math.random() * 10 + 2;
 		mass = (Math.random() * 2400) + 2400;
-		target = Target;
 		movementSpeed = 80 + Math.random() * 80;
 		makeGraphic(11, 11, FlxColor.fromRGBFloat(0.569, 0.678, 0.122));
 

@@ -34,12 +34,18 @@ class Projectile extends NFSprite {
 
 	public var owner:NFSprite;
 
-	public function new(Owner:NFSprite, X:Float = 0, Y:Float = 0) {
+	public var life:Float;
+
+	public var age:Float;
+
+	public function new(Owner:NFSprite, X:Float = 0, Y:Float = 0, Life:Float = 30.0, ?Target:NFSprite) {
 		super(X, Y);
 
 		owner = Owner;
+		target = Target;
 		emitter = new FlxEmitter(X, Y);
 		explosionEmitter = new NFParticleEmitter(64);
+		life = Life;
 
 		mass = 500;
 	}
@@ -86,6 +92,12 @@ class Projectile extends NFSprite {
 	override public function update(dt:Float) {
 		if (alive) {
 			drawSpray();
+			age += dt;
+		}
+
+		if (age > life) {
+			// silently decay
+			hitBoundary();
 		}
 
 		explosionEmitter.update(dt);

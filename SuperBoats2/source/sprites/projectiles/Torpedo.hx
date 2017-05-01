@@ -12,12 +12,11 @@ import nf4.effects.particles.*;
 using nf4.math.NFMathExt;
 
 class Torpedo extends TargetingProjectile {
-	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
-		super(Owner, X, Y, Target);
+	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Life:Float = 30.0, Target:NFSprite) {
+		super(Owner, X, Y, Life, Target);
 		damageFactor = 0.5;
 		mass = 3800;
 		thrust = 6;
-		target = Target;
 		movementSpeed = 90;
 		angularThrust = FlxAngle.asDegrees(Math.PI * 0.09);
 		maxVelocity.set(700, 700);

@@ -12,11 +12,10 @@ import nf4.effects.particles.*;
 using nf4.math.NFMathExt;
 
 class Cannonball extends Projectile {
-	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Target:NFSprite) {
-		super(Owner, X, Y);
+	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Life:Float = 30.0, Target:NFSprite) {
+		super(Owner, X, Y, Life, Target);
 		damageFactor = 1.5;
 		mass = 2200;
-		target = Target;
 		movementSpeed = 120 + Math.random() * 120;
 		makeGraphic(8, 8, FlxColor.fromRGBFloat(0.6, 0.6, 0.6));
 
