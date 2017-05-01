@@ -36,6 +36,12 @@ class TorpedoLauncher extends WeaponSystem<Torpedo> {
         vx = velVec.x;
         vy = velVec.y;
         launchProjectile(projectile, vx, vy);
+        // smoke
+		for (i in 0...14) {
+			effectEmitter.emitSquare(carrier.center.x, carrier.center.y, 6,
+				NFParticleEmitter.velocitySpread(45, vx / 4, vy / 4),
+				NFColorUtil.randCol(0.5, 0.5, 0.5, 0.1), 0.8);
+		}
         return projectile;
     }
 }
