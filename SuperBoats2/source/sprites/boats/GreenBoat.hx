@@ -66,15 +66,13 @@ class GreenBoat extends Boat {
 			autoPrimaryFire();
 		}
 
-		// if (attacking2 && attackTimer > weapon2AttackTime) {
-		// 	secondaryFire();
-		// 	attackTimer = 0;
-		// }
+		if (attacking2) {
+			secondaryFire();
+		}
 
-		// if (attacking3 && attackTimer > weapon3AttackTime) {
-		// 	heavyFire();
-		// 	attackTimer = 0;
-		// }
+		if (attacking3) {
+			heavyFire();
+		}
 
 		super.update(dt);
 	}
