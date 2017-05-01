@@ -71,7 +71,7 @@ class Boat extends NFSprite {
 	}
 
 	private function addWeapons() {
-		
+
 	}
 
 	override public function update(dt:Float) {
@@ -87,6 +87,10 @@ class Boat extends NFSprite {
 			subSprites.remove(d, true);
 			d.destroy();
 		});
+
+		for (weapon in weapons) {
+			weapon.update();
+		}
 
 		super.update(dt);
 	}
@@ -238,6 +242,12 @@ class Boat extends NFSprite {
 
 		aiController.destroy();
 		aiController = null;
+
+		for (i in 0...weapons.length) {
+			weapons[i].destroy();
+			weapons[i] = null;
+		}
+		weapons = null;
 
 		super.destroy();
 	}

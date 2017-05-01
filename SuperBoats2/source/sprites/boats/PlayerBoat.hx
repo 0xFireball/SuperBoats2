@@ -32,9 +32,6 @@ class PlayerBoat extends GreenBoat {
 		maxHealth = health = 540000;
 		hullShieldMax = hullShieldIntegrity = 216000;
 		hullShieldRegen = 100;
-		weapon1AttackTime = 0.4;
-		weapon2AttackTime = 0.05;
-		weapon3AttackTime = 1.6;
 		angularThrust = FlxAngle.asDegrees(0.05 * Math.PI);
 		thrust = 3.7;
 		wrapBounds = false;
@@ -49,8 +46,9 @@ class PlayerBoat extends GreenBoat {
 
 	private override function addWeapons() {
 		super.addWeapons();
+		weapons.push(new TalonLauncher(this, 0.4, stateData.effectEmitter, stateData.projectiles));
 		weapons.push(new MachineGun(this, 0.05, stateData.effectEmitter, stateData.projectiles));
-		weapons.push(new Mortar(this, 1.4, stateData.effectEmitter, stateData.projectiles));
+		weapons.push(new Mortar(this, 1.6, stateData.effectEmitter, stateData.projectiles));
 	}
 
 	public override function update(dt:Float) {
