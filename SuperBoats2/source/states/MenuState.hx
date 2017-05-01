@@ -110,7 +110,7 @@ class MenuState extends FlxState
 			onClickPlay();
 		}
 		if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
-			// TODO
+			openfl.Lib.exit();
 		}
 
 		super.update(elapsed);
