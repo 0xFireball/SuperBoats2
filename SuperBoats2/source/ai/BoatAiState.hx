@@ -15,8 +15,10 @@ class BoatAiState<T:Boat> {
 	public var objective:FlxPoint;
 
 	public function destroy() {
-		objective.put();
-		objective = null;
+		if (objective != null) {
+			objective.put();
+			objective = null;
+		}
 
 		friends = null;
 		enemies = null;
