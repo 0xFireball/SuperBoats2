@@ -27,7 +27,7 @@ class Mortar extends WeaponSystem {
 		var xErr = (Math.random() * heavyWeaponError * 2) - heavyWeaponError;
 		var yErr = (Math.random() * heavyWeaponError * 2) - heavyWeaponError;
 		targetPos = targetPos.addPoint(FlxPoint.weak(xErr, yErr));
-		var mortarShell = new MortarShell(carrier, carrier.center.x, carrier.center.y, null);
+		var mortarShell = new MortarShell(carrier, carrier.center.x, carrier.center.y, 30.0, null);
 		var tVec = mortarShell.center.toVector()
 			.subtractPoint(targetPos)
 			.rotate(FlxPoint.weak(0, 0), 180)

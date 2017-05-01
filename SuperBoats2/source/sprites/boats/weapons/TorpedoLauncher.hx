@@ -25,7 +25,7 @@ class TorpedoLauncher extends WeaponSystem {
         var dist = carrier.center.toVector().subtractPoint(targetBoat.center);
 		var dx = dist.x;
 		var dy = dist.y;
-        var projectile = new Torpedo(carrier, carrier.center.x, carrier.center.y, targetBoat);
+        var projectile = new Torpedo(carrier, carrier.center.x, carrier.center.y, 15.0, targetBoat);
         var bulletSp = projectile.movementSpeed;
         var m = -Math.sqrt(dx * dx + dy * dy);
         var vx = dx * bulletSp / m;

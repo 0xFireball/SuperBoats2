@@ -22,7 +22,7 @@ class MachineGun extends WeaponSystem {
     public override function fireFree(?targetPos:FlxPoint, ?targetBoat:Boat):MGBullet {
         if (!canFire()) return null;
         if (targetPos == null) targetPos = targetBoat.center;
-		var bullet = new MGBullet(carrier, carrier.center.x, carrier.center.y, targetBoat);
+		var bullet = new MGBullet(carrier, carrier.center.x, carrier.center.y,  5.0, targetBoat);
 		var bulletSpread:Float = 10;
 		var tVec = bullet.center.toVector()
 			.subtractPoint(targetPos)

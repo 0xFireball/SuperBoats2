@@ -22,7 +22,7 @@ class TalonLauncher extends WeaponSystem {
     public override function fireFree(?targetPos:FlxPoint, ?targetBoat:Boat):Talon {
         if (!canFire()) return null;
         if (targetPos == null) targetPos = targetBoat.center;
-        var talon = new Talon(carrier, carrier.center.x, carrier.center.y, targetBoat);
+        var talon = new Talon(carrier, carrier.center.x, carrier.center.y, 15.0, targetBoat);
 		// target talon
 		var tVec = talon.center.toVector()
 			.subtractPoint(targetPos)

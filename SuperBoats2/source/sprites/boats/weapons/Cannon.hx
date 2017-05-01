@@ -25,7 +25,7 @@ class Cannon extends WeaponSystem {
         var dist = carrier.center.toVector().subtractPoint(targetPos);
 		var dx = dist.x;
 		var dy = dist.y;
-        var projectile = new Cannonball(carrier, carrier.center.x, carrier.center.y, null);
+        var projectile = new Cannonball(carrier, carrier.center.x, carrier.center.y, 30.0, null);
         var bulletSp = projectile.movementSpeed;
         var m = -Math.sqrt(dx * dx + dy * dy);
         var vx = dx * bulletSp / m;
