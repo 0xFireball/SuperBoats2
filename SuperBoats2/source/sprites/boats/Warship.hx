@@ -102,10 +102,6 @@ class Warship extends Boat {
 		stateData.projectiles.add(pj);
 		var recoil = pj.momentum.scale(1 / mass).negate();
 		velocity.addPoint(recoil);
-		if (x > FlxG.width) x = x % FlxG.width;
-		if (y > FlxG.height) y = y % FlxG.height;
-		if (x < 0) x += FlxG.width;
-		if (y < 0) y += FlxG.height;
 		// smoke
 		for (i in 0...14) {
 			stateData.effectEmitter.emitSquare(center.x, center.y, 6,
