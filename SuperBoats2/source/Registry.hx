@@ -3,6 +3,8 @@ package;
 
 import flixel.util.FlxSave;
 
+import states.game.*;
+
 class Registry {
     // constants
 
@@ -11,6 +13,8 @@ class Registry {
     // vars
 
     public static var gameLevel:Int = 0;
+
+    public static var gameMode:GameMode = GameMode.Classic;
 
     private static var defaultSaveName:String = "superboats2_slot0";
 

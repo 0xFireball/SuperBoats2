@@ -10,7 +10,7 @@ import flixel.util.*;
 import nf4.effects.particles.*;
 import nf4.util.*;
 
-
+import states.game.*;
 import states.game.data.*;
 import sprites.effects.*;
 import sprites.projectiles.*;
@@ -37,7 +37,9 @@ class PlayerBoat extends GreenBoat {
 		wrapBounds = false;
 		mass = 58000;
 		sprayAmount = 8;
-		maxVelocity.set(380, 380);
+		if (Registry.gameMode == GameMode.NavalWar) {
+			maxVelocity.set(380, 380);
+		}
 		maxAllyCount += Std.int(Registry.gameLevel / 3) * 2;
         loadGraphic(AssetPaths.player_boat__png);
 		offset.set(14, 9);

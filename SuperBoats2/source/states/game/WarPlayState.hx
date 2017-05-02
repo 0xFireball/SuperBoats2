@@ -58,6 +58,8 @@ class WarPlayState extends FlxState
 		FlxG.mouse.load(AssetPaths.diamond_mouse__png);
 		#end
 
+		Registry.gameMode = GameMode.NavalWar;
+
 		bg = new FlxBackdrop(AssetPaths.water__png, 0.5, 0.5);
 		add(bg);
 		

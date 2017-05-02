@@ -48,12 +48,14 @@ class ClassicPlayState extends FlxState
 		FlxG.mouse.load(AssetPaths.diamond_mouse__png);
 		#end
 
+		Registry.gameMode = GameMode.Classic;
+
 		bg = new FlxBackdrop(AssetPaths.water__png, 0.5, 0.5);
 		add(bg);
 
 		// set bounds
 		FlxG.worldBounds.set(-20, -20, FlxG.width + 20, FlxG.height + 20);
-		
+
 		// create and load boundary map
 		wallMap = new FlxTilemap();
 		wallMap.immovable = true;
@@ -132,7 +134,7 @@ class ClassicPlayState extends FlxState
 		// wall collision
 		FlxG.collide(wallMap, allies);
 		FlxG.collide(wallMap, warships);
-		
+
 		// keep projectiles in bounds
 		projectiles.forEachAlive(function (p) {
 			if (p.x < p.width || p.y < p.height || p.x > FlxG.width + p.width || p.y > FlxG.height + p.height) {
