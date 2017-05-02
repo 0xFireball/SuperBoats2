@@ -8,7 +8,7 @@ import states.game.*;
 class Registry {
     // constants
 
-    public static var gameVersion:String = "v0.3.0.0 alpha";
+    public static var gameVersion:String = "v0.3.0.2 alpha";
 
     // vars
 

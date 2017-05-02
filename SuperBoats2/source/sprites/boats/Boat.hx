@@ -200,6 +200,9 @@ class Boat extends NFSprite {
 		sprayTrailVector.rotate(FlxPoint.get(0, 0), 180);
 		sprayTrailVector.scale(0.7);
 		var sprayAngle = FlxAngle.asDegrees(Math.atan(sprayTrailVector.y / sprayTrailVector.x));
+		if (sprayTrailVector.x < 0) {
+			sprayAngle += 180;
+		}
 		var sprayMag = sprayTrailVector.length;
 
 		sprayEmitter.launchAngle.set(sprayAngle);
