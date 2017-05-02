@@ -48,7 +48,7 @@ class GreenBoat extends Boat {
 		thrust = 3.5;
 		wrapBounds = false;
 		mass = 42000;
-		maxVelocity.set(200, 200);
+		maxVelocity.set(260, 260);
 		sprayAmount = 8;
 		
 		makeGraphic(14, 32, FlxColor.fromRGBFloat(0.1, 0.9, 0.5));

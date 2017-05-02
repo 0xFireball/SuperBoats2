@@ -37,6 +37,7 @@ class PlayerBoat extends GreenBoat {
 		wrapBounds = false;
 		mass = 58000;
 		sprayAmount = 8;
+		maxVelocity.set(380, 380);
 		maxAllyCount += Std.int(Registry.gameLevel / 3) * 2;
         loadGraphic(AssetPaths.player_boat__png);
 		offset.set(14, 9);
