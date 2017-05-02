@@ -256,7 +256,14 @@ class WarPlayState extends FlxState
 	private function removeMapAddons() {
 		#if cpp
 		FlxG.cameras.remove(minimap);
+
+		minimap = null;
 		#end
+	}
+
+	public override function switchTo(nextState:FlxState):Bool {
+		removeMapAddons();
+		return super.switchTo(nextState);
 	}
 
 	public override function destroy() {
