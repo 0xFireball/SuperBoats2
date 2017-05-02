@@ -78,7 +78,7 @@
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 
 	<!--OpenFL defines-->
-	<haxedef name="next" />
+	<!--<set name="next" />-->
 
 	<!-- Compiler Flags -->
 	<haxedef name="no-traces" if="!debug" />
