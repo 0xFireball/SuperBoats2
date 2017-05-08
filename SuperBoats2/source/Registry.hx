@@ -1,7 +1,7 @@
 
 package;
 
-import flixel.util.FlxSave;
+import flixel.util.*;
 
 import states.game.*;
 
@@ -34,4 +34,17 @@ class Registry {
         }
         #end
     }
+
+    // color constants
+    public static var backgroundColor:FlxColor = FlxColor.fromInt(0xFF0B2B36);
+
+    public static var dimBackgroundColor:FlxColor = FlxColor.fromInt(0xFF51512E);
+
+    public static var foregroundColor:FlxColor = FlxColor.fromInt(0xFFE8E676);
+
+    public static var foregroundAccentColor:FlxColor = FlxColor.fromInt(0xFFFFFEB0);
+
+    public static var washoutColor:FlxColor = FlxColor.fromInt(0xFFFFFEDE);
+
+    public static var unfocusColor:FlxColor = FlxColor.fromRGBFloat(0.7, 0.7, 0.7, 0.8);
 }

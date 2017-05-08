@@ -7,6 +7,7 @@ class SBNFText extends NFText {
 	{
 		super(X, Y, FieldWidth, Text, Size, EmbeddedFont);
 
+        color = Registry.foregroundColor;
         font = AssetPaths.disposable_droid__ttf;
     }
 }

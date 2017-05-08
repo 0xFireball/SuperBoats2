@@ -14,9 +14,9 @@ import nf4.effects.particles.*;
 import nf4.util.*;
 
 import ui.*;
+import ui.menu.*;
 
-class MenuState extends FlxState
-{
+class MenuState extends SBNFMenuState {
 	private var titleTx:NFText;
 
 	private var emitter:FlxEmitter;
@@ -38,7 +38,7 @@ class MenuState extends FlxState
 		FlxG.mouse.load(AssetPaths.mouse__png);
 		#end
 
-		bgColor = FlxColor.fromInt(0xFF0B2B36);
+		bgColor = Registry.backgroundColor;
 
 		titleTx = new SBNFText(0, 0, "SuperBoats 2", 84);
 		titleTx.color = FlxColor.WHITE;
@@ -69,13 +69,21 @@ class MenuState extends FlxState
 		version.x = FlxG.width - (version.width + 32);
 		add(version);
 
-		var playBtn = new SBNFButton(0, 350, "Play", onClickPlay);
-		playBtn.screenCenter(FlxAxes.X);
-		add(playBtn);
+		// set up menu
+		menuGroup.updatePosition(FlxG.width / 2, 340);
+        menuGroup.itemMargin = 12;
+        menuWidth = 240;
+        menuItemTextSize = 32;
 
-		var settingsBtn = new SBNFButton(0, 32, "Settings", onClickSettings);
-		settingsBtn.x = FlxG.width - (settingsBtn.width + 32);
-		add(settingsBtn);
+		menuItems.push({
+            text: "Play",
+            callback: onClickPlay
+        });
+
+		menuItems.push({
+            text: "Settings",
+            callback: onClickSettings
+        });
 
 		var lvtx = new SBNFText(0, 410, "level " + Registry.gameLevel, 24);
 		lvtx.screenCenter(FlxAxes.X);
@@ -103,16 +111,8 @@ class MenuState extends FlxState
 
 		// hotkeys
 		#if !FLX_NO_KEYBOARD
-		if (FlxG.keys.anyJustPressed([ S ])) {
-			onClickSettings();
-		}
-		if (FlxG.keys.anyJustPressed([ ENTER ])) {
-			onClickPlay();
-		}
 		if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
-			#if ((desktop || mobile) && !next)
-			openfl.Lib.exit();
-			#end
+			tryExitGame();
 		}
 		#end
 
@@ -140,5 +140,11 @@ class MenuState extends FlxState
 		FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
 			FlxG.switchState(new SettingsState());
 		});
+	}
+
+	private function tryExitGame() {
+		#if (desktop)
+		openfl.system.System.exit(0);
+		#end
 	}
 }
