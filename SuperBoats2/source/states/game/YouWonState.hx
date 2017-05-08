@@ -14,8 +14,9 @@ import nf4.effects.particles.*;
 import nf4.util.*;
 
 import ui.*;
+import ui.menu.*;
 
-class YouWonState extends FlxState {
+class YouWonState extends SBNFMenuState {
 
     public var effectEmitter:NFParticleEmitter;
 
@@ -42,21 +43,30 @@ class YouWonState extends FlxState {
         effectEmitter = new NFParticleEmitter(200);
         add(effectEmitter);
 
-        var tt2 = new SBNFText(0, FlxG.height * 0.65, "you won. level " + Registry.gameLevel + " complete.", 32);
+        var tt2 = new SBNFText(0, 240, "you won. level " + Registry.gameLevel + " complete.", 32);
 		tt2.screenCenter(FlxAxes.X);
 		add(tt2);
 
-        var menuBtn = new SBNFButton(0, 580, "Menu", onReturnToMenu);
-		menuBtn.screenCenter(FlxAxes.X);
-		add(menuBtn);
+        // set up menu
+		menuGroup.updatePosition(FlxG.width / 2, 480);
+        menuGroup.itemMargin = 12;
+        menuWidth = 240;
+        menuItemTextSize = 32;
 
-        var replayBtn = new SBNFButton(0, 640, "Replay", onClickReplay);
-		replayBtn.screenCenter(FlxAxes.X);
-		add(replayBtn);
+		menuItems.push({
+            text: "Menu",
+            callback: onReturnToMenu
+        });
 
-        var nextLevelBtn = new SBNFButton(0, 700, "Next Level", onClickNextLv);
-		nextLevelBtn.screenCenter(FlxAxes.X);
-		add(nextLevelBtn);
+		menuItems.push({
+            text: "Replay",
+            callback: onClickReplay
+        });
+
+        menuItems.push({
+            text: "Next Level",
+            callback: onClickNextLv
+        });
 
         nextLevel = Registry.gameLevel + 1;
 
