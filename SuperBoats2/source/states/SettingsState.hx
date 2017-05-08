@@ -7,16 +7,16 @@ import flixel.tweens.*;
 import flixel.effects.particles.*;
 import flixel.addons.effects.chainable.*;
 
-import states.game.*;
-
 import nf4.ui.*;
+import nf4.ui.menu.*;
 import nf4.effects.particles.*;
 import nf4.util.*;
 
 import ui.*;
+import ui.menu.*;
 
-class SettingsState extends FlxState
-{
+class SettingsState extends SBNFMenuState {
+
 	override public function create():Void
 	{
 		#if !FLX_NO_MOUSE
@@ -24,24 +24,33 @@ class SettingsState extends FlxState
 		FlxG.mouse.load(AssetPaths.mouse__png);
 		#end
 
-		bgColor = FlxColor.fromInt(0x0B2B36);
+		bgColor = Registry.backgroundColor;
 
 		var titleTx = new SBNFText(0, 80, "Settings", 84);
 		titleTx.color = FlxColor.WHITE;
 		titleTx.screenCenter(FlxAxes.X);
 		add(titleTx);
 
-		var resetGameBtn = new SBNFButton(0, 540, "Reset Game", onResetSave);
-		resetGameBtn.screenCenter(FlxAxes.X);
-		add(resetGameBtn);
-		
-		var saveDataBtn = new SBNFButton(0, 600, "Save Game", onSaveData);
-		saveDataBtn.screenCenter(FlxAxes.X);
-		add(saveDataBtn);
+		// set up menu
+		menuGroup.updatePosition(FlxG.width / 2, 340);
+        menuGroup.itemMargin = 12;
+        menuWidth = 240;
+        menuItemTextSize = 32;
 
-		var returnBtn = new SBNFButton(0, 700, "Return", onReturn);
-		returnBtn.screenCenter(FlxAxes.X);
-		add(returnBtn);
+		menuItems.push({
+            text: "Save Game",
+            callback: onSaveData
+        });
+
+		menuItems.push({
+            text: "Reset Game",
+            callback: onResetSave
+        });
+
+		menuItems.push({
+            text: "Return",
+            callback: onReturn
+        });
 
 		FlxG.camera.fade(bgColor, 0.4, true);
 
@@ -62,7 +71,7 @@ class SettingsState extends FlxState
 
 	private function onReturn() {
 		// switch
-		FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
+		FlxG.camera.fade(Registry.washoutColor, 0.4, false, function () {
 			FlxG.switchState(new MenuState());
 		});
 	}
