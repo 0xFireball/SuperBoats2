@@ -14,11 +14,11 @@ import nf4.effects.particles.*;
 import nf4.util.*;
 
 import ui.*;
+import ui.menu.*;
 
-class GameSelectState extends FlxState
-{
-	override public function create():Void
-	{
+class GameSelectState extends SBNFMenuState {
+
+	public override function create():Void {
 		#if !FLX_NO_MOUSE
 		FlxG.mouse.visible = true;
 		FlxG.mouse.load(AssetPaths.mouse__png);
@@ -31,17 +31,33 @@ class GameSelectState extends FlxState
 		titleTx.screenCenter(FlxAxes.X);
 		add(titleTx);
 
-		var classicGameBtn = new SBNFButton(0, 350, "Classic", onSelectClassic);
-		classicGameBtn.screenCenter(FlxAxes.X);
-		add(classicGameBtn);
+		// var classicGameBtn = new SBNFButton(0, 350, "Classic", onSelectClassic);
+		// classicGameBtn.screenCenter(FlxAxes.X);
+		// add(classicGameBtn);
 		
-		var warGameBtn = new SBNFButton(0, 410, "Naval War", onSelectNavalWar);
-		warGameBtn.screenCenter(FlxAxes.X);
-		add(warGameBtn);
+		// var warGameBtn = new SBNFButton(0, 410, "Naval War", onSelectNavalWar);
+		// warGameBtn.screenCenter(FlxAxes.X);
+		// add(warGameBtn);
 
-		var returnBtn = new SBNFButton(0, 700, "Return", onReturn);
-		returnBtn.screenCenter(FlxAxes.X);
-		add(returnBtn);
+		// var returnBtn = new SBNFButton(0, 700, "Return", onReturn);
+		// returnBtn.screenCenter(FlxAxes.X);
+		// add(returnBtn);
+
+		// set up menu
+		menuGroup.updatePosition(FlxG.width / 2, 340);
+        menuGroup.itemMargin = 12;
+        menuWidth = 240;
+        menuItemTextSize = 32;
+
+		menuItems.push({
+            text: "Classic",
+            callback: onSelectClassic
+        });
+
+		menuItems.push({
+            text: "Naval War",
+            callback: onSelectNavalWar
+        });
 
 		FlxG.camera.fade(bgColor, 0.4, true);
 
@@ -55,13 +71,14 @@ class GameSelectState extends FlxState
             // dismiss menu
 			onReturn();
 		}
+		#end
 
-		if (FlxG.keys.anyJustPressed([ ONE ])) {
-            onSelectClassic();
-		}
-
-		if (FlxG.keys.anyJustPressed([ TWO ])) {
-            onSelectNavalWar();
+		#if !FLX_NO_GAMEPAD
+		var gamepad = FlxG.gamepads.lastActive;
+		if (gamepad != null) {
+			if (gamepad.anyJustPressed([B])) {
+				onReturn();
+			}
 		}
 		#end
 
