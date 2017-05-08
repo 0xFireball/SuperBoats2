@@ -4,12 +4,14 @@ import flixel.*;
 import flixel.util.*;
 
 import nf4.ui.*;
+import nf4.ui.menu.*;
 
 import ui.*;
 
 class PauseSubState extends FlxSubState {
 
-    private var previousZoom:Float;
+    public var menuItems:NFMenuItemGroup;
+    private var menuWidth:Float = 300;
 
     public override function create() {
         #if !FLX_NO_MOUSE
@@ -17,21 +19,29 @@ class PauseSubState extends FlxSubState {
 		FlxG.mouse.load(AssetPaths.diamond_mouse__png);
 		#end
 
-        var levelText = new SBNFText(0, FlxG.camera.scroll.y + 160, "level " + Registry.gameLevel, 48);
+        var levelText = new SBNFText(0, 160 + FlxG.camera.scroll.y, "paused", 48);
         levelText.screenCenter(FlxAxes.X);
         levelText.x += FlxG.camera.scroll.x;
         add(levelText);
 
-        var menuBtn = new SBNFButton(0, 640, "Exit to Menu", onReturnToMenu);
-		menuBtn.screenCenter(FlxAxes.X);
-		add(menuBtn);
+        menuItems = new NFMenuItemGroup();
+        menuItems.updatePosition(FlxG.width / 2 + FlxG.camera.scroll.x, FlxG.camera.scroll.y + 440);
+        add(menuItems);
 
-        var returnBtn = new SBNFButton(0, 700, "Return", onReturnToGame);
-		returnBtn.screenCenter(FlxAxes.X);
-		add(returnBtn);
+        var menuBtn = new NFMenuItem(
+            new SBNFText("Exit to Menu", 30),
+            menuWidth,
+            onReturnToMenu
+        );
 
-        previousZoom = FlxG.camera.zoom;
-        FlxG.camera.zoom = FlxG.camera.initialZoom;
+        var returnBtn = new NFMenuItem(
+            new SBNFText("Return", 30),
+            menuWidth,
+            onReturnToGame
+        );
+
+        menuItems.addItem(menuBtn);
+        menuItems.addItem(returnBtn);
 
         super.create();
     }
@@ -42,6 +52,13 @@ class PauseSubState extends FlxSubState {
             // dismiss menu
 			onReturnToGame();
 		}
+        #end
+        #if !FLX_NO_GAMEPAD
+        if (FlxG.gamepads.lastActive != null) {
+            if (FlxG.gamepads.lastActive.anyJustPressed([ START ])) {
+                onReturnToGame();
+            }
+        }
         #end
 
         super.update(dt);
@@ -56,7 +73,6 @@ class PauseSubState extends FlxSubState {
     }
 
     private function onReturnToGame() {
-        FlxG.camera.zoom = previousZoom;
         // return to game
         this.close();
     }
