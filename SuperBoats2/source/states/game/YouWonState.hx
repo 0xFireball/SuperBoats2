@@ -43,12 +43,12 @@ class YouWonState extends SBNFMenuState {
         effectEmitter = new NFParticleEmitter(200);
         add(effectEmitter);
 
-        var tt2 = new SBNFText(0, 240, "you won. level " + Registry.gameLevel + " complete.", 32);
+        var tt2 = new SBNFText(0, 340, "you won. level " + Registry.gameLevel + " complete.", 32);
 		tt2.screenCenter(FlxAxes.X);
 		add(tt2);
 
         // set up menu
-		menuGroup.updatePosition(FlxG.width / 2, 480);
+		menuGroup.updatePosition(FlxG.width / 2, 500);
         menuGroup.itemMargin = 12;
         menuWidth = 240;
         menuItemTextSize = 32;

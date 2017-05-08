@@ -39,7 +39,7 @@ class GameOverState extends SBNFMenuState {
         effectEmitter = new NFParticleEmitter(200);
         add(effectEmitter);
 
-        var tt2 = new SBNFText(0, 240, "mothership health: " + Std.int((1 - progress) * 100) + "%", 32);
+        var tt2 = new SBNFText(0, 340, "mothership health: " + Std.int((1 - progress) * 100) + "%", 32);
 		tt2.screenCenter(FlxAxes.X);
 		add(tt2);
 
