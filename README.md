@@ -2,6 +2,8 @@
 
 A challenging, uncomplicated arcade battle.
 
+## [Download](https://petaphaser.itch.io/superboats2)
+
  How to play:
 
 The gameplay is straightforward: you pilot a small boat along with some ally boats, and fight the powerful enemy warships. But there's plenty of room for error: a as a split second mistake will send you crashing into a barrage of missiles. Learn to use your weapons and master the exciting drifting controls. Protect and lead your allies in a daring deathmatch against a slow-moving but heavy-hitting team of enemies. The game gets progressively more challenging each level.
