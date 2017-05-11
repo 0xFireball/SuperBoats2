@@ -14,8 +14,9 @@ import nf4.effects.particles.*;
 import nf4.util.*;
 
 import ui.*;
+import ui.menu.*;
 
-class GameOverState extends FlxState {
+class GameOverState extends SBNFMenuState {
 
     public var effectEmitter:NFParticleEmitter;
     public var progress:Float;
@@ -38,13 +39,20 @@ class GameOverState extends FlxState {
         effectEmitter = new NFParticleEmitter(200);
         add(effectEmitter);
 
-        var tt2 = new SBNFText(0, FlxG.height * 0.65, "mothership health: " + Std.int((1 - progress) * 100) + "%", 32);
+        var tt2 = new SBNFText(0, 340, "mothership health: " + Std.int((1 - progress) * 100) + "%", 32);
 		tt2.screenCenter(FlxAxes.X);
 		add(tt2);
 
-        var playBtn = new SBNFButton(0, 700, "Return", onClickReturn);
-		playBtn.screenCenter(FlxAxes.X);
-		add(playBtn);
+        // set up menu
+		menuGroup.updatePosition(FlxG.width / 2, 540);
+        menuGroup.itemMargin = 12;
+        menuWidth = 240;
+        menuItemTextSize = 32;
+
+		menuItems.push({
+            text: "Menu",
+            callback: onClickReturn
+        });
 
         super.create();
     }
