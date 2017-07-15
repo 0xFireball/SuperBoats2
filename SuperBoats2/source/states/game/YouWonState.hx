@@ -31,6 +31,8 @@ class YouWonState extends SBNFMenuState {
     }
 
     public override function create() {
+        super.create();
+
         #if !FLX_NO_MOUSE
 		FlxG.mouse.visible = true;
 		#end
@@ -69,8 +71,6 @@ class YouWonState extends SBNFMenuState {
         });
 
         nextLevel = Registry.gameLevel + 1;
-
-        super.create();
     }
 
     public override function update(dt:Float) {

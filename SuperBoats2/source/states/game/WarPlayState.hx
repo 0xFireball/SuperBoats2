@@ -53,6 +53,8 @@ class WarPlayState extends FlxState
 
 	override public function create():Void
 	{
+		super.create();
+
 		#if !FLX_NO_MOUSE
 		FlxG.mouse.visible = true;
 		FlxG.mouse.load(AssetPaths.diamond_mouse__png);
@@ -149,8 +151,6 @@ class WarPlayState extends FlxState
 		minimap.follow(player, LOCKON, 1.0);
 		FlxG.cameras.add(minimap);
 		#end
-
-		super.create();
 	}
 
 	override public function update(dt:Float):Void

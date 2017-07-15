@@ -8,6 +8,8 @@ import flixel.addons.display.*;
 import flixel.group.FlxGroup;
 import flixel.tile.*;
 
+import flixel.addons.nape.*;
+
 import sprites.boats.*;
 import sprites.projectiles.*;
 import sprites.ui.*;
@@ -41,8 +43,13 @@ class ClassicPlayState extends FlxState
 	private var announcing:Bool = true;
 	private var announcementIndex:Int = 0;
 
-	override public function create():Void
+	public override function create():Void
 	{
+		super.create();
+
+		// set up Nape
+		FlxNapeSpace.init();
+
 		#if !FLX_NO_MOUSE
 		FlxG.mouse.visible = true;
 		FlxG.mouse.load(AssetPaths.diamond_mouse__png);
@@ -120,8 +127,6 @@ class ClassicPlayState extends FlxState
 		announcementText = new SBNFText(32, 0, announcements[announcementIndex], 36);
 		announcementText.y = FlxG.height - (announcementText.height + 32);
 		add(announcementText);
-
-		super.create();
 	}
 
 	override public function update(dt:Float):Void
