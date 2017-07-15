@@ -11,8 +11,8 @@ using nf4.math.NFMathExt;
 class BoatAiController<T:Boat> {
 	public var triggerRadius:Float = 150.0;
 	public var style:Style = Passive;
-	public var me:NFSprite;
-	public var target:NFSprite;
+	public var me:Boat;
+	public var target:Boat;
 
 	public var state(default, null):BoatAiState<T>;
 

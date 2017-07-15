@@ -45,6 +45,8 @@ class PlayerBoat extends GreenBoat {
         loadGraphic(AssetPaths.superboats2_player__png);
 		offset.set(15, 1);
 		setSize(12, 40);
+
+		createPhysicsBody();
 	}
 
 	private override function addWeapons() {

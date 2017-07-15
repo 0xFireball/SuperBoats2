@@ -11,9 +11,11 @@ import nf4.effects.particles.*;
 
 using nf4.math.NFMathExt;
 
+import sprites.boats.*;
+
 class MortarShell extends Projectile {
 
-	public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Life:Float = 30.0, Target:NFSprite) {
+	public function new(?Owner:FlxSprite, ?X:Float = 0, ?Y:Float = 0, Life:Float = 30.0, Target:Boat) {
 		super(Owner, X, Y, Life, Target);
 		damageFactor = Math.random() * 10 + 2;
 		mass = (Math.random() * 2400) + 2400;

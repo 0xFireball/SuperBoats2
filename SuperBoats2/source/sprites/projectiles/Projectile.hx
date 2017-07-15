@@ -12,9 +12,13 @@ import nf4.util.*;
 import nf4.effects.particles.NFParticleEmitter;
 using nf4.math.NFMathExt;
 
+import sprites.boats.*;
+
 class Projectile extends NFSprite {
+
 	public var movementSpeed:Float = 100;
-	public var target:NFSprite;
+
+	public var target:Boat;
 
 	/**
 	 * The deadliness of the weapon
@@ -32,13 +36,13 @@ class Projectile extends NFSprite {
 
 	public var explosionEmitter:NFParticleEmitter;
 
-	public var owner:NFSprite;
+	public var owner:FlxSprite;
 
 	public var life:Float;
 
 	public var age:Float = 0.0;
 
-	public function new(Owner:NFSprite, X:Float = 0, Y:Float = 0, Life:Float = 30.0, ?Target:NFSprite) {
+	public function new(Owner:FlxSprite, X:Float = 0, Y:Float = 0, Life:Float = 30.0, ?Target:Boat) {
 		super(X, Y);
 
 		owner = Owner;
@@ -68,7 +72,7 @@ class Projectile extends NFSprite {
 		hitSprite(target);
 	}
 
-	public function hitSprite(sprite:NFSprite) {
+	public function hitSprite(sprite:Boat) {
 		if (!alive) return; // dead sprites don't explode
 		if (sprite == owner) return;
 		// deal damage

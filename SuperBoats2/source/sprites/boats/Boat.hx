@@ -17,7 +17,7 @@ import sprites.boats.weapons.*;
 
 import states.game.data.*;
 
-class Boat extends NFSprite {
+class Boat extends NFNapeSprite {
     public var angularThrust(default, null):Float = 0.05 * Math.PI;
 	public var thrust(default, null):Float = 3.5;
 	public var sprayAmount(default, null):Int = 5;
@@ -70,8 +70,20 @@ class Boat extends NFSprite {
 		addWeapons();
 	}
 
-	private function addWeapons() {
+	private function createPhysicsBody() {
+		// create body
+		var body = new nape.phys.Body(nape.phys.BodyType.DYNAMIC, nape.geom.Vec2.weak(x, y));
+		// add shape
+		body.shapes.add(new nape.shape.Polygon(nape.shape.Polygon.box(width, height)));
+		// set material
+		body.setShapeMaterials(
+			new nape.phys.Material(0.8, 1.0, 2.0, 40)
+		);
+		addPremadeBody(body);	
+	}
 
+	private function addWeapons() {
+		// override
 	}
 
 	override public function update(dt:Float) {

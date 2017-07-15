@@ -43,6 +43,8 @@ class Mothership extends Warship {
 		loadGraphic(AssetPaths.superboats2_mothership__png);
 		setSize(20, 60);
 		offset.set(22, 2);
+
+		createPhysicsBody();
 	}
 
 	private override function addWeapons() {

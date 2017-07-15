@@ -45,6 +45,8 @@ class Warship extends Boat {
 		loadGraphic(AssetPaths.superboats2_warship__png);
 		offset.set(15, 1);
 		setSize(13, 40);
+
+		createPhysicsBody();
 	}
 
 	private override function addWeapons() {

@@ -1,15 +1,18 @@
 package sprites.projectiles;
 
+import flixel.*;
 import flixel.math.*;
 import flixel.effects.particles.*;
 
 import nf4.NFSprite;
 
+import sprites.boats.*;
+
 class TargetingProjectile extends Projectile {
 	public var thrust(default, null):Float = 1;
 	public var angularThrust(default, null):Float = FlxAngle.asDegrees(Math.PI * 0.015);
 
-    public function new(?Owner:NFSprite, ?X:Float = 0, ?Y:Float = 0, Life:Float = 30.0, Target:NFSprite) {
+    public function new(?Owner:FlxSprite, ?X:Float = 0, ?Y:Float = 0, Life:Float = 30.0, Target:Boat) {
 		super(Owner, X, Y, Life, Target);
     }
 
