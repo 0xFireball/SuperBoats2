@@ -29,10 +29,10 @@ class HUD extends FlxSpriteGroup {
         backing.makeGraphic(FlxG.width, 24, FlxColor.fromRGBFloat(0.3, 0.3, 0.3, 0.6));
         add(backing);
 
-        shieldIntText = new SBNFText(40, 4, "Shield Integrity", 16);
+        shieldIntText = new SBNFText(40, 4, "Shield", 16);
         add(shieldIntText);
 
-        hullIntText = new SBNFText(60 + shieldIntText.x + shieldIntText.width, 4, "Hull Integrity", 16);
+        hullIntText = new SBNFText(60 + shieldIntText.x + shieldIntText.width, 4, "Hull", 16);
         add(hullIntText);
 
         scrollFactor.set(0, 0);
@@ -40,9 +40,9 @@ class HUD extends FlxSpriteGroup {
 
     public override function update(dt:Float) {
 
-        shieldIntText.text = "Shield Integrity: " + Std.int(stateData.player.shieldPercentage) + "%";
+        shieldIntText.text = "Shield: " + Std.int(stateData.player.shieldPercentage) + "%";
 
-        hullIntText.text = "Hull Integrity: " + Std.int(stateData.player.healthPercentage) + "%";
+        hullIntText.text = "Hull: " + Std.int(stateData.player.healthPercentage) + "%";
 
         // indicator coloring
 
