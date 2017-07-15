@@ -77,6 +77,11 @@ class ClassicPlayState extends FlxState
 		);
 		add(wallMap);
 
+		// add nape walls
+		FlxNapeSpace.createWalls(32, 32, FlxG.width, FlxG.height, 16,
+			new nape.phys.Material(0.05)
+		);
+
 		stateData = new GameStateData();
 
 		allies = new FlxTypedGroup<Boat>();

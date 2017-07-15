@@ -77,8 +77,9 @@ class Boat extends NFNapeSprite {
 		body.shapes.add(new nape.shape.Polygon(nape.shape.Polygon.box(width, height)));
 		// set material
 		body.setShapeMaterials(
-			new nape.phys.Material(0.8, 1.0, 2.0, 40)
+			new nape.phys.Material(0.8, 1.0, 2.0)
 		);
+		body.mass = mass; // use flixel/nf mass to set body mass
 		addPremadeBody(body);	
 	}
 
@@ -136,9 +137,11 @@ class Boat extends NFNapeSprite {
 		if (Thrust && Brake) Thrust = Brake = false;
 
 		if (Left) {
-			angularVelocity -= angularThrust;
+			// angularVelocity -= angularThrust;
+			body.angularVel -= angularThrust;
 		} else if (Right) {
-			angularVelocity += angularThrust;
+			// angularVelocity += angularThrust;
+			body.angularVel += angularThrust;
 		}
 		var thrustVector = FlxVector.get(0, 0);
 		drag.set(15, 15);
@@ -150,7 +153,8 @@ class Boat extends NFNapeSprite {
 			drag.scale(6);
 		}
 		thrustVector.rotate(FlxPoint.weak(0, 0), angle);
-		velocity.addPoint(thrustVector);
+		// velocity.addPoint(thrustVector);
+		body.velocity.addeq(nape.geom.Vec2.weak(thrustVector.x, thrustVector.y));
 		thrustVector.put();
 	}
 
