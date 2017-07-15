@@ -51,7 +51,9 @@ class GreenBoat extends Boat {
 		maxVelocity.set(240, 240);
 		sprayAmount = 8;
 		
-		makeGraphic(14, 32, FlxColor.fromRGBFloat(0.1, 0.9, 0.5));
+		loadGraphic(AssetPaths.superboats2_ally__png);
+		offset.set(11, 11);
+		setSize(10, 30);
 	}
 
 	private override function addWeapons() {

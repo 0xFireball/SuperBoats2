@@ -40,10 +40,9 @@ class Mothership extends Warship {
 			hullShieldRegen = 2 + (lvl - 1) * 2;
 		}
 
-		loadGraphic(AssetPaths.mothership_boat__png);
-		setSize(32, 63);
-		offset.set(16, 0);
-		updateHitbox();
+		loadGraphic(AssetPaths.superboats2_mothership__png);
+		setSize(20, 60);
+		offset.set(22, 2);
 	}
 
 	private override function addWeapons() {

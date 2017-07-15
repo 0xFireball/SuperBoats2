@@ -41,10 +41,10 @@ class PlayerBoat extends GreenBoat {
 			maxVelocity.set(380, 380);
 		}
 		maxAllyCount += Std.int(Registry.gameLevel / 3) * 2;
-        loadGraphic(AssetPaths.player_boat__png);
-		offset.set(14, 9);
-		setSize(14, 30);
-		updateHitbox();
+
+        loadGraphic(AssetPaths.superboats2_player__png);
+		offset.set(15, 1);
+		setSize(12, 40);
 	}
 
 	private override function addWeapons() {
