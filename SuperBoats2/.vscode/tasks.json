@@ -6,7 +6,10 @@
 		{
 			"taskName": "flash release",
 			"suppressTaskName": true,
-			"args": ["test", "flash"],
+			"args": [
+				"test",
+				"flash"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -24,7 +27,12 @@
 		{
 			"taskName": "flash debug",
 			"suppressTaskName": true,
-			"args": ["test", "flash", "-debug", "-Dfdb"],
+			"args": [
+				"test",
+				"flash",
+				"-debug",
+				"-Dfdb"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -42,7 +50,12 @@
 		{
 			"taskName": "flash debug (build only)",
 			"suppressTaskName": true,
-			"args": ["build", "flash", "-debug", "-Dfdb"],
+			"args": [
+				"build",
+				"flash",
+				"-debug",
+				"-Dfdb"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -60,7 +73,10 @@
 		{
 			"taskName": "html5 release",
 			"suppressTaskName": true,
-			"args": ["test", "html5"],
+			"args": [
+				"test",
+				"html5"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -78,7 +94,11 @@
 		{
 			"taskName": "html5 debug",
 			"suppressTaskName": true,
-			"args": ["test", "html5", "-debug"],
+			"args": [
+				"test",
+				"html5",
+				"-debug"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -96,7 +116,10 @@
 		{
 			"taskName": "neko release",
 			"suppressTaskName": true,
-			"args": ["test", "neko"],
+			"args": [
+				"test",
+				"neko"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -114,8 +137,11 @@
 		{
 			"taskName": "neko debug",
 			"suppressTaskName": true,
-			"isBuildCommand": true,
-			"args": ["test", "neko", "-debug"],
+			"args": [
+				"test",
+				"neko",
+				"-debug"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -128,12 +154,20 @@
 					"severity": 6,
 					"message": 7
 				}
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
 			}
 		},
 		{
 			"taskName": "neko release -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "neko", "-Dnext"],
+			"args": [
+				"test",
+				"neko",
+				"-Dnext"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -151,7 +185,12 @@
 		{
 			"taskName": "neko debug -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "neko", "-debug", "-Dnext"],
+			"args": [
+				"test",
+				"neko",
+				"-debug",
+				"-Dnext"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -169,7 +208,10 @@
 		{
 			"taskName": "cpp release",
 			"suppressTaskName": true,
-			"args": ["test", "cpp"],
+			"args": [
+				"test",
+				"cpp"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -187,7 +229,11 @@
 		{
 			"taskName": "cpp debug",
 			"suppressTaskName": true,
-			"args": ["test", "cpp", "-debug"],
+			"args": [
+				"test",
+				"cpp",
+				"-debug"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -205,7 +251,11 @@
 		{
 			"taskName": "cpp release -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "cpp", "-Dnext"],
+			"args": [
+				"test",
+				"cpp",
+				"-Dnext"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -223,7 +273,12 @@
 		{
 			"taskName": "cpp debug -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "cpp", "-Dnext", "-debug"],
+			"args": [
+				"test",
+				"cpp",
+				"-Dnext",
+				"-debug"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -241,7 +296,11 @@
 		{
 			"taskName": "android debug",
 			"suppressTaskName": true,
-			"args": ["test", "android", "-debug"],
+			"args": [
+				"test",
+				"android",
+				"-debug"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -259,7 +318,10 @@
 		{
 			"taskName": "android release",
 			"suppressTaskName": true,
-			"args": ["test", "android"],
+			"args": [
+				"test",
+				"android"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -277,7 +339,12 @@
 		{
 			"taskName": "android debug -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "android", "-debug", "-Dnext"],
+			"args": [
+				"test",
+				"android",
+				"-debug",
+				"-Dnext"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -295,7 +362,11 @@
 		{
 			"taskName": "android release -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "android", "-Dnext"],
+			"args": [
+				"test",
+				"android",
+				"-Dnext"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -313,7 +384,11 @@
 		{
 			"taskName": "ios debug",
 			"suppressTaskName": true,
-			"args": ["test", "ios", "-debug"],
+			"args": [
+				"test",
+				"ios",
+				"-debug"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -331,7 +406,10 @@
 		{
 			"taskName": "ios release",
 			"suppressTaskName": true,
-			"args": ["test", "ios"],
+			"args": [
+				"test",
+				"ios"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -349,7 +427,12 @@
 		{
 			"taskName": "ios debug -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "ios", "-debug", "-Dnext"],
+			"args": [
+				"test",
+				"ios",
+				"-debug",
+				"-Dnext"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
@@ -367,7 +450,11 @@
 		{
 			"taskName": "ios release -Dnext",
 			"suppressTaskName": true,
-			"args": ["test", "ios", "-Dnext"],
+			"args": [
+				"test",
+				"ios",
+				"-Dnext"
+			],
 			"problemMatcher": {
 				"owner": "haxe",
 				"pattern": {
