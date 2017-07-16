@@ -2,17 +2,19 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "flash build + launch",
-			"type": "fdb",
+			// Source: https://github.com/jcward/vscode-hxcpp-debug/blob/master/test%20openfl/.vscode/launch.json#L34
+			"name": "Linux: C++ debug",
+			"runtimeExecutable": "${execPath}",
+			"args": [
+				"compilePath=${workspaceRoot}",
+				"compileCommand=lime build linux -debug -DHXCPP_DEBUGGER",
+				"runPath=${workspaceRoot}/export/debug/linux64/cpp/bin/",
+				"runCommand=SuperBoats2",
+				"runInTerminal=false"
+			],
+			"type": "hxcpp",
 			"request": "launch",
-			"program": "${workspaceRoot}/export/flash/bin/${APPLICATION_FILE}.swf",
-			"preLaunchTask": "flash debug (build only)"
-		},
-		{
-			"name": "flash launch",
-			"type": "fdb",
-			"request": "launch",
-			"program": "${workspaceRoot}/export/flash/bin/${APPLICATION_FILE}.swf"
+			"stopOnEntry": true
 		}
 	]
 }

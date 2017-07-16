@@ -83,6 +83,12 @@
 	<!-- Compiler Flags -->
 	<haxedef name="no-traces" if="!debug" />
 
+	<!--Animation Toggles-->
+	<haxedef name="NF_NO_ANIMATION" if="web" />
+
+	<haxelib name="hxcpp-debugger" if="debug" />
+	<haxedef name="HXCPP_DEBUGGER" if="debug" />
+
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
