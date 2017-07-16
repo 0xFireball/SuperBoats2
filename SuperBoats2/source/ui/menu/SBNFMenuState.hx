@@ -37,7 +37,7 @@ class MenuButtonData implements IMenuItemData {
 class MenuSwitchData implements IMenuItemData {
 
     public var disabled:Bool;
-    public var type:MenuItemType = MenuItemType.Button;
+    public var type:MenuItemType = MenuItemType.Switch;
 
     public var items:Array<String>;
     public var callback:Void->Void;

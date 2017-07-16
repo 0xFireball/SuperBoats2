@@ -35,7 +35,7 @@ class SettingsState extends SBNFMenuState {
 		// set up menu
 		menuGroup.updatePosition(FlxG.width / 2, 340);
         menuGroup.itemMargin = 12;
-        menuWidth = 240;
+        menuWidth = 300;
         menuItemTextSize = 32;
 
 		menuItems.push(
@@ -44,6 +44,10 @@ class SettingsState extends SBNFMenuState {
 
 		menuItems.push(
 			new MenuButtonData("Reset Game", onResetSave)
+		);
+
+		menuItems.push(
+			new MenuSwitchData(["Autosave: On", "Autosave: Off"], 1)
 		);
 
 		menuItems.push(
