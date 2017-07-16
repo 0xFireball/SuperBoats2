@@ -32,6 +32,9 @@
 	<classpath name="lib/nf4" />
 	<assets path="assets" embed="true" />
 
+	<app path="export" />
+	<app path="export/debug" if="debug" />
+
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="flixel" />
