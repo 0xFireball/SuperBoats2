@@ -57,6 +57,7 @@ class Boat extends NFSprite {
 
 		sprayEmitter = new FlxEmitter(X, Y);
 		sprayEmitter.scale.set(2, 2, 10, 10);
+		sprayEmitter.alpha.set(0.9, 1.0, 0.0, 0.3);
 		sprayEmitter.lifespan.set(0.1, 0.7);
 		sprayEmitter.color.set(FlxColor.fromRGBFloat(0.0, 0.4, 0.6, 0.4), FlxColor.fromRGBFloat(0.4, 0.8, 1.0, 0.9));
 		sprayEmitter.makeParticles(1, 1, FlxColor.WHITE, 200);
@@ -198,14 +199,14 @@ class Boat extends NFSprite {
 
 		var sprayTrailVector = FlxVector.get(velocity.x, velocity.y); // duplicate velocity vector
 		sprayTrailVector.rotate(FlxPoint.get(0, 0), 180);
-		sprayTrailVector.scale(0.7);
+		sprayTrailVector.scale(0.5);
 		var sprayAngle = FlxAngle.asDegrees(Math.atan(sprayTrailVector.y / sprayTrailVector.x));
 		if (sprayTrailVector.x < 0) {
 			sprayAngle += 180;
 		}
 		var sprayMag = sprayTrailVector.length;
 
-		sprayEmitter.launchAngle.set(sprayAngle);
+		sprayEmitter.launchAngle.set(sprayAngle - spraySpread / 2, sprayAngle + spraySpread / 2);
 		sprayEmitter.speed.set(sprayMag * 0.8, sprayMag);
 
 		if (sprayMag > 0) {
