@@ -4,6 +4,7 @@ package ui.menu;
 import flixel.*;
 
 import nf4.ui.menu.*;
+import nf4.ui.menu.items.*;
 
 import ui.*;
 
@@ -21,10 +22,10 @@ interface IMenuItemData {
 class MenuButtonData implements IMenuItemData {
     
     public var disabled:Bool;
+    public var type:MenuItemType = MenuItemType.Button;
 
     public var text:String;
     public var callback:Void->Void;
-    public var type:MenuItemType = MenuItemType.Button;
 
     public function new(Text:String, ?Callback:Void->Void, Disabled:Bool = false) {
         text = Text;
@@ -34,14 +35,17 @@ class MenuButtonData implements IMenuItemData {
 }
 
 class MenuSwitchData implements IMenuItemData {
+
     public var disabled:Bool;
+    public var type:MenuItemType = MenuItemType.Button;
 
     public var items:Array<String>;
     public var callback:Void->Void;
-    public var type:MenuItemType = MenuItemType.Button;
+    public var selectedIndex:Int;
 
-    public function new(Items:Array<String>, ?Callback:Void->Void, Disabled:Bool = false) {
+    public function new(Items:Array<String>, ?SelectedIndex:Int = 0, ?Callback:Void->Void, Disabled:Bool = false) {
         items = Items;
+        selectedIndex = SelectedIndex;
         callback = Callback;
         disabled = Disabled;
     }
@@ -57,22 +61,38 @@ class SBNFMenuState extends FlxState {
     public override function create() {
         // bind and create menu
 
+        var createText = function (?Text:String) {
+            return new SBNFText(0, 0, null, Text, menuItemTextSize);
+        };
+
         for (itemData in menuItems) {
+            var uiItem:NFMenuItem = null;
             switch (itemData.type) {
                 case MenuItemType.Button:
                     var buttonData:MenuButtonData = cast itemData;
                     var buttonItem = new NFMenuItem(
-                        new SBNFText(0, 0, null, buttonData.text, menuItemTextSize),
+                        createText(buttonData.text),
                         menuWidth,
                         buttonData.callback
                     );
-                    if (buttonData.disabled) {
-                        buttonItem.disable();
-                    }
-                    menuGroup.addItem(buttonItem);
+                    uiItem = buttonItem;
+                case MenuItemType.Switch:
+                    var switchData:MenuSwitchData = cast itemData;
+                    var switchItem = new NFMenuSwitch(
+                        createText(null),
+                        switchData.items,
+                        menuWidth,
+                        switchData.selectedIndex,
+                        switchData.callback
+                    );
+                    uiItem = switchItem;
                 default:
                     // ?
             }
+            if (itemData.disabled) {
+                uiItem.disable();
+            }
+            menuGroup.add(uiItem);
         }
 
         add(menuGroup);
