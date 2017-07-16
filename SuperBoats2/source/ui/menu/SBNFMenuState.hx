@@ -89,10 +89,12 @@ class SBNFMenuState extends FlxState {
                 default:
                     // ?
             }
+            
             if (itemData.disabled) {
                 uiItem.disable();
             }
-            menuGroup.add(uiItem);
+
+            menuGroup.addItem(uiItem);
         }
 
         add(menuGroup);
