@@ -31,3 +31,15 @@ Tips
    - You have both a shield and a hull. The shield's energy will regenerate at a constant rate as long as its power remains above zero. However, if the shield's charge is completely destroyed, it will stop regenerating. The shield will absorb projectile collisions. Effective use of your regeneration ability will let you survive harder levels!
    - To win, you have to protect your allies and allow them to regenerate, without taking too much damage yourself. Use C (set objective) to call your allies to you.
    - You can save your progress by going to the main menu > Settings > Save Game. You can also reset your save through this menu.
+
+# Development info
+
+- Powered by [HaxeFlixel](http://haxeflixel.com/)
+- Lots of components from my [nf4](https://github.com/0xFireball/nf4_flixel) library, an extension library for HaxeFlixel. The UI system is powered by
+    nf4's UI rather than flixel's UI.
+
+# License
+
+Copyright &copy; 2016-2017 Nihal Talur (0xFireball) (PetaPhaser). All Rights Reserved.
+
+Licensed as free software under the AGPLv3.
