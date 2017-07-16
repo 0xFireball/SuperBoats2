@@ -7,6 +7,7 @@ import nf4.ui.*;
 import nf4.ui.menu.*;
 
 import ui.*;
+import ui.menu.SBNFMenuState;
 
 class PauseSubState extends FlxSubState {
 

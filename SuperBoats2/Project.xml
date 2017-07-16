@@ -29,8 +29,9 @@
 
 	<set name="BUILD_DIR" value="export" />
 	<classpath name="source" />
-	<classpath name="lib/nf4" />
+	<classpath name="lib/nf4/src" />
 	<assets path="assets" embed="true" />
+	<assets path="lib/nf4/assets" embed="true" />
 
 	<app path="export" />
 	<app path="export/debug" if="debug" />

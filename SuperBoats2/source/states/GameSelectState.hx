@@ -15,6 +15,7 @@ import nf4.util.*;
 
 import ui.*;
 import ui.menu.*;
+import ui.menu.SBNFMenuState;
 
 class GameSelectState extends SBNFMenuState {
 
@@ -49,15 +50,13 @@ class GameSelectState extends SBNFMenuState {
         menuWidth = 240;
         menuItemTextSize = 32;
 
-		menuItems.push({
-            text: "Classic",
-            callback: onSelectClassic
-        });
+		menuItems.push(
+            new MenuButtonData("Classic", onSelectClassic)
+        );
 
-		menuItems.push({
-            text: "Naval War",
-            callback: onSelectNavalWar
-        });
+		menuItems.push(
+            new MenuButtonData("Naval War", onSelectNavalWar)
+        );
 
 		FlxG.camera.fade(bgColor, 0.4, true);
 

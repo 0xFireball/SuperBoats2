@@ -15,6 +15,7 @@ import nf4.util.*;
 
 import ui.*;
 import ui.menu.*;
+import ui.menu.SBNFMenuState;
 
 class GameOverState extends SBNFMenuState {
 
@@ -49,10 +50,9 @@ class GameOverState extends SBNFMenuState {
         menuWidth = 240;
         menuItemTextSize = 32;
 
-		menuItems.push({
-            text: "Menu",
-            callback: onClickReturn
-        });
+		menuItems.push(
+            new MenuButtonData("Menu", onClickReturn)
+        );
 
         super.create();
     }

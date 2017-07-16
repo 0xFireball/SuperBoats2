@@ -15,6 +15,7 @@ import nf4.util.*;
 
 import ui.*;
 import ui.menu.*;
+import ui.menu.SBNFMenuState;
 
 class YouWonState extends SBNFMenuState {
 
@@ -53,20 +54,17 @@ class YouWonState extends SBNFMenuState {
         menuWidth = 240;
         menuItemTextSize = 32;
 
-		menuItems.push({
-            text: "Menu",
-            callback: onReturnToMenu
-        });
+		menuItems.push(
+            new MenuButtonData("Menu", onReturnToMenu)
+        );
 
-		menuItems.push({
-            text: "Replay",
-            callback: onClickReplay
-        });
+        menuItems.push(
+            new MenuButtonData("Replay", onClickReplay)
+        );
 
-        menuItems.push({
-            text: "Next Level",
-            callback: onClickNextLv
-        });
+        menuItems.push(
+            new MenuButtonData("Next Level", onClickNextLv)
+        );
 
         nextLevel = Registry.gameLevel + 1;
 

@@ -15,6 +15,7 @@ import nf4.util.*;
 
 import ui.*;
 import ui.menu.*;
+import ui.menu.SBNFMenuState;
 
 class MenuState extends SBNFMenuState {
     private var titleTx:NFText;
@@ -75,21 +76,18 @@ class MenuState extends SBNFMenuState {
         menuWidth = 240;
         menuItemTextSize = 32;
 
-        menuItems.push({
-            text: "Play",
-            callback: onClickPlay
-        });
+        menuItems.push(
+            new MenuButtonData("Play", onClickPlay)
+        );
 
-        menuItems.push({
-            text: "Settings",
-            callback: onClickSettings
-        });
+        menuItems.push(
+            new MenuButtonData("Settings", onClickSettings)
+        );
 
         #if desktop
-		menuItems.push({
-            text: "Exit",
-            callback: tryExitGame
-        });
+		menuItems.push(
+            new MenuButtonData("Exit", tryExitGame)
+        );
         #end
 
         var lvtx = new SBNFText(0, 410, "level " + Registry.gameLevel, 24);

@@ -14,6 +14,7 @@ import nf4.util.*;
 
 import ui.*;
 import ui.menu.*;
+import ui.menu.SBNFMenuState;
 
 class SettingsState extends SBNFMenuState {
 
@@ -37,20 +38,17 @@ class SettingsState extends SBNFMenuState {
         menuWidth = 240;
         menuItemTextSize = 32;
 
-		menuItems.push({
-            text: "Save Game",
-            callback: onSaveData
-        });
+		menuItems.push(
+			new MenuButtonData("Save Game", onSaveData)
+		);
 
-		menuItems.push({
-            text: "Reset Game",
-            callback: onResetSave
-        });
+		menuItems.push(
+			new MenuButtonData("Reset Game", onResetSave)
+		);
 
-		menuItems.push({
-            text: "Return",
-            callback: onReturn
-        });
+		menuItems.push(
+			new MenuButtonData("Return", onReturn)
+		);
 
 		FlxG.camera.fade(bgColor, 0.4, true);
 
