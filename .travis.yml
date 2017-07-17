@@ -34,5 +34,6 @@ install:
 
 script:
   - export HXCPP_COMPILE_CACHE=~/hxcache
+  - echo "Building in $(pwd)"
   - cd SuperBoats2
   - haxelib run lime build linux
