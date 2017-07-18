@@ -14,16 +14,24 @@ class PauseSubState extends FlxSubState {
     public var menuItems:NFMenuItemGroup;
     private var menuWidth:Float = 300;
 
+    private var showLevel:Bool = false;
+
+    public function new(BGColor:FlxColor = FlxColor.TRANSPARENT, ShowLevel:Bool = false) {
+        super(BGColor);
+        showLevel = ShowLevel;
+    }
+
     public override function create() {
         #if !FLX_NO_MOUSE
 		FlxG.mouse.visible = true;
 		FlxG.mouse.load(AssetPaths.diamond_mouse__png);
 		#end
 
-        var levelText = new SBNFText(0, 160 + FlxG.camera.scroll.y, "paused", 48);
-        levelText.screenCenter(FlxAxes.X);
-        levelText.x += FlxG.camera.scroll.x;
-        add(levelText);
+        var infoTextContent = showLevel ? 'level ${Registry.gameLevel}' : "paused";
+        var infoText = new SBNFText(0, 160 + FlxG.camera.scroll.y, infoTextContent, 48);
+        infoText.screenCenter(FlxAxes.X);
+        infoText.x += FlxG.camera.scroll.x;
+        add(infoText);
 
         menuItems = new NFMenuItemGroup();
         menuItems.updatePosition(FlxG.width / 2 + FlxG.camera.scroll.x, FlxG.camera.scroll.y + 440);

@@ -146,7 +146,10 @@ class ClassicPlayState extends FlxState
 		// pause menu
 		#if !FLX_NO_KEYBOARD
 		if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
-			openSubState(new PauseSubState(FlxColor.fromRGBFloat(0.7, 0.7, 0.7, 0.8)));
+			openSubState(new PauseSubState(
+				FlxColor.fromRGBFloat(0.7, 0.7, 0.7, 0.8),
+				true
+			));
 		}
 		#end
 
