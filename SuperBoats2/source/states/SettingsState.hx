@@ -92,6 +92,8 @@ class SettingsState extends SBNFMenuState {
 	private function onResetSave() {
 		Registry.gameLevel = 0;
 		onSaveData();
+		// visual feedback
+		FlxG.camera.flash(FlxColor.RED, 0.2);
 	}
 
 	private function onSaveData() {
