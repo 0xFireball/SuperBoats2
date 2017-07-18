@@ -101,7 +101,7 @@ class GameSelectState extends SBNFMenuState {
 
 	private function onSelectNavalWar() {
 		FlxG.camera.fade(FlxColor.BLACK, 0.6, false, function () {
-			FlxG.switchState(new WarPlayState());
+			FlxG.switchState(new NavalWarPlayState());
 		});
 	}
 }

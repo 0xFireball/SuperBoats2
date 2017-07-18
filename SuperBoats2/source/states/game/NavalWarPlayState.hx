@@ -23,7 +23,7 @@ import ui.*;
 
 import mapgen.*;
 
-class WarPlayState extends FlxState
+class NavalWarPlayState extends FlxState
 {
 	public var player:PlayerBoat;
     public var mothership:Mothership;
