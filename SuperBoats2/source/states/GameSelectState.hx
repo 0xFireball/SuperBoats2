@@ -54,9 +54,11 @@ class GameSelectState extends SBNFMenuState {
             new MenuButtonData("Classic", onSelectClassic)
         );
 
+		#if (PP_EXPERIMENTAL_GAME)
 		menuItems.push(
             new MenuButtonData("Naval War", onSelectNavalWar)
         );
+		#end
 
 		FlxG.camera.fade(bgColor, 0.4, true);
 
