@@ -10,6 +10,8 @@ class Main extends Sprite
 	{
 		super();
 
+		Registry.updateMetadata();
+
 		// Attach debugger
 		#if (debug && cpp)
 			new debugger.HaxeRemote(true, "localhost");

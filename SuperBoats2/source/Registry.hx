@@ -10,6 +10,24 @@ class Registry {
 
     public static var gameVersion:String = "v0.5.1.0 alpha";
 
+    public static function updateMetadata() {
+        #if (neko)
+        gameVersion += " ~neko";
+        #end
+
+        #if (mobile)
+        gameVersion += " ~mobile";
+        #end
+
+        #if (debug)
+        gameVersion += " ~dbg";
+        #end
+
+        #if (experimental)
+        gameVersion += " ~exp";
+        #end
+    }
+
     // vars
 
     public static var gameLevel:Int = 0;
