@@ -189,7 +189,9 @@ class ClassicPlayState extends FlxState
 			FlxG.camera.fade(FlxColor.WHITE, 0.4, false, function () {
 				// increase level and go to youwon
 				Registry.gameLevel += 1;
-				util.SaveUtil.saveGameLevel();
+				if (Registry.saveSlot.data.autosave) {
+					util.SaveUtil.saveGameLevel();
+				}
 				FlxG.switchState(new YouWonState());
 			});
 		}

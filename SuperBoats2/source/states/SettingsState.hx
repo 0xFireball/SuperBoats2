@@ -39,7 +39,8 @@ class SettingsState extends SBNFMenuState {
         menuItemTextSize = 32;
 
 		menuItems.push(
-			new MenuSwitchData(["Autosave: On", "Autosave: Off"], 1, null, function (a:Int) {
+			new MenuSwitchData(["Autosave: On", "Autosave: Off"], Registry.saveSlot.data.autosave ? 0 : 1,
+			null, function (a:Int) {
 				if (a == 0) {
 					Registry.saveSlot.data.autosave = true;
 				} else if (a == 1) {
@@ -80,6 +81,8 @@ class SettingsState extends SBNFMenuState {
 	}
 
 	private function onReturn() {
+		// save settings
+		Registry.saveSlot.flush();
 		// switch
 		FlxG.camera.fade(Registry.washoutColor, 0.4, false, function () {
 			FlxG.switchState(new MenuState());
