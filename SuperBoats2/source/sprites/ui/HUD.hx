@@ -69,4 +69,11 @@ class HUD extends FlxSpriteGroup {
         super.update(dt);
     }
 
+    public override function destroy() {
+        // remove statedata reference
+        stateData = null;
+
+        super.destroy();
+    }
+
 }

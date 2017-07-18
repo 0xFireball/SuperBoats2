@@ -3,6 +3,7 @@ package states.game.data;
 
 import sprites.boats.*;
 import sprites.projectiles.*;
+import sprites.ui.*;
 
 import flixel.group.FlxGroup;
 import flixel.effects.particles.*;
@@ -17,11 +18,11 @@ class GameStateData {
     public var projectiles:FlxTypedGroup<Projectile>;
     public var emitter:FlxEmitter;
     public var effectEmitter:NFParticleEmitter;
+    public var hud:HUD;
 
     public function new(?Player:PlayerBoat, ?Mothership:Mothership,
         ?WarshipsGroup:FlxTypedGroup<Boat>, ?AlliesGroup:FlxTypedGroup<Boat>, ?ProjectilesGroup:FlxTypedGroup<Projectile>,
-        ?Emitter:FlxEmitter,
-        ?EffectEmitter:NFParticleEmitter) {
+        ?Emitter:FlxEmitter, ?EffectEmitter:NFParticleEmitter, ?Hud:HUD) {
         
         player = Player;
         mothership = Mothership;
@@ -33,6 +34,8 @@ class GameStateData {
 
         emitter = Emitter;
         effectEmitter = EffectEmitter;
+
+        hud = Hud;
     }
 
     public function destroy() {
@@ -43,5 +46,6 @@ class GameStateData {
         projectiles = null;
         emitter = null;
         effectEmitter = null;
+        hud = null;
     }
 }

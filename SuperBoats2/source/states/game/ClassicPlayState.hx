@@ -110,6 +110,7 @@ class ClassicPlayState extends FlxState
 
 		var hud = new HUD(stateData);
 		add(hud);
+		stateData.hud = hud;
 
 		if (Registry.gameLevel == 0) {
 			for (introAnnouncement in ["Welcome to SuperBoats 2!", "WASD: move", "Mouse: aim", "C/X: Set/release objective", "R/F/G: Fire",
