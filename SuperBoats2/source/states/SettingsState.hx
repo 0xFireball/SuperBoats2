@@ -39,15 +39,23 @@ class SettingsState extends SBNFMenuState {
         menuItemTextSize = 32;
 
 		menuItems.push(
-			new MenuButtonData("Save Game", onSaveData)
+			new MenuSwitchData(["Autosave: On", "Autosave: Off"], 1, null, function (a:Int) {
+				if (a == 0) {
+					Registry.saveSlot.data.autosave = true;
+				} else if (a == 1) {
+					Registry.saveSlot.data.autosave = false;
+				}
+			})
 		);
+
+		if (!Registry.saveSlot.data.autosave) {
+			menuItems.push(
+				new MenuButtonData("Save Game", onSaveData)
+			);
+		}
 
 		menuItems.push(
 			new MenuButtonData("Reset Game", onResetSave)
-		);
-
-		menuItems.push(
-			new MenuSwitchData(["Autosave: On", "Autosave: Off"], 1)
 		);
 
 		menuItems.push(
@@ -84,7 +92,6 @@ class SettingsState extends SBNFMenuState {
 	}
 
 	private function onSaveData() {
-		Registry.saveSlot.data.level = Registry.gameLevel;
-		Registry.saveSlot.flush();
+		util.SaveUtil.saveGameLevel();
 	}
 }

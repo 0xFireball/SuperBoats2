@@ -27,12 +27,19 @@ class Registry {
     }
 
     public static function reloadSave() {
+        prepareSave();
         gameLevel = saveSlot.data.level;
-        #if (!cpp)
-        if (gameLevel == null) {
-            gameLevel = 0;
+    }
+
+    public static function prepareSave() {
+        // make sure save is set to defaults
+        if (saveSlot.data.f == null || !saveSlot.data.f) {
+            saveSlot.data.f = true;
+
+            // set defaults
+            saveSlot.data.level = 0;
+            saveSlot.data.autosave = true;
         }
-        #end
     }
 
     // color constants

@@ -1,4 +1,4 @@
-package states.game;
+package states.game.screens;
 
 import flixel.*;
 import flixel.ui.*;
@@ -17,15 +17,11 @@ import ui.*;
 import ui.menu.*;
 import ui.menu.SBNFMenuState;
 
-class GameOverState extends SBNFMenuState {
+class YouWonState extends SBNFMenuState {
 
     public var effectEmitter:NFParticleEmitter;
-    public var progress:Float;
 
-    public function new(Progress:Float) {
-        progress = Progress;
-        super();
-    }
+    private var nextLevel:Int;
 
     public override function create() {
         #if !FLX_NO_MOUSE
@@ -40,18 +36,22 @@ class GameOverState extends SBNFMenuState {
         effectEmitter = new NFParticleEmitter(200);
         add(effectEmitter);
 
-        var tt2 = new SBNFText(0, 340, "mothership health: " + Std.int((1 - progress) * 100) + "%", 32);
+        var tt2 = new SBNFText(0, 340, "you won. level " + Registry.gameLevel + " complete.", 32);
 		tt2.screenCenter(FlxAxes.X);
 		add(tt2);
 
         // set up menu
-		menuGroup.updatePosition(FlxG.width / 2, 540);
+		menuGroup.updatePosition(FlxG.width / 2, 500);
         menuGroup.itemMargin = 12;
         menuWidth = 240;
         menuItemTextSize = 32;
 
 		menuItems.push(
-            new MenuButtonData("Menu", onClickReturn)
+            new MenuButtonData("Menu", onReturnToMenu)
+        );
+
+        menuItems.push(
+            new MenuButtonData("Next Level", onClickNextLv)
         );
 
         super.create();
@@ -62,20 +62,30 @@ class GameOverState extends SBNFMenuState {
 		for (i in 0...12) {
 			effectEmitter.emitSquare(FlxG.width / 2, FlxG.height / 2, Std.int(Math.random() * 6 + 3),
 				NFParticleEmitter.velocitySpread(220),
-			NFColorUtil.randCol(0.9, 0.3, 0.2, 0.1), 2.2);
+			NFColorUtil.randCol(0.2, 0.9, 0.2, 0.1), 1.1);
 		}
 
         // hotkeys
         #if !FLX_NO_KEYBOARD
-        if (FlxG.keys.anyJustPressed([ ESCAPE, ENTER ])) {
-			onClickReturn();
+		if (FlxG.keys.anyJustPressed([ ENTER ])) {
+			onClickNextLv();
+		}
+        if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
+			onReturnToMenu();
 		}
         #end
 
         super.update(dt);
     }
 
-    private function onClickReturn() {
+    private function onClickNextLv() {
+        FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
+            FlxG.switchState(new ClassicPlayState());
+        });
+    }
+
+    private function onReturnToMenu() {
+        // return to menu
         FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
             FlxG.switchState(new MenuState());
         });

@@ -1,4 +1,4 @@
-package states.game;
+package states.game.screens;
 
 import flixel.*;
 import flixel.ui.*;
@@ -17,18 +17,14 @@ import ui.*;
 import ui.menu.*;
 import ui.menu.SBNFMenuState;
 
-class YouWonState extends SBNFMenuState {
+class GameOverState extends SBNFMenuState {
 
     public var effectEmitter:NFParticleEmitter;
+    public var progress:Float;
 
-    private var nextLevel:Int;
-
-    private var navalWar:Bool;
-
-    public function new(NavalWar:Bool = false) {
+    public function new(Progress:Float) {
+        progress = Progress;
         super();
-
-        navalWar = NavalWar;
     }
 
     public override function create() {
@@ -44,29 +40,19 @@ class YouWonState extends SBNFMenuState {
         effectEmitter = new NFParticleEmitter(200);
         add(effectEmitter);
 
-        var tt2 = new SBNFText(0, 340, "you won. level " + Registry.gameLevel + " complete.", 32);
+        var tt2 = new SBNFText(0, 340, "mothership health: " + Std.int((1 - progress) * 100) + "%", 32);
 		tt2.screenCenter(FlxAxes.X);
 		add(tt2);
 
         // set up menu
-		menuGroup.updatePosition(FlxG.width / 2, 500);
+		menuGroup.updatePosition(FlxG.width / 2, 540);
         menuGroup.itemMargin = 12;
         menuWidth = 240;
         menuItemTextSize = 32;
 
 		menuItems.push(
-            new MenuButtonData("Menu", onReturnToMenu)
+            new MenuButtonData("Menu", onClickReturn)
         );
-
-        menuItems.push(
-            new MenuButtonData("Replay", onClickReplay)
-        );
-
-        menuItems.push(
-            new MenuButtonData("Next Level", onClickNextLv)
-        );
-
-        nextLevel = Registry.gameLevel + 1;
 
         super.create();
     }
@@ -76,40 +62,20 @@ class YouWonState extends SBNFMenuState {
 		for (i in 0...12) {
 			effectEmitter.emitSquare(FlxG.width / 2, FlxG.height / 2, Std.int(Math.random() * 6 + 3),
 				NFParticleEmitter.velocitySpread(220),
-			NFColorUtil.randCol(0.2, 0.9, 0.2, 0.1), 2.2);
+			NFColorUtil.randCol(0.9, 0.3, 0.2, 0.1), 2.2);
 		}
 
         // hotkeys
         #if !FLX_NO_KEYBOARD
-		if (FlxG.keys.anyJustPressed([ ENTER ])) {
-			onClickNextLv();
-		}
-        if (FlxG.keys.anyJustPressed([ ESCAPE ])) {
-			onReturnToMenu();
+        if (FlxG.keys.anyJustPressed([ ESCAPE, ENTER ])) {
+			onClickReturn();
 		}
         #end
 
         super.update(dt);
     }
 
-    private function onClickReplay() {
-        FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
-            if (navalWar) {
-                FlxG.switchState(new WarPlayState());
-            } else {
-                FlxG.switchState(new ClassicPlayState());
-            }
-        });
-    }
-
-    private function onClickNextLv() {
-        // increase the difficulty
-        Registry.gameLevel = nextLevel;
-        onClickReplay(); // replay just reloads play, but we updated level
-    }
-
-    private function onReturnToMenu() {
-        // return to menu
+    private function onClickReturn() {
         FlxG.camera.fade(FlxColor.BLACK, 0.4, false, function () {
             FlxG.switchState(new MenuState());
         });

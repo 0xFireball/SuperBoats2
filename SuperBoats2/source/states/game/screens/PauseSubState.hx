@@ -1,4 +1,4 @@
-package states.game;
+package states.game.screens;
 
 import flixel.*;
 import flixel.util.*;

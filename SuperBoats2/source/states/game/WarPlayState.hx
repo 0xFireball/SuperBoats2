@@ -14,6 +14,7 @@ import sprites.projectiles.*;
 import sprites.ui.*;
 
 import states.game.data.*;
+import states.game.screens.*;
 
 import nf4.util.*;
 import nf4.effects.particles.*;
@@ -243,11 +244,9 @@ class WarPlayState extends FlxState
 			});
 		}
 		if (!mothership.exists) {
-			// wow, good job!
-			FlxG.camera.fade(FlxColor.WHITE, 0.4, false, function () {
-				removeMapAddons();
-				FlxG.switchState(new YouWonState(true));
-			});
+			// ?
+			// TODO
+			throw "TODO: End of Naval War";
 		}
 	}
 

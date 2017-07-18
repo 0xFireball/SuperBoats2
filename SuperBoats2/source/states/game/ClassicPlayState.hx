@@ -13,6 +13,7 @@ import sprites.projectiles.*;
 import sprites.ui.*;
 
 import states.game.data.*;
+import states.game.screens.*;
 
 import nf4.util.*;
 import nf4.effects.particles.*;
@@ -186,6 +187,9 @@ class ClassicPlayState extends FlxState
 		if (!mothership.exists) {
 			// wow, good job!
 			FlxG.camera.fade(FlxColor.WHITE, 0.4, false, function () {
+				// increase level and go to youwon
+				Registry.gameLevel += 1;
+				util.SaveUtil.saveGameLevel();
 				FlxG.switchState(new YouWonState());
 			});
 		}

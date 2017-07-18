@@ -41,12 +41,14 @@ class MenuSwitchData implements IMenuItemData {
 
     public var items:Array<String>;
     public var callback:Void->Void;
+    public var selectionChanged:Int->Void;
     public var selectedIndex:Int;
 
-    public function new(Items:Array<String>, ?SelectedIndex:Int = 0, ?Callback:Void->Void, Disabled:Bool = false) {
+    public function new(Items:Array<String>, ?SelectedIndex:Int = 0, ?Callback:Void->Void, ?SelectionChanged:Int->Void, Disabled:Bool = false) {
         items = Items;
         selectedIndex = SelectedIndex;
         callback = Callback;
+        selectionChanged = SelectionChanged;
         disabled = Disabled;
     }
 }
@@ -83,7 +85,8 @@ class SBNFMenuState extends FlxState {
                         switchData.items,
                         menuWidth,
                         switchData.selectedIndex,
-                        switchData.callback
+                        switchData.callback,
+                        switchData.selectionChanged
                     );
                     uiItem = switchItem;
                 default:
