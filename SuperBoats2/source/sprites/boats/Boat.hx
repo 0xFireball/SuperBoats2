@@ -32,8 +32,6 @@ class Boat extends NFSprite {
 	public var shieldPercentage(get, null):Float;
 	public var healthPercentage(get, null):Float;
 
-	public var subSprites:FlxTypedGroup<FlxSprite>;
-
 	public var stateData:GameStateData;
 
 	private var sprayEmitter:FlxEmitter;
@@ -62,8 +60,6 @@ class Boat extends NFSprite {
 		sprayEmitter.color.set(FlxColor.fromRGBFloat(0.0, 0.4, 0.6, 0.4), FlxColor.fromRGBFloat(0.4, 0.8, 1.0, 0.9));
 		sprayEmitter.makeParticles(1, 1, FlxColor.WHITE, 200);
 
-		subSprites = new FlxTypedGroup<FlxSprite>();
-
 		aiController = new BoatAiController<Boat>(this);
 
 		weapons = new Array<WeaponSystem>();
@@ -81,13 +77,6 @@ class Boat extends NFSprite {
 		powerShield();
 
 		sprayEmitter.update(dt);
-		subSprites.update(dt);
-
-		// nuke dead subsprites
-		subSprites.forEachDead(function (d) {
-			subSprites.remove(d, true);
-			d.destroy();
-		});
 
 		for (weapon in weapons) {
 			weapon.update(dt);
@@ -115,8 +104,6 @@ class Boat extends NFSprite {
 		sprayEmitter.draw();
 
 		super.draw();
-
-		subSprites.draw();
 	}
 
 	private function moveDefault(Thrust:Bool, Left:Bool, Right:Bool, Brake:Bool) {
@@ -231,15 +218,11 @@ class Boat extends NFSprite {
 	override public function kill() {
 		super.kill();
 		sprayEmitter.kill();
-		subSprites.kill();
 	}
 
 	override public function destroy() {
 		sprayEmitter.destroy();
 		sprayEmitter = null;
-
-		subSprites.destroy();
-		subSprites = null;
 
 		stateData.destroy();
 		stateData = null;
