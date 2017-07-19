@@ -36,7 +36,7 @@ class YouWonState extends SBNFMenuState {
         effectEmitter = new NFParticleEmitter(200);
         add(effectEmitter);
 
-        var tt2 = new SBNFText(0, 340, "you won. level " + Registry.gameLevel + " complete.", 32);
+        var tt2 = new SBNFText(0, 340, "you won. level " + (Registry.gameLevel - 1) + " complete.", 32);
 		tt2.screenCenter(FlxAxes.X);
 		add(tt2);
 
