@@ -31,8 +31,8 @@ install:
   - haxelib git flixel-ui https://github.com/HaxeFlixel/flixel-ui dev > /dev/null
   - haxelib dev flixel $TRAVIS_BUILD_DIR
   - haxelib list
-  - haxelib run lime setup
-  - haxelib run lime setup linux
+  - yes y | haxelib run lime setup
+  - yes y | haxelib run lime setup linux
 
 script:
   - export HXCPP_COMPILE_CACHE=~/hxcache
