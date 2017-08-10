@@ -1,7 +1,6 @@
 language: haxe
 
-sudo: false
-
+sudo: required
 addons:
   apt:
     packages:
@@ -31,8 +30,6 @@ install:
   - haxelib git flixel-ui https://github.com/HaxeFlixel/flixel-ui dev > /dev/null
   - haxelib dev flixel $TRAVIS_BUILD_DIR
   - haxelib list
-  - yes y | haxelib run lime setup
-  - yes y | haxelib run lime setup linux
 
 script:
   - export HXCPP_COMPILE_CACHE=~/hxcache
