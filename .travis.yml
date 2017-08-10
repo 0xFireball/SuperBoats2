@@ -1,6 +1,6 @@
 language: haxe
 
-sudo: required
+sudo: false
 addons:
   apt:
     packages:
