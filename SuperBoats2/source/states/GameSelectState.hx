@@ -32,18 +32,6 @@ class GameSelectState extends SBNFMenuState {
 		titleTx.screenCenter(FlxAxes.X);
 		add(titleTx);
 
-		// var classicGameBtn = new SBNFButton(0, 350, "Classic", onSelectClassic);
-		// classicGameBtn.screenCenter(FlxAxes.X);
-		// add(classicGameBtn);
-		
-		// var warGameBtn = new SBNFButton(0, 410, "Naval War", onSelectNavalWar);
-		// warGameBtn.screenCenter(FlxAxes.X);
-		// add(warGameBtn);
-
-		// var returnBtn = new SBNFButton(0, 700, "Return", onReturn);
-		// returnBtn.screenCenter(FlxAxes.X);
-		// add(returnBtn);
-
 		// set up menu
 		menuGroup.updatePosition(FlxG.width / 2, 340);
         menuGroup.itemMargin = 12;
@@ -54,6 +42,7 @@ class GameSelectState extends SBNFMenuState {
             new MenuButtonData("Classic", onSelectClassic)
         );
 
+		/*
 		menuItems.push(
             new MenuButtonData("Naval War", onSelectNavalWar,
 				#if (PP_EXPERIMENTAL_GAME)
@@ -63,6 +52,7 @@ class GameSelectState extends SBNFMenuState {
 				#end
 			)
         );
+		*/
 
 		FlxG.camera.fade(bgColor, 0.4, true);
 
