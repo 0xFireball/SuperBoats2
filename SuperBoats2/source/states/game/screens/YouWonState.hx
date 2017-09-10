@@ -62,7 +62,7 @@ class YouWonState extends SBNFMenuState {
 		for (i in 0...12) {
 			effectEmitter.emitSquare(FlxG.width / 2, FlxG.height / 2, Std.int(Math.random() * 6 + 3),
 				NFParticleEmitter.velocitySpread(220),
-			NFColorUtil.randCol(0.2, 0.9, 0.2, 0.1), 1.1);
+			NFColorUtil.randCol(0.2, 0.3, 0.3, 0.1), 1.1);
 		}
 
         // hotkeys
