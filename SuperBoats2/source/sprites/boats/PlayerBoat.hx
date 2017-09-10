@@ -64,6 +64,12 @@ class PlayerBoat extends GreenBoat {
 			// spawn ally
 			++allyCount;
 			var ally = new GreenBoat(Math.random() * (FlxG.width - 60) + 30, Math.random() * (FlxG.height - 60) + 30, stateData);
+			var allyEdge = 40;
+			if (ally.x < allyEdge) ally.x = allyEdge;
+			if (ally.x > FlxG.width - ally.width) ally.x = FlxG.width - ally.width - allyEdge;
+			if (ally.y < allyEdge) ally.y = allyEdge;
+			if (ally.y > FlxG.height - ally.width) ally.y = FlxG.height - ally.width - allyEdge;
+			ally.velocity.set(Math.random() * 100, Math.random() * 100);
 			stateData.allies.add(ally);
 		}
 	}
