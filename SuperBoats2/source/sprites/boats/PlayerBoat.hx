@@ -104,10 +104,10 @@ class PlayerBoat extends GreenBoat {
 		// apply objective
 		if (setObjective) {
 			aiController.setObjective(center);
-			// draw epicenter
-			subSprites.add(new Epicenter(center.x, center.y, FlxColor.fromRGBFloat(0.2, 0.9, 0.2)));
+			// draw marker
+			subSprites.add(new Marker(center.x, center.y, FlxColor.fromRGBFloat(0.2, 0.9, 0.2)));
 		} else if (releaseObjective) {
-			subSprites.add(new Epicenter(center.x, center.y, FlxColor.fromRGBFloat(0.9, 0.2, 0.2)));
+			subSprites.add(new Marker(center.x, center.y, FlxColor.fromRGBFloat(0.9, 0.2, 0.2)));
 			aiController.setObjective(null);
 		}
 

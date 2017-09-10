@@ -4,7 +4,7 @@ import flixel.util.*;
 
 import nf4.*;
 
-class Epicenter extends NFSprite {
+class Marker extends NFSprite {
 
     public var life:Float = 2.0;
     public var age:Float = 0;
@@ -13,7 +13,7 @@ class Epicenter extends NFSprite {
         super(X, Y);
 
         color = Color;
-        loadGraphic(AssetPaths.epicenter__png);
+        loadGraphic("assets/images/sprites/effects/marker.png");
         x -= width / 2;
         y -= height / 2;
     }
@@ -25,7 +25,7 @@ class Epicenter extends NFSprite {
 			kill();
 		} else {
 			alpha = 1 - (age / life);
-            var scaleFactor = 1 + (1 - alpha) * 4;
+            var scaleFactor = 1 + (1 - alpha) * 2;
             scale.set(scaleFactor, scaleFactor);
 		}
 
