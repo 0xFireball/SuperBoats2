@@ -42,7 +42,7 @@ class PlayerBoat extends GreenBoat {
 		}
 		maxAllyCount += Std.int(Registry.gameLevel / 3) * 2;
 
-        loadGraphic(AssetPaths.superboats2_player__png);
+        loadGraphic("assets/images/sprites/player.png");
 		offset.set(15, 1);
 		setSize(12, 40);
 	}

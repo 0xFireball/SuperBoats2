@@ -40,7 +40,7 @@ class Mothership extends Warship {
 			hullShieldRegen = 2 + (lvl - 1) * 2;
 		}
 
-		loadGraphic(AssetPaths.superboats2_mothership__png);
+		loadGraphic("assets/images/sprites/mothership.png");
 		setSize(20, 60);
 		offset.set(22, 2);
 	}

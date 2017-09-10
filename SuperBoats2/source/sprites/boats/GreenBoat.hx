@@ -51,7 +51,7 @@ class GreenBoat extends Boat {
 		maxVelocity.set(240, 240);
 		sprayAmount = 8;
 		
-		loadGraphic(AssetPaths.superboats2_ally__png);
+		loadGraphic("assets/images/sprites/ally.png");
 		offset.set(11, 11);
 		setSize(10, 30);
 	}

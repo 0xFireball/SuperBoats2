@@ -42,7 +42,7 @@ class Warship extends Boat {
 		maxAngular = FlxAngle.asDegrees(Math.PI / 4);
 		maxVelocity.set(135, 135);
 
-		loadGraphic(AssetPaths.superboats2_warship__png);
+		loadGraphic("assets/images/sprites/warship.png");
 		offset.set(15, 1);
 		setSize(13, 40);
 	}
