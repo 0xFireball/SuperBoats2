@@ -8,7 +8,7 @@ import states.game.*;
 class Registry {
     // constants
 
-    public static var gameVersion:String = "v0.5.2.0 alpha";
+    public static var gameVersion:String = "v0.5.4";
 
     public static function updateMetadata() {
         #if (neko)
