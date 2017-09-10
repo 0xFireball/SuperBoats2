@@ -18,6 +18,7 @@ class Cannonball extends Projectile {
 		mass = 2200;
 		movementSpeed = 120 + Math.random() * 120;
 		makeGraphic(8, 8, FlxColor.fromRGBFloat(0.6, 0.6, 0.6));
+		loadGraphic("assets/images/weapons/cannonball.png");
 
 		emitter.maxSize = 15;
 		emitter.scale.set(4, 4, 12, 12);
