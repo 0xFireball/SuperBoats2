@@ -15,6 +15,20 @@
 			"type": "hxcpp",
 			"request": "launch",
 			"stopOnEntry": true
+		},
+		{
+			"name": "WinDOS: C++ debug",
+			"runtimeExecutable": "${execPath}",
+			"args": [
+				"compilePath=${workspaceRoot}",
+				"compileCommand=lime build linux -debug -DHXCPP_DEBUGGER",
+				"runPath=${workspaceRoot}/export/debug/windows/cpp/bin/",
+				"runCommand=SuperBoats2.exe",
+				"runInTerminal=false"
+			],
+			"type": "hxcpp",
+			"request": "launch",
+			"stopOnEntry": true
 		}
 	]
 }
