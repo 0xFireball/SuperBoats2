@@ -59,6 +59,16 @@ class SettingsState extends SBNFMenuState {
 			new MenuButtonData("Reset Game", onResetSave)
 		);
 
+		// menuItems.push(
+		// 	new MenuInputData("", 17)
+		// );
+
+		#if GAMEJOLT
+		menuItems.push(
+			new MenuButtonData("Connect GameJolt", onConnectGameJolt)
+		);
+		#end
+
 		menuItems.push(
 			new MenuButtonData("Return", onReturn)
 		);
@@ -99,4 +109,11 @@ class SettingsState extends SBNFMenuState {
 	private function onSaveData() {
 		util.SaveUtil.saveGameLevel();
 	}
+
+	#if GAMEJOLT
+	private function onConnectGameJolt() {
+		// substate for connecting gamejolt
+		
+	}
+	#end
 }

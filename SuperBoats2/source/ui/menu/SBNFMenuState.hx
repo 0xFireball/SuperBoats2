@@ -11,6 +11,7 @@ import ui.*;
 enum MenuItemType {
     Button;
     Switch;
+    Input;
     Other;
 }
 
@@ -53,6 +54,24 @@ class MenuSwitchData implements IMenuItemData {
     }
 }
 
+class MenuInputData implements IMenuItemData {
+    
+    public var disabled:Bool;
+    public var type:MenuItemType = MenuItemType.Input;
+
+    public var value:String;
+    public var callback:Void->Void;
+    public var textChanged:String->Void;
+    public var maxLength:Int;
+
+    public function new(?Value:String, ?MaxLength:Int = 0, ?Callback:Void->Void, ?TextChanged:String->Void) {
+        value = Value;
+        maxLength = MaxLength;
+        callback = Callback;
+        textChanged = TextChanged;
+    }
+}
+
 class SBNFMenuState extends FlxState {
 
     private var menuGroup:NFMenuItemGroup = new NFMenuItemGroup();
@@ -89,8 +108,18 @@ class SBNFMenuState extends FlxState {
                         switchData.selectionChanged
                     );
                     uiItem = switchItem;
+                case MenuItemType.Input:
+                    var inputData:MenuInputData = cast itemData;
+                    var inputItem = new NFMenuInput(
+                        createText(null),
+                        inputData.value,
+                        menuWidth,
+                        inputData.maxLength,
+                        inputData.callback,
+                        inputData.textChanged
+                    );
+                    uiItem = inputItem;
                 default:
-                    // ?
             }
             
             if (itemData.disabled) {
