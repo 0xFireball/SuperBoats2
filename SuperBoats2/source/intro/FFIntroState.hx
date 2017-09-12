@@ -17,6 +17,10 @@ class FFIntroState extends FlxState
 	
 	private var introLength:Float = 2.0;
 
+	private var totalElapsed:Float = 0.0;
+
+	private var coverTween:FlxTween;
+
 	override public function create():Void
 	{
 		#if !FLX_NO_MOUSE
@@ -41,13 +45,14 @@ class FFIntroState extends FlxState
 	}
 
 	public override function update(elapsed:Float) {
-		FlxTween.tween(cover, { scaleFactor: 1.2, alpha: 0 }, 0.4, {
-			ease: FlxEase.cubeOut,
-			startDelay: introLength,
-			onComplete: function (t) {
-				switchToGame();
-			}
-		});
+		if (!FlxG.keys.anyPressed([BACKSPACE]) && coverTween == null && totalElapsed > introLength) {
+			coverTween = FlxTween.tween(cover, { scaleFactor: 1.2, alpha: 0 }, 0.4, {
+				ease: FlxEase.cubeOut,
+				onComplete: function (t) {
+					switchToGame();
+				}
+			});
+		}
 
 		#if debug
 		// Enable quickly skipping intro
@@ -55,6 +60,8 @@ class FFIntroState extends FlxState
 			switchToGame();
 		}
 		#end
+
+		totalElapsed += elapsed;
 
 		super.update(elapsed);
 	}
