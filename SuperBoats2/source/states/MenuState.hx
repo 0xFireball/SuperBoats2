@@ -17,6 +17,8 @@ import ui.*;
 import ui.menu.*;
 import ui.menu.SBNFMenuState;
 
+import util.*;
+
 class MenuState extends SBNFMenuState {
     private var titleTx:NFText;
 
@@ -38,6 +40,8 @@ class MenuState extends SBNFMenuState {
         FlxG.mouse.visible = true;
         FlxG.mouse.load(AssetPaths.mouse__png);
         #end
+
+        SystemUtil.gc();
 
         bgColor = Registry.backgroundColor;
 

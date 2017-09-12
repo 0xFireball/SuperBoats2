@@ -17,6 +17,8 @@ import ui.*;
 import ui.menu.*;
 import ui.menu.SBNFMenuState;
 
+import util.*;
+
 class YouWonState extends SBNFMenuState {
 
     public var effectEmitter:NFParticleEmitter;
@@ -27,6 +29,8 @@ class YouWonState extends SBNFMenuState {
         #if !FLX_NO_MOUSE
 		FlxG.mouse.visible = true;
 		#end
+
+        SystemUtil.gc();
 
         var titleTx = new SBNFText(0, 180, "SuperBoats 2", 84);
 		titleTx.color = FlxColor.WHITE;
