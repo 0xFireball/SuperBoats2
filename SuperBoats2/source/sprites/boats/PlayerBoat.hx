@@ -68,7 +68,7 @@ class PlayerBoat extends GreenBoat {
 			if (ally.x < allyEdge) ally.x = allyEdge;
 			if (ally.x > FlxG.width - ally.width) ally.x = FlxG.width - ally.width - allyEdge;
 			if (ally.y < allyEdge) ally.y = allyEdge;
-			if (ally.y > FlxG.height - ally.width) ally.y = FlxG.height - ally.width - allyEdge;
+			if (ally.y > FlxG.height - ally.height) ally.y = FlxG.height - ally.height - allyEdge;
 			ally.velocity.set(Math.random() * 100, Math.random() * 100);
 			stateData.allies.add(ally);
 		}

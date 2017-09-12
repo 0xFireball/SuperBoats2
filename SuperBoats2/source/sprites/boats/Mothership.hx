@@ -60,7 +60,7 @@ class Mothership extends Warship {
 			if (minion.x < minionEdge) minion.x = minionEdge;
 			if (minion.x > FlxG.width - minion.width) minion.x = FlxG.width - minion.width - minionEdge;
 			if (minion.y < minionEdge) minion.y = minionEdge;
-			if (minion.y > FlxG.height - minion.width) minion.y = FlxG.height - minion.width - minionEdge;
+			if (minion.y > FlxG.height - minion.height) minion.y = FlxG.height - minion.height - minionEdge;
 			minion.velocity.set(Math.random() * 100, Math.random() * 100);
 			stateData.warships.add(minion);
 		}
