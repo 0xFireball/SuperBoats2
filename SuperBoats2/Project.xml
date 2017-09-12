@@ -93,8 +93,8 @@
 	<!-- Game Custom Builds -->
 	<haxedef name="PP_EXPERIMENTAL_GAME" if="debug || experimental" />
 
-	<haxelib name="hxcpp-debugger" if="debug && cpp" />
-	<haxedef name="HXCPP_DEBUGGER" if="debug && cpp" />
+	<haxelib name="hxcpp-debugger" if="debug" />
+	<haxedef name="HXCPP_DEBUGGER" if="debug" />
 
 	<!-- _________________________________ Custom _______________________________ -->
 

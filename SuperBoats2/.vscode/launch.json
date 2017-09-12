@@ -1,6 +1,7 @@
 {
 	"version": "0.2.0",
 	"configurations": [
+		
 		{
 			// Source: https://github.com/jcward/vscode-hxcpp-debug/blob/master/test%20openfl/.vscode/launch.json#L34
 			"name": "Linux: C++ debug",
@@ -21,7 +22,7 @@
 			"runtimeExecutable": "${execPath}",
 			"args": [
 				"compilePath=${workspaceRoot}",
-				"compileCommand=lime build linux -debug -DHXCPP_DEBUGGER",
+				"compileCommand=lime build windows -debug -DHXCPP_DEBUGGER",
 				"runPath=${workspaceRoot}/export/debug/windows/cpp/bin/",
 				"runCommand=SuperBoats2.exe",
 				"runInTerminal=false"
